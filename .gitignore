@@ -97,3 +97,9 @@ InitTestScene*.unity*
 
 # Auto-generated scenes by play mode tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+MobilePuzzleGame_Project/Temp
+MobilePuzzleGame_Project/UserSettings
+MobilePuzzleGame_Project/.vsconfig
+MobilePuzzleGame_Project/Library
+MobilePuzzleGame_Project/Assets/Scripts/Utils/ScriptTemplatesLoaderTool.cs.meta
+MobilePuzzleGame_Project/Assets/Scripts/Utils/ScriptTemplatesLoaderTool.cs
