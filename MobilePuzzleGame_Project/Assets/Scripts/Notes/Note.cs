@@ -15,7 +15,6 @@ public class Note : MonoBehaviour
     static private Dictionary<int, List<Note>> _mapActivesNotes = new();
 
     private SpriteRenderer _renderer;
-    private Rigidbody2D _rigidBody;
 
     // ----- Events ----- \\
     [Header("Note")]
@@ -60,28 +59,6 @@ public class Note : MonoBehaviour
 
     [SerializeField] private LayerMask _triggerWaveLayerMask = 0;
 
-    [Header("Physics")]
-    [SerializeField] private float _gravity = 9.81f;
-    [SerializeField] private float _gravityScale = 1.0f;
-
-    [SerializeField] private Vector2 _gravityDirection = Vector2.down;
-
-    [SerializeField] private float _mass = 1.0f;
-    public float Mass
-    {
-        get => _mass;
-        private set
-        {
-            if (value < 0)
-            {
-                _mass = 0f;
-                Debug.LogWarning(name + ": mass cannot be negative.");
-                return;
-            }
-            _mass = value;
-        }
-    }
-
     // ---------- FUNCTIONS ---------- \\
 
     // ----- Buil-in ----- \\
@@ -89,26 +66,18 @@ public class Note : MonoBehaviour
     private void Reset()
     {
         // Unity
-        GetRigidBody();
         GetRenderer();
 
         // Notes
         _level = 0;
         _triggerWaveRadius = 2.0f;
         _triggerWaveLayerMask = 0;
-
-        // Physics
-        _gravity = 9.81f;
-        _gravityScale = 1.0f;
-        _gravityDirection = Vector2.down;
-        _mass = 1.0f;
     }
 
     private void OnValidate()
     {
         Level = _level;
         TriggerWaveRadius = _triggerWaveRadius;
-        Mass = _mass;
     }
 
     private void OnEnable()
@@ -123,7 +92,6 @@ public class Note : MonoBehaviour
 
     private void Awake()
     {
-        if (_rigidBody == null) GetRigidBody();
         if (_renderer == null) GetRenderer();
     }
 
@@ -132,20 +100,9 @@ public class Note : MonoBehaviour
     private void Update()
     {
         if (GameManager.CurrentGameState != GameState.GamePlaying) return;
-
-        ApplyGravity();
     }
 
     // ----- My Functions ----- \\
-
-    private void GetRigidBody()
-    {
-        _rigidBody = GetComponent<Rigidbody2D>();
-        if (_rigidBody == null)
-        {
-            Debug.LogWarning(name + ": no rigidBody found.");
-        }
-    }
 
     private void GetRenderer()
     {
@@ -204,23 +161,6 @@ public class Note : MonoBehaviour
 
         _mapActivesNotes[_level].Remove(this);
         _numberActiveNotes--;
-    }
-
-    private void ApplyGravity()
-    {
-        Vector2 gravityAcceleration = _gravityDirection * _gravity * _gravityScale;
-        ApplyAcceleration(gravityAcceleration);
-    }
-
-    public void ApplyAcceleration(Vector2 acceleration)
-    {
-        _rigidBody.linearVelocity += acceleration * Time.deltaTime;
-    }
-
-    public void ApplyForce(Vector2 force)
-    {
-        Vector2 acceleration = force / _mass;
-        ApplyAcceleration(acceleration);
     }
 
     // ----- Destructor ----- \\

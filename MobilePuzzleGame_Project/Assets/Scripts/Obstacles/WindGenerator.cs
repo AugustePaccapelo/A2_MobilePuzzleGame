@@ -72,7 +72,7 @@ public class WindGenerator : MonoBehaviour, IInteractible
     {
         if (!_isActive) return;
 
-        Note note = collision.GetComponent<Note>();
+        PhysicsComponent note = collision.GetComponent<PhysicsComponent>();
         if (note == null) return;
 
         Debug.Log(transform.up * _force);
