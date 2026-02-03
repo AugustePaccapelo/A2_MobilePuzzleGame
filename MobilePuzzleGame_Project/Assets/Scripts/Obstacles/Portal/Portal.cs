@@ -43,19 +43,46 @@ public class Portal : MonoBehaviour
                 float DegToRad = (_exitPortal.transform.eulerAngles.z %360 - transform.eulerAngles.z % 360 - 180) * Mathf.Deg2Rad;
 
                 // On tourne la direction de la balle de sorte à ce qu'elle s'oriente relativement au portail de sortie
-                Vector2 ballDirectionRotated = new Vector2
-                    (ballDirection.x * Mathf.Cos(DegToRad) - ballDirection.y * Mathf.Sin(DegToRad),
-                    ballDirection.x * Mathf.Sin(DegToRad) + ballDirection.y * Mathf.Cos(DegToRad))
-                    ;
+                Vector2 ballDirectionRotated = RotateVector2(ballDirection, DegToRad);
 
                 //Téléporter la balle à l'autre portail en prenant compte de sa vitesse et de sa position relative au portail
-                collision.gameObject.transform.position = _exitPortal.transform.position;
+                Vector2 finalPosition;
 
+                DegToRad = -(transform.eulerAngles.z % 360) * Mathf.Deg2Rad;
+
+                // On tourne la position pour un repère à 0 degré
+                finalPosition = RotateVector2(portalToBall, DegToRad);
+
+                finalPosition = new Vector2(-finalPosition.x, finalPosition.y); // On inverse le X
+
+                //Et on retourne pour la différence
+                DegToRad = _exitPortal.transform.eulerAngles.z * Mathf.Deg2Rad;
+
+                finalPosition = RotateVector2(finalPosition, DegToRad);
+
+                collision.gameObject.transform.position = _exitPortal.transform.position + (Vector3)finalPosition;
+
+                if (ballDirectionRotated.magnitude < 3f)
+                {
+                    Debug.Log("Boost");
+                    ballDirectionRotated *= 2f;
+                }
                 collision.GetComponent<Rigidbody2D>().linearVelocity = ballDirectionRotated;
 
 
             }
         }
+    }
+
+
+    private Vector2 RotateVector2(Vector2 vector, float angleInRad)
+    {
+        vector = new Vector2(
+                    vector.x * Mathf.Cos(angleInRad) - vector.y * Mathf.Sin(angleInRad),
+                    vector.x * Mathf.Sin(angleInRad) + vector.y * Mathf.Cos(angleInRad)
+                    );
+
+        return vector;
     }
 
 }
