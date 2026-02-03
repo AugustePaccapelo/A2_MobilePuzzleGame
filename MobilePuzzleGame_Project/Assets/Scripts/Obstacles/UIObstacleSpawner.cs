@@ -12,6 +12,8 @@ public class UIObstacleSpawner : MonoBehaviour, IPointerDownHandler, ITouchableO
 
     // ----- Prefabs & Assets ----- \\
 
+    private const string OBSTACLE_DATA_PATH = "Data/";
+    private const string OBSTACLE_DATA_FILE_NAME = "ObstacleData";
     private ObstacleData _obstacleData;
     [SerializeField] private PlacableObstacle _obstacle;
     private ObstacleInfo _obstacleInfo;
@@ -63,7 +65,8 @@ public class UIObstacleSpawner : MonoBehaviour, IPointerDownHandler, ITouchableO
     private void Awake()
     {
         GetObstacleData();
-        
+        UpdateObstacle();
+
         if (_prefabToSpawn == null)
         {
             Debug.LogWarning(name + ": prefab to spawn is null.");
@@ -105,7 +108,7 @@ public class UIObstacleSpawner : MonoBehaviour, IPointerDownHandler, ITouchableO
 
     private void GetObstacleData()
     {
-        _obstacleData = ObstacleData.instance;
+        _obstacleData = Resources.Load<ObstacleData>(OBSTACLE_DATA_PATH + OBSTACLE_DATA_FILE_NAME);
     }
 
     private void UpdateObstacle()
@@ -126,7 +129,9 @@ public class UIObstacleSpawner : MonoBehaviour, IPointerDownHandler, ITouchableO
             return;
         }
 
+        icon.enabled = false;
         icon.texture = obsInfo.icon;
+        icon.enabled = true;
     }
 
     public void PickupObstacle(GameObject obstacle)

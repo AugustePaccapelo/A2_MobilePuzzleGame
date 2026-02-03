@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1444869678478099677}
   - component: {fileID: 7993000874476318555}
+  - component: {fileID: -8923225444606371767}
   m_Layer: 0
   m_Name: Plateform - Drum
   m_TagString: Untagged
@@ -79,6 +80,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 0.4}
   m_EdgeRadius: 0
+--- !u!114 &-8923225444606371767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4255258721759593863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e044b0b8fe088849ad3d6a87e27417f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObstaclesPlacer
 --- !u!1 &5400688795087285577
 GameObject:
   m_ObjectHideFlags: 0
