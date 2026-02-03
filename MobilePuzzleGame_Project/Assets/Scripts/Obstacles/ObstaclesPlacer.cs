@@ -88,7 +88,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
             if (_currentFinger.finger.currentTouch.isTap)
             {
                 // If was already selected, then turn obstacle
-                if (_wasSelectedThisFrame)
+                if (!_wasSelectedThisFrame)
                 {
                     Vector3 angle = transform.eulerAngles;
                     angle.z += 30;

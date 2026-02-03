@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer >= 1f)
+        if (timer >= 5f)
         {
             _currentGameState = GameState.GamePlaying;
         }
