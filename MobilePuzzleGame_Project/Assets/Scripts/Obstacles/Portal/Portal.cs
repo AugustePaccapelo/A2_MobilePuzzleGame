@@ -16,12 +16,14 @@ public class Portal : MonoBehaviour
 
     [HorizontalLine(color: EColor.Violet), BoxGroup("GP -- Balle fantôme")]
     [Label("Balle Fantôme") ,SerializeField, Required] private Transform _ghostBall;
+    private Vector3 _portalToBall;
+
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<Ball>() != null)
         {
-            Vector3 portalToBall = collision.transform.position - transform.position;
+             _portalToBall = collision.transform.position - transform.position;
 
             if (Vector2.Distance(transform.position, collision.transform.position) <= collision.transform.localScale.x / 3)
             {
@@ -33,10 +35,10 @@ public class Portal : MonoBehaviour
             }
 
             //Gestion de la balle fantôme
-            _ghostBall.position = _exitPortal.transform.position - portalToBall;
+            
 
             //Vérification de la position pour la téléportation
-            if (Vector2.Dot(transform.up, portalToBall) < -0.1f)
+            if (Vector2.Dot(transform.up, _portalToBall) < -0.1f)
             {
                 Vector2 ballDirection = collision.GetComponent<Rigidbody2D>().linearVelocity;
 
@@ -51,7 +53,7 @@ public class Portal : MonoBehaviour
                 DegToRad = -(transform.eulerAngles.z % 360) * Mathf.Deg2Rad;
 
                 // On tourne la position pour un repère à 0 degré
-                finalPosition = RotateVector2(portalToBall, DegToRad);
+                finalPosition = RotateVector2(_portalToBall, DegToRad);
 
                 finalPosition = new Vector2(-finalPosition.x, finalPosition.y); // On inverse le X
 
@@ -69,9 +71,16 @@ public class Portal : MonoBehaviour
                 }
                 collision.GetComponent<Rigidbody2D>().linearVelocity = ballDirectionRotated;
 
-
+                
             }
+
+            _ghostBall.position = _exitPortal.transform.position - _portalToBall;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        _ghostBall.position = _exitPortal.transform.position - _portalToBall;
     }
 
 
