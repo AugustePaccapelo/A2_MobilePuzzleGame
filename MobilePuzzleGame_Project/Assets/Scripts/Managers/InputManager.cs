@@ -1,10 +1,10 @@
-using UnityEditor.DeviceSimulation;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 using System.Collections.Generic;
 using System.Linq;
+using System;
+using UnityEngine.EventSystems;
 
 // Author : Auguste Paccapelo
 
@@ -22,7 +22,13 @@ public class InputManager : MonoBehaviour
 
     private List<FingerInput> _allFingers = new();
 
+    // ----- Events ----- \\
+
+    public event Action onFingerDown;
+
     // ----- Others ----- \\
+
+    [SerializeField] private LayerMask _touchRaycastMask;
 
     // ---------- FUNCTIONS ---------- \\
 
@@ -32,12 +38,14 @@ public class InputManager : MonoBehaviour
     {
         EnhancedTouchSupport.Enable();
         Touch.onFingerDown += NewFingerDown;
+        Touch.onFingerUp += FingerUp;
     }
 
     private void OnDisable()
     {
         EnhancedTouchSupport.Disable();
         Touch.onFingerDown -= NewFingerDown;
+        Touch.onFingerUp -= FingerUp;
     }
 
     private void Awake()
@@ -77,6 +85,43 @@ public class InputManager : MonoBehaviour
         FingerInput newFinger = new FingerInput(obj);
 
         _allFingers.Add(newFinger);
+
+        onFingerDown?.Invoke();
+
+        Ray ray = Camera.main.ScreenPointToRay(obj.screenPosition);
+        RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Abs(Camera.main.transform.position.z), _touchRaycastMask);
+        ITouchableOnDown touchable;
+
+        if (hit.collider != null && hit.collider.TryGetComponent(out touchable))
+        {
+            touchable.OnTouchedDown(obj.screenPosition);
+        }
+    }
+
+    private void FingerUp(Finger obj)
+    {        
+        ITouchableOnUp touchable;
+
+        Ray ray = Camera.main.ScreenPointToRay(obj.screenPosition);
+        RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Abs(Camera.main.transform.position.z), _touchRaycastMask);
+
+        if (hit.collider != null && hit.collider.TryGetComponent(out touchable))
+        {
+            touchable.OnTouchedUp(obj.screenPosition);
+        }
+
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.position = obj.screenPosition;
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, results);
+
+        foreach (RaycastResult result in results)
+        {
+            if (result.gameObject.TryGetComponent(out touchable))
+            {
+                touchable.OnTouchedUp(obj.screenPosition);
+            }
+        }
     }
 
     public FingerInput GetNewFingerAtPos(Vector2 pos, bool includeTrackedFingers = false)
