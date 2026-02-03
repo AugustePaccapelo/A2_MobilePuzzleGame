@@ -39,16 +39,16 @@ public class pausemanager : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    void displaytime()
+    void savevolume()
     {
-        float currentTime = Time.timeSinceLevelLoad;
-        Debug.Log("Current Time: " + currentTime.ToString("F2") + "s");
-        
+        PlayerPrefs.SetFloat("volume", volumeslider.value);
+        PlayerPrefs.Save();
     }
 
     void setvolume()
     {
         AudioListener.volume = volumeslider.value;
+        savevolume();
         Debug.Log("Volume set to: " + volumeslider.value);  
     }
 }
