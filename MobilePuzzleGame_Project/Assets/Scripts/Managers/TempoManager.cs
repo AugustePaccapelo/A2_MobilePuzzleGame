@@ -37,10 +37,15 @@ public class TempoManager : MonoBehaviour
     // --- Event ---
     public event Action<int> OnBeat;
 
+    // --- Instance ---
+    public static TempoManager Instance;
+
     private void Awake()
     {
         _beatTempo = 60f / _bpm;
         _beatIndex = 1;
+
+        Instance = this;
     }
 
     private void Update()
