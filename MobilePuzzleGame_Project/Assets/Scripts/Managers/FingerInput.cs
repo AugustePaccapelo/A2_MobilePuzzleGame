@@ -8,8 +8,6 @@ public class FingerInput
 {
     // ---------- VARIABLES ---------- \\
 
-    // ----- Prefabs & Assets ----- \\
-
     // ----- Objects ----- \\
 
     private Finger _finger;
@@ -30,6 +28,4 @@ public class FingerInput
     {
         _finger = finger;
     }
-
-    // ----- My Functions ----- \\
 }

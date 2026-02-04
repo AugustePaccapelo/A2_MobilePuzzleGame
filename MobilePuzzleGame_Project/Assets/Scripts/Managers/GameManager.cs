@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 // Author : Auguste Paccapelo
@@ -27,6 +28,8 @@ public class GameManager : MonoBehaviour
 
     private static GameState _currentGameState = GameState.NotInLevel;
     public static GameState CurrentGameState => _currentGameState;
+
+    private Action _currentSate;
 
     // ---------- FUNCTIONS ---------- \\
 
@@ -61,6 +64,46 @@ public class GameManager : MonoBehaviour
     }
 
     // ----- My Functions ----- \\
+
+    public void StartGame()
+    {
+        
+    }
+
+    private void InitNotInLevel()
+    {
+
+    }
+
+    private void NotInLevel()
+    {
+
+    }
+
+    private void InitInitatingLevel()
+    {
+
+    }
+
+    private void InitatingLevel()
+    {
+
+    }
+
+    private void PlayerPlacingPlatform()
+    {
+
+    }
+
+    private void GamePlaying()
+    {
+
+    }
+
+    private void GameEnding()
+    {
+
+    }
 
     // ----- Destructor ----- \\
 

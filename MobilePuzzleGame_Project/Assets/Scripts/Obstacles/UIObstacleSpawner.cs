@@ -92,14 +92,14 @@ public class UIObstacleSpawner : MonoBehaviour, IPointerDownHandler, ITouchableO
         pos.z = 0;
         obstacle.transform.position = pos;
         
-        FingerInput finger = InputManager.Instance.GetNewFingerAtPos(eventData.position);
+        FingerInput finger = InputManager.Instance.GetNewFingerAtPosAndTrack(eventData.position);
         ObstaclesPlacer placer = obstacle.GetComponent<ObstaclesPlacer>();
         placer.Creator = this;
         ObstaclesPlacer.UnSelectCurrent();
         placer.Select(finger);
     }
 
-    public void OnTouchedUp(Vector2 screenPos)
+    public void OnTouchedUp(ToucheData toucheData)
     {
         ObstaclesPlacer.PickupCurrentObstacle();
     }
@@ -129,9 +129,7 @@ public class UIObstacleSpawner : MonoBehaviour, IPointerDownHandler, ITouchableO
             return;
         }
 
-        icon.enabled = false;
         icon.texture = obsInfo.icon;
-        icon.enabled = true;
     }
 
     public void PickupObstacle(GameObject obstacle)

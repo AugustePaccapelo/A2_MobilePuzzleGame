@@ -61,13 +61,13 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         }
     }
 
-    public void OnTouchedDown(Vector2 screenPos)
+    public void OnTouchedDown(ToucheData touchData)
     {
         _wasOnFingerDown = true;
-        _currentFinger = InputManager.Instance.GetNewFingerAtPos(screenPos);
+        _currentFinger = InputManager.Instance.GetNewFingerAtPosAndTrack(touchData.screenPosition);
     }
 
-    public void OnTouchedUp(Vector2 screenPos)
+    public void OnTouchedUp(ToucheData touchData)
     {
         if (!_wasOnFingerDown)
         {
