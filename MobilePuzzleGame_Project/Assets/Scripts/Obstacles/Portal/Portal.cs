@@ -1,5 +1,6 @@
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 ///  Author : Maxence Bernard
@@ -10,12 +11,15 @@ using UnityEngine;
 public class Portal : MonoBehaviour
 {
 
-    [HorizontalLine(2, EColor.Blue)]
-    [BoxGroup("GD -- Sortie du portail")]
+    [HorizontalLine(color: EColor.Blue)]
+    [BoxGroup("GD -- Portail de Sortie")]
     [Label("Portail de sortie") ,SerializeField, Required] private Portal _exitPortal;
 
-    [HorizontalLine(color: EColor.Violet), BoxGroup("GP -- Balle fantôme")]
-    [Label("Balle Fantôme") ,SerializeField, Required] private Transform _ghostBall;
+    [HorizontalLine(color: EColor.Blue)]
+    [BoxGroup("GD -- Events")]
+    [SerializeField] private UnityEvent _onTeleportation;
+
+
     private Vector3 _portalToBall;
 
 
@@ -62,7 +66,9 @@ public class Portal : MonoBehaviour
 
                 finalPosition = RotateVector2(finalPosition, DegToRad);
 
+                //Téléportation
                 collision.gameObject.transform.position = _exitPortal.transform.position + (Vector3)finalPosition;
+                _onTeleportation?.Invoke();
 
                 if (ballDirectionRotated.magnitude < 3f)
                 {
@@ -73,14 +79,7 @@ public class Portal : MonoBehaviour
 
                 
             }
-
-            _ghostBall.position = _exitPortal.transform.position - _portalToBall;
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        _ghostBall.position = _exitPortal.transform.position - _portalToBall;
     }
 
 
