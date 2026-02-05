@@ -7,9 +7,9 @@ using UnityEngine;
 public class TempoManager : MonoBehaviour
 {
     // ----- Variables ------
+    [BoxGroup("GD"), HorizontalLine(color: EColor.Blue)]
 
-    [HorizontalLine(color: EColor.Blue)]
-    [BoxGroup("GD -- Tempo")]
+    [Header("Tempo")]
     [Label("Tempo en bpm") ,SerializeField] private int _bpm;
 
     // --- Time ---
