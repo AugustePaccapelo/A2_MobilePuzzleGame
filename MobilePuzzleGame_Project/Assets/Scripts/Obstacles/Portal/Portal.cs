@@ -37,8 +37,6 @@ public class Portal : MonoBehaviour
             {
                 collision.GetComponentInChildren<BallVisual>().DeactivateMask();
             }
-
-            //Gestion de la balle fantôme
             
 
             //Vérification de la position pour la téléportation
