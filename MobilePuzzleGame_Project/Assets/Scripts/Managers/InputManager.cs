@@ -34,8 +34,6 @@ public class InputManager : MonoBehaviour
     public event Action<Vector2> onFingerMove;
     public event Action<Vector2> onFingerUp;
 
-    // ----- Others ----- \\
-
     // ---------- FUNCTIONS ---------- \\
 
     // ----- Buil-in ----- \\
@@ -68,10 +66,6 @@ public class InputManager : MonoBehaviour
         Instance = this;
     }
 
-    void Start() { }
-
-    void Update() { }
-
     private void LateUpdate()
     {
         int length = _allFingers.Count;
@@ -90,12 +84,16 @@ public class InputManager : MonoBehaviour
 
     private void NewFingerDown(Finger obj)
     {
+        FingerInput newFinger = new(obj);
+        _allFingers.Add(newFinger);
+
         List<RaycastResult> uiRaycastResults = UIRaycast(obj.screenPosition);
 
-        if (CallUITouchedDown(uiRaycastResults)) return;
-
-        RaycastHit2D physicRaycastResult = PhysiscRaycast(obj.screenPosition);
-        if (CallPhysicsTouchedDown(physicRaycastResult, obj.screenPosition)) return;
+        if (!CallUITouchedDown(uiRaycastResults))
+        {
+            RaycastHit2D physicRaycastResult = PhysiscRaycast(obj.screenPosition);
+            CallPhysicsTouchedDown(physicRaycastResult, obj.screenPosition);
+        }
 
         onFingerDown?.Invoke(obj.screenPosition);
     }
@@ -109,10 +107,11 @@ public class InputManager : MonoBehaviour
     {
         List<RaycastResult> uiRaycastResults = UIRaycast(obj.screenPosition);
 
-        if (CallUITouchedUp(uiRaycastResults)) return;
-
-        RaycastHit2D physicRaycastResult = PhysiscRaycast(obj.screenPosition);
-        if (CallPhysicsTouchedUp(physicRaycastResult, obj.screenPosition)) return;
+        if (!CallUITouchedUp(uiRaycastResults))
+        {
+            RaycastHit2D physicRaycastResult = PhysiscRaycast(obj.screenPosition);
+            CallPhysicsTouchedUp(physicRaycastResult, obj.screenPosition);
+        }
 
         onFingerUp?.Invoke(obj.screenPosition);
     }

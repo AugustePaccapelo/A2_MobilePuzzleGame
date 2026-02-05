@@ -1,149 +1,267 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.EnhancedTouch;
 
 // Author : Auguste Paccapelo
 
 public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 {
-    // ---------- VARIABLES ---------- \\
+    private enum FingerState
+    {
+        Moving,
+        Rotating
+    }
 
-    // ----- Prefabs & Assets ----- \\
+    // ---------- VARIABLES ---------- \\
 
     // ----- Objects ----- \\
 
-    private FingerInput _currentFinger = null;
-    private UIObstacleSpawner _creator;
-    public UIObstacleSpawner Creator
-    {
-        get => _creator;
-        set => _creator = value;
-    }
+    [SerializeField] private GameObject _mainObject;
+    [SerializeField] private Canvas _canvas;
+    [SerializeField] private RectTransform _buttonsContainer;
+
+    [SerializeField] private RectTransform _rotationIndicator;
+
+    private Finger _currentFinger;
+    public Finger CurrentFinger => _currentFinger;
+    static private List<ObstaclesPlacer> _allObstacles = new();
+
+    // ----- Events ----- \\
+
+    static public event Action<PlacableObstacle> onObstaclePickedUp;
 
     // ----- Others ----- \\
 
-    static private bool _hasAnObstacleSelected = false;
-    static private ObstaclesPlacer _currentObstacleSelected = null;
+    [SerializeField] private PlacableObstacle _obstacleType;
 
     private bool _isThisSelected = false;
-    private bool _wasSelectedThisFrame = false;
-    private bool _wasOnFingerDown = false;
+    public bool IsThisSelected => _isThisSelected;
+
+    static private bool _hasAnObstacleSelected = false;
+    static public bool HasAnObstacleSelected => _hasAnObstacleSelected;
+
+    static private ObstaclesPlacer _currentObstacleSelected;
+    static public ObstaclesPlacer CurrentObstacleSelected => _currentObstacleSelected;
+    private FingerState _currentFingerState;
+
+    private Vector2 _screenPos;
+    private float _startAngle;
+
+    private float _indicatorDistance;
+    private float _indicatorStartAngle;
+
+    private float _buttonContainerDistance;
+    private float _buttonStartAngle;
 
     // ---------- FUNCTIONS ---------- \\
-
+    
     // ----- Buil-in ----- \\
 
-    private void OnEnable() { }
+    private void Start()
+    {
+        _allObstacles.Add(this);
+        _canvas.enabled = false;
 
-    private void OnDisable() { }
+        Vector2 indicatorVecToStartPos = _rotationIndicator.position - transform.position;
+        _indicatorDistance = indicatorVecToStartPos.magnitude;
+        _indicatorStartAngle = Mathf.Atan2(indicatorVecToStartPos.y, indicatorVecToStartPos.x);
 
-    private void Awake() { }
-
-    private void Start() { }
+        Vector2 buttonContainerVecToStartPos = _buttonsContainer.position - transform.position;
+        _buttonContainerDistance = buttonContainerVecToStartPos.magnitude;
+        _buttonStartAngle = Mathf.Atan2(buttonContainerVecToStartPos.y, buttonContainerVecToStartPos.x);
+    }
 
     private void Update()
     {
-        // If no finger return
-        if (_currentFinger == null || !_currentFinger.finger.isActive)
-        {
-            return;
-        }
-
-        // If finger is moving
-        if (_currentFinger.finger.currentTouch.phase == UnityEngine.InputSystem.TouchPhase.Moved)
-        {
-            Vector3 pos = Camera.main.ScreenToWorldPoint(_currentFinger.finger.screenPosition);
-            pos.z = transform.position.z;
-            transform.position = pos;
-
-            if (_wasSelectedThisFrame)
-            {
-                _wasSelectedThisFrame = false;
-            }
-        }
+        HandlePlacement();
+        HandleUI();
     }
 
     public void OnTouchedDown(ToucheData touchData)
     {
-        _wasOnFingerDown = true;
-        _currentFinger = InputManager.Instance.GetNewFingerAtPosAndTrack(touchData.screenPosition);
+        //UnSelectCurrent();
+        FingerInput fingerInput = InputManager.Instance.GetNewFingerAtPosAndTrack(touchData.screenPosition);
+        _currentFinger = fingerInput.finger;
+        _currentFingerState = FingerState.Moving;
     }
 
     public void OnTouchedUp(ToucheData touchData)
     {
-        if (!_wasOnFingerDown)
-        {
-            _currentFinger = null;
-            return;
-        }
-
-        _wasOnFingerDown = false;
-
-        // If not selected, select
-        if (!_isThisSelected)
+        if (_currentFinger != null && _currentFinger.currentTouch.isTap)
         {
             Select();
-        }
-        else
-        {
-            // If input is tap
-            if (_currentFinger.finger.currentTouch.isTap)
-            {
-                // If was already selected, then turn obstacle
-                if (!_wasSelectedThisFrame)
-                {
-                    Vector3 angle = transform.eulerAngles;
-                    angle.z += 30;
-                    transform.eulerAngles = angle;
-                }
-                else
-                {
-                    _wasSelectedThisFrame = false;
-                }
-            }
-
-            _currentFinger = null;
         }
     }
 
     // ----- My Functions ----- \\
 
-    static public void UnSelectCurrent()
+    private void HandleUI()
     {
-        if (_currentObstacleSelected != null)
+        if (!_isThisSelected || !_canvas.enabled) return;
+
+        Vector2 center = transform.position;
+        Vector2 pos = center + Polar2Cart(_buttonStartAngle, _buttonContainerDistance);
+
+        _buttonsContainer.position = pos;
+
+        Vector3[] corners = new Vector3[4];
+        _buttonsContainer.GetWorldCorners(corners);
+
+        float leftX = RectTransformUtility.WorldToScreenPoint(Camera.main, corners[0]).x;
+
+        if (leftX < 0)
         {
-            _currentObstacleSelected._isThisSelected = false;
+            Vector3 difference = Camera.main.ScreenToWorldPoint(new Vector3(-leftX, 0, 0)) - Camera.main.ScreenToWorldPoint(Vector3.zero);
+
+            pos.x += difference.x;
+
+            float angle = Mathf.Acos(((pos.x - center.x) / _buttonContainerDistance) % 1);
+            pos.y = center.y + Mathf.Sin(angle) * _buttonContainerDistance;
+
+            _buttonsContainer.position = pos;
         }
-        
-        _hasAnObstacleSelected = false;
-        _currentObstacleSelected = null;
     }
 
-    public void Select(FingerInput finger = null)
+    private void HandlePlacement()
     {
-        if (_hasAnObstacleSelected)
+        if (_currentFinger == null) return;
+
+        if (_currentFinger.currentTouch.ended)
         {
-            UnSelectCurrent();
+            _currentFinger = null;
+            return;
         }
 
-        _wasOnFingerDown = true;
-        _isThisSelected = true;
+        switch (_currentFingerState)
+        {
+            case FingerState.Moving:
+                MoveObstacle();
+                break;
+            case FingerState.Rotating:
+                RotateObstacle();
+                break;
+        }
+    }
+
+    private void MoveObstacle()
+    {
+        if (_currentFinger.currentTouch.phase != UnityEngine.InputSystem.TouchPhase.Moved) return;
+
+        Vector3 position = Camera.main.ScreenToWorldPoint(_currentFinger.screenPosition);
+        position.z = 0;
+        transform.position = position;
+    }
+
+    private void RefreshScreenPos()
+    {
+        Vector2 pos = Camera.main.WorldToScreenPoint(transform.position);
+        _screenPos = pos;
+    }
+
+    private void RotateObstacle()
+    {
+        Vector2 vecPosToStart = _currentFinger.currentTouch.startScreenPosition - _screenPos;
+        Vector2 vecPosToCurrent = _currentFinger.currentTouch.screenPosition - _screenPos;
+        
+        float angle = Mathf.Atan2(vecPosToCurrent.y, vecPosToCurrent.x) - MathF.Atan2(vecPosToStart.y, vecPosToStart.x);
+        _rotationIndicator.position = (Vector2)transform.position + Polar2Cart(angle + _indicatorStartAngle, _indicatorDistance);
+
+        angle *= Mathf.Rad2Deg;
+        angle += _startAngle;
+        SetAngle(angle);
+    }
+
+    private Vector2 Polar2Cart(float angle, float distance)
+    {
+        return new Vector2(Mathf.Cos(angle) * distance, Mathf.Sin(angle) * distance);
+    }
+
+    static public void PickupObstacleWithFingerAtPos(Vector2 screenPos)
+    {
+        int length = _allObstacles.Count;
+        for (int i = length - 1; i > -1; i--)
+        {
+            if (_allObstacles[i]._currentFinger != null && _allObstacles[i]._currentFinger.screenPosition == screenPos)
+            {
+                onObstaclePickedUp?.Invoke(_allObstacles[i]._obstacleType);
+                Destroy(_allObstacles[i].gameObject);
+                _allObstacles.RemoveAt(i);
+            }
+        }
+    }
+
+    public void SetFinger(Finger finger)
+    {
+        _currentFinger = finger;
+    }
+
+    private void OnFingerDown(Vector2 obj)
+    {
+        FingerInput fingerInput = InputManager.Instance.GetNewFingerAtPosAndTrack(obj);
+        if (fingerInput == null) return;
+
+        _currentFinger = fingerInput.finger;
+        _currentFingerState = FingerState.Rotating;
+        RefreshScreenPos();
+        _startAngle = GetAngle();
+        _buttonsContainer.gameObject.SetActive(false);
+    }
+
+    private void OnFingerUp(Vector2 obj)
+    {
+        _buttonsContainer.gameObject.SetActive(true);
+        _rotationIndicator.position = (Vector2)transform.position + Polar2Cart(_indicatorStartAngle, _indicatorDistance);
+    }
+
+    private void Select()
+    {
+        UnSelectCurrent();
+
         _hasAnObstacleSelected = true;
         _currentObstacleSelected = this;
-        _wasSelectedThisFrame = true;
+        _canvas.enabled = true;
+        _isThisSelected = true;
 
-        if (finger != null)
-        {
-            _currentFinger = finger;
-        }
+        InputManager.Instance.onFingerDown += OnFingerDown;
+        InputManager.Instance.onFingerUp += OnFingerUp;
     }
 
-    static public void PickupCurrentObstacle()
+    private void UnSelect()
+    {
+        _hasAnObstacleSelected = false;
+        _currentObstacleSelected = null;
+        _canvas.enabled = false;
+        _isThisSelected = false;
+
+        InputManager.Instance.onFingerDown -= OnFingerDown;
+        InputManager.Instance.onFingerUp -= OnFingerUp;
+    }
+
+    static private void UnSelectCurrent()
     {
         if (!_hasAnObstacleSelected) return;
-        
-        _currentObstacleSelected._creator.PickupObstacle(_currentObstacleSelected.gameObject);
+
+        _currentObstacleSelected.UnSelect();
     }
 
-    // ----- Destructor ----- \\
+    public void Flip()
+    {
+        Vector3 scale = _mainObject.transform.localScale;
+        scale.x *= -1;
+        _mainObject.transform.localScale = scale;
+    }
 
-    private void OnDestroy() { }
+    public void SetAngle (float angle)
+    {
+        Vector3 rotation = _mainObject.transform.eulerAngles;
+        rotation.z = angle;
+        rotation.z %= 360;
+        _mainObject.transform.eulerAngles = rotation;
+    }
+
+    public float GetAngle ()
+    {
+        return _mainObject.transform.eulerAngles.z;
+    }
 }

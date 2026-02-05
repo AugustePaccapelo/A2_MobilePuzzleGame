@@ -1,5 +1,3 @@
-using Unity.VisualScripting;
-using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 
 // Author : Auguste Paccapelo
