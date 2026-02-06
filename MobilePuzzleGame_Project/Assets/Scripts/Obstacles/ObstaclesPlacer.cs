@@ -27,6 +27,8 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     public Finger CurrentFinger => _currentFinger;
     static private List<ObstaclesPlacer> _allObstacles = new();
 
+    private RotationHandle _rotationHandle;
+
     // ----- Events ----- \\
 
     static public event Action<PlacableObstacle> onObstaclePickedUp;
@@ -55,8 +57,13 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     private float _buttonStartAngle;
 
     // ---------- FUNCTIONS ---------- \\
-    
+
     // ----- Buil-in ----- \\
+
+    private void OnDisable()
+    {
+        if (_isThisSelected) UnSelectCurrent();
+    }
 
     private void Start()
     {
@@ -70,6 +77,12 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         Vector2 buttonContainerVecToStartPos = _buttonsContainer.position - transform.position;
         _buttonContainerDistance = buttonContainerVecToStartPos.magnitude;
         _buttonStartAngle = Mathf.Atan2(buttonContainerVecToStartPos.y, buttonContainerVecToStartPos.x);
+        
+        _rotationHandle = GetComponentInChildren<RotationHandle>();
+        if (_rotationHandle == null)
+        {
+            Debug.LogError(name + " no rotation handle found.");
+        }
     }
 
     private void Update()
@@ -80,7 +93,6 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     public void OnTouchedDown(ToucheData touchData)
     {
-        //UnSelectCurrent();
         FingerInput fingerInput = InputManager.Instance.GetNewFingerAtPosAndTrack(touchData.screenPosition);
         _currentFinger = fingerInput.finger;
         _currentFingerState = FingerState.Moving;
@@ -196,11 +208,10 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         _currentFinger = finger;
     }
 
-    private void OnFingerDown(Vector2 obj)
+    private void OnRotationHandleTouched(ToucheData toucheData)
     {
-        FingerInput fingerInput = InputManager.Instance.GetNewFingerAtPosAndTrack(obj);
-        if (fingerInput == null) return;
-
+        FingerInput fingerInput = toucheData.fingerInput;
+        fingerInput.isTracked = true;
         _currentFinger = fingerInput.finger;
         _currentFingerState = FingerState.Rotating;
         RefreshScreenPos();
@@ -210,6 +221,13 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     private void OnFingerUp(Vector2 obj)
     {
+        if (_currentFinger == null || _currentFinger.screenPosition != obj)
+        {
+            UnSelectCurrent();
+            return;
+        }
+
+        _currentFinger = null;
         _buttonsContainer.gameObject.SetActive(true);
         _rotationIndicator.position = (Vector2)transform.position + Polar2Cart(_indicatorStartAngle, _indicatorDistance);
     }
@@ -223,8 +241,8 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         _canvas.enabled = true;
         _isThisSelected = true;
 
-        InputManager.Instance.onFingerDown += OnFingerDown;
         InputManager.Instance.onFingerUp += OnFingerUp;
+        _rotationHandle.onFingerDown += OnRotationHandleTouched;
     }
 
     private void UnSelect()
@@ -234,8 +252,12 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         _canvas.enabled = false;
         _isThisSelected = false;
 
-        InputManager.Instance.onFingerDown -= OnFingerDown;
-        InputManager.Instance.onFingerUp -= OnFingerUp;
+        if (InputManager.Instance != null)
+        {
+            InputManager.Instance.onFingerUp -= OnFingerUp;
+        }
+
+        _rotationHandle.onFingerDown -= OnRotationHandleTouched;
     }
 
     static private void UnSelectCurrent()
@@ -264,4 +286,8 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     {
         return _mainObject.transform.eulerAngles.z;
     }
+
+    // ----- Destructor ----- \\
+
+    private void OnDestroy() { }
 }

@@ -139,10 +139,16 @@ public class InputManager : MonoBehaviour
 
     private bool CallPhysicsTouchedDown(RaycastHit2D hit, Vector2 screenPos)
     {
-        if (hit.collider == null) return false;
+        if (hit.collider == null)
+        {
+            return false;
+        }
 
         ITouchableOnDown touchable;
-        if (!hit.collider.TryGetComponent(out touchable)) return false;
+        if (!hit.collider.TryGetComponent(out touchable))
+        {
+            return false;
+        }
 
         ToucheData newData = new();
         newData.screenPosition = screenPos;
