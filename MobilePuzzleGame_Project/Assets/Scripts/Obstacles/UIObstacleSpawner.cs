@@ -1,24 +1,27 @@
-using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using System.Collections.Generic;
 using UnityEngine.UI;
 
 // Author : Auguste Paccapelo
 
-public class UIObstacleSpawner : MonoBehaviour, IPointerDownHandler, ITouchableOnUp
+public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 {
     // ---------- VARIABLES ---------- \\
 
     // ----- Prefabs & Assets ----- \\
 
-    private ObstacleData _obstacleData;
-    [SerializeField] private PlacableObstacle _obstacle;
-    private ObstacleInfo _obstacleInfo;
+    private const string OBSTACLE_DATA_PATH = "Data/";
+    private const string OBSTACLE_DATA_FILE_NAME = "ObstacleData";
     private GameObject _prefabToSpawn;
-    [SerializeField] private Transform _obstaclesContainer;
 
     // ----- Objects ----- \\
+
+    private ObstacleData _obstacleData;
+    [SerializeField] private PlacableObstacle _obstacle;
+    [SerializeField] private string _textPrefix = "";
+    [SerializeField] private string _textSufix = "x";
+
+    [SerializeField] private Text _numberText;
+    [SerializeField] private Transform _obstaclesContainer;
 
     // ----- Others ----- \\
 
@@ -56,14 +59,23 @@ public class UIObstacleSpawner : MonoBehaviour, IPointerDownHandler, ITouchableO
         UpdateObstacle();
     }
 
-    private void OnEnable() { }
+    private void OnEnable()
+    {
+        ObstaclesPlacer.onObstaclePickedUp += OnObstaclePickedUp;
+    }
 
-    private void OnDisable() { }
+    private void OnDisable()
+    {
+        ObstaclesPlacer.onObstaclePickedUp -= OnObstaclePickedUp;
+    }
 
     private void Awake()
     {
         GetObstacleData();
-        
+        UpdateObstacle();
+
+        if (_obstacle == PlacableObstacle.Empty) return;
+
         if (_prefabToSpawn == null)
         {
             Debug.LogWarning(name + ": prefab to spawn is null.");
@@ -74,38 +86,46 @@ public class UIObstacleSpawner : MonoBehaviour, IPointerDownHandler, ITouchableO
         }
     }
 
-    private void Start() { }
-
-    private void Update() { }
-
-    public void OnPointerDown(PointerEventData eventData)
+    public void OnTouchedDown(ToucheData touchData)
     {
-        if (_numAllowedObstacle <= 0 || _prefabToSpawn == null || _obstaclesContainer == null) return;
+        if (_obstacle == PlacableObstacle.Empty || _numAllowedObstacle <= 0) return;
 
         _numAllowedObstacle--;
-
-        GameObject obstacle = Instantiate(_prefabToSpawn, _obstaclesContainer);
-        Vector3 pos = Camera.main.ScreenToWorldPoint(transform.position);
-        pos.z = 0;
-        obstacle.transform.position = pos;
-        
-        FingerInput finger = InputManager.Instance.GetNewFingerAtPos(eventData.position);
-        ObstaclesPlacer placer = obstacle.GetComponent<ObstaclesPlacer>();
-        placer.Creator = this;
-        ObstaclesPlacer.UnSelectCurrent();
-        placer.Select(finger);
+        _numberText.text = _textPrefix + _numAllowedObstacle + _textSufix;
+        touchData.fingerInput.isTracked = true;
+        SpawnObstacle(touchData.screenPosition, touchData.fingerInput);
     }
 
-    public void OnTouchedUp(Vector2 screenPos)
+    public void OnTouchedUp(ToucheData toucheData)
     {
-        ObstaclesPlacer.PickupCurrentObstacle();
+        ObstaclesPlacer.PickupObstacleWithFingerAtPos(toucheData.screenPosition);
     }
 
     // ----- My Functions ----- \\
 
+    private void OnObstaclePickedUp(PlacableObstacle obj)
+    {
+        if (obj == _obstacle)
+        {
+            _numAllowedObstacle++;
+            _numberText.text = _textPrefix + _numAllowedObstacle + _textSufix;
+        }
+    }
+
+    private GameObject SpawnObstacle(Vector3 position, FingerInput fingerInput)
+    {
+        GameObject obstacle = Instantiate(_prefabToSpawn, _obstaclesContainer);
+        obstacle.transform.position = position;
+        ObstaclesPlacer obstaclesPlacer = obstacle.GetComponent<ObstaclesPlacer>();
+        
+        obstaclesPlacer.SetFinger(fingerInput.finger);
+
+        return obstacle;
+    }
+
     private void GetObstacleData()
     {
-        _obstacleData = ObstacleData.instance;
+        _obstacleData = Resources.Load<ObstacleData>(OBSTACLE_DATA_PATH + OBSTACLE_DATA_FILE_NAME);
     }
 
     private void UpdateObstacle()
@@ -114,6 +134,7 @@ public class UIObstacleSpawner : MonoBehaviour, IPointerDownHandler, ITouchableO
 
         if (obsInfo == null)
         {
+            Debug.LogError(name + ": didn't found ObstacleData");
             return;
         }
 
@@ -127,12 +148,8 @@ public class UIObstacleSpawner : MonoBehaviour, IPointerDownHandler, ITouchableO
         }
 
         icon.texture = obsInfo.icon;
-    }
 
-    public void PickupObstacle(GameObject obstacle)
-    {
-        _numAllowedObstacle++;
-        Destroy(obstacle);
+        _numberText.text = _textPrefix + _numAllowedObstacle + _textSufix;
     }
 
     // ----- Destructor ----- \\

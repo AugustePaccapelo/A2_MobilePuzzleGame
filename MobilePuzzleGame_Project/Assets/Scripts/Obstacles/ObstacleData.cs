@@ -5,9 +5,10 @@ using UnityEngine;
 
 public enum PlacableObstacle
 {
-    Flute,
-    Tamboure,
-    Portail
+    Wall,
+    Drum,
+    Portal,
+    Empty
 }
 
 [Serializable]
@@ -19,7 +20,7 @@ public class ObstacleInfo
 }
 
 [CreateAssetMenu(fileName = "ObstacleData", menuName = "Scriptable Objects/ObstacleData")]
-public class ObstacleData : ScriptableSingleton<ObstacleData>
+public class ObstacleData : ScriptableObject
 {
     [SerializeField] private List<ObstacleInfo> _obstacleInfos;
 
