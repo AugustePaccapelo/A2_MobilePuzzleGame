@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
+    public static LevelManager Instance { get; private set; }
     public GameObject levelButtonPrefab;
     public Transform buttonContainer;
     public string levelFolder = "Levels";
@@ -83,6 +84,7 @@ public void LoadLevelByName(string prefabName)
         UINiveau.SetActive(true);
         UIMenu.SetActive(false);
         currentLevelPrefabName = prefabName;
+        GameManager.Instance.LoadLevel();
     }
 }
 
@@ -107,6 +109,12 @@ public void LoadLevelByName(string prefabName)
     {
         UINiveau.SetActive(false);
         UIMenu.SetActive(true);
+        if (currentLevelInstance != null)
+        {
+            Destroy(currentLevelInstance);
+            currentLevelInstance = null;
+            currentLevelPrefabName = null;
+        }
     }
     public void ReloadCurrentLevel()
     {
