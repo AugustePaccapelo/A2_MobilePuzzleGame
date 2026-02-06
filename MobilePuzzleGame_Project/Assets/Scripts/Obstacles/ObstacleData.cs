@@ -7,7 +7,8 @@ public enum PlacableObstacle
 {
     Wall,
     Drum,
-    Portal
+    Portal,
+    Empty
 }
 
 [Serializable]

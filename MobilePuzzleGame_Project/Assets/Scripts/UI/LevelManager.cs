@@ -24,9 +24,11 @@ public class LevelManager : MonoBehaviour
         var gridLayout = buttonContainer.GetComponent<UnityEngine.UI.GridLayoutGroup>();
         if (gridLayout == null) buttonContainer.gameObject.AddComponent<UnityEngine.UI.GridLayoutGroup>();
         var layout = buttonContainer.GetComponent<UnityEngine.UI.GridLayoutGroup>();
-        layout.cellSize = new Vector2(200, 200);
-        var spacing = 10;
+        layout.cellSize = new Vector2(250, 250);
+        var spacing = 30;
         layout.spacing = new Vector2(spacing, spacing);
+        var center = TextAnchor.UpperCenter;
+        layout.childAlignment = center;
 
 
         LoadLevelButtons();

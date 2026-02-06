@@ -1,5 +1,3 @@
-using Unity.VisualScripting;
-using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 
 // Author : Auguste Paccapelo
@@ -7,8 +5,6 @@ using UnityEngine.InputSystem.EnhancedTouch;
 public class FingerInput
 {
     // ---------- VARIABLES ---------- \\
-
-    // ----- Prefabs & Assets ----- \\
 
     // ----- Objects ----- \\
 
@@ -30,6 +26,4 @@ public class FingerInput
     {
         _finger = finger;
     }
-
-    // ----- My Functions ----- \\
 }
