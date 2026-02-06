@@ -130,25 +130,50 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         if (!_isThisSelected || !_canvas.enabled) return;
 
         Vector2 center = transform.position;
-        Vector2 pos = center + Polar2Cart(_buttonStartAngle, _buttonContainerDistance);
 
-        _buttonsContainer.position = pos;
+        // Buttons handling
+        Vector2 buttonPos = center + Polar2Cart(_buttonStartAngle, _buttonContainerDistance);
 
-        Vector3[] corners = new Vector3[4];
-        _buttonsContainer.GetWorldCorners(corners);
+        _buttonsContainer.position = buttonPos;
 
-        float leftX = RectTransformUtility.WorldToScreenPoint(Camera.main, corners[0]).x;
+        Vector3[] buttonCorners = new Vector3[4];
+        _buttonsContainer.GetWorldCorners(buttonCorners);
 
-        if (leftX < 0)
+        float buttonLeftX = RectTransformUtility.WorldToScreenPoint(Camera.main, buttonCorners[0]).x;
+
+        if (buttonLeftX < 0)
         {
-            Vector3 difference = Camera.main.ScreenToWorldPoint(new Vector3(-leftX, 0, 0)) - Camera.main.ScreenToWorldPoint(Vector3.zero);
+            Vector3 difference = Camera.main.ScreenToWorldPoint(new Vector3(buttonLeftX, 0, 0)) - Camera.main.ScreenToWorldPoint(Vector3.zero);
 
-            pos.x += difference.x;
+            buttonPos.x -= difference.x;
 
-            float angle = Mathf.Acos(((pos.x - center.x) / _buttonContainerDistance) % 1);
-            pos.y = center.y + Mathf.Sin(angle) * _buttonContainerDistance;
+            float angle = Mathf.Acos(((buttonPos.x - center.x) / _buttonContainerDistance) % 1);
+            buttonPos.y = center.y + Mathf.Sin(angle) * _buttonContainerDistance;
 
-            _buttonsContainer.position = pos;
+            _buttonsContainer.position = buttonPos;
+        }
+
+        // Rotation Handle handling
+        Vector2 rotationHandlePos = center + Polar2Cart(_indicatorStartAngle, _indicatorDistance);
+        
+        _rotationIndicator.transform.position = rotationHandlePos;
+
+        Vector3[] rotationHandleCorners = new Vector3[4];
+        _rotationIndicator.GetWorldCorners(rotationHandleCorners);
+
+        float rotationHandleRightX = RectTransformUtility.WorldToScreenPoint(Camera.main, rotationHandleCorners[3]).x;
+
+        if (rotationHandleRightX > Screen.currentResolution.width)
+        {
+            Vector3 difference = Camera.main.ScreenToWorldPoint(new Vector3(rotationHandleRightX, 0, 0)) - Camera.main.ScreenToWorldPoint(new Vector3(Screen.currentResolution.width, 0, 0));
+
+            rotationHandlePos.x -= difference.x;
+
+            // -Acos to rotation clockwise
+            float angle = -Mathf.Acos(((rotationHandlePos.x - center.x) / _indicatorDistance) % 1);
+            rotationHandlePos.y = center.y + Mathf.Sin(angle) * _indicatorDistance;
+            
+            _rotationIndicator.transform.position = rotationHandlePos;
         }
     }
 
