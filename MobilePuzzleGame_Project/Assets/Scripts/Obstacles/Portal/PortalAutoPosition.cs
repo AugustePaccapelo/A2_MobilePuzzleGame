@@ -50,7 +50,7 @@ public class PortalAutoPosition : MonoBehaviour
             Debug.DrawLine(transform.position, transform.position + (Vector3)_direction);
         }
 
-        transform.position = _closestPosition;
+        transform.position = _closestPosition + (transform.position - _closestPosition).normalized * GetComponentInChildren<SpriteRenderer>().transform.localScale.x;
         transform.up = _normal;
 
     }
