@@ -143,7 +143,7 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         RawImage icon;
         if (!TryGetComponent(out icon))
         {
-            Debug.LogError(name + ": don't have a raw image componenet.");
+            Debug.LogError(name + ": don't have a raw image component.");
             return;
         }
 

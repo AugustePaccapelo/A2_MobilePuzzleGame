@@ -139,7 +139,13 @@ public class WindGenerator : MonoBehaviour
 
         Rigidbody2D noteRB = collision.GetComponent<Rigidbody2D>();
 
-        noteRB.AddForce(transform.up * _force);
+        Vector2 vecToObj = collision.transform.position - transform.position;
+        float distance = vecToObj.magnitude;
+
+        float fallOf = distance * _forceFallSPeed;
+        float realForce = Mathf.Max(0, _force - fallOf);
+
+        noteRB.AddForce(transform.up * realForce);
 
         _onObjectInWind?.Invoke();
     }
