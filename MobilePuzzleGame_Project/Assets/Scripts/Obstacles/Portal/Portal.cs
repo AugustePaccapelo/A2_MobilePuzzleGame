@@ -81,7 +81,7 @@ public class Portal : MonoBehaviour
     }
 
 
-    private Vector2 RotateVector2(Vector2 vector, float angleInRad)
+    public static Vector2 RotateVector2(Vector2 vector, float angleInRad)
     {
         vector = new Vector2(
                     vector.x * Mathf.Cos(angleInRad) - vector.y * Mathf.Sin(angleInRad),
