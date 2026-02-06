@@ -4,17 +4,5 @@ using UnityEngine;
 
 public interface ITouchableOnDown
 {
-    // ---------- VARIABLES ---------- \\
-
-    // ----- Prefabs & Assets ----- \\
-
-    // ----- Objects ----- \\
-
-    // ----- Others ----- \\
-
-    // ---------- FUNCTIONS ---------- \\
-
-    // ----- My Functions ----- \\
-
-    public void OnTouchedDown(Vector2 screenPos);
+    public void OnTouchedDown(ToucheData touchData);
 }
