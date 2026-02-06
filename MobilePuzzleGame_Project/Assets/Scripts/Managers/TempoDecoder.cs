@@ -14,6 +14,11 @@ public class TempoDecoder : MonoBehaviour
     [BoxGroup("GD")]
     [HorizontalLine(color: EColor.Blue)]
     [Label("Tempo de déclenchement"), SerializeField, MinValue(1), MaxValue(4)] private int _beatNumber;
+    public int BeatNumber
+    {
+        get { return _beatNumber; }
+        set { _beatNumber = value; SetBeforeAndAfter(); }
+    }
 
     // -- Events --
     private event Action OnBeatBefore;
@@ -27,8 +32,13 @@ public class TempoDecoder : MonoBehaviour
     {
         TempoManager.Instance.OnBeat += DecodeBeat;
 
-        // ----- Je viens set les beat précedent et beat suivant pour qu'ils restent dans la range 1 - 4
-        #region BeatBefore and BeatAfter set
+        SetBeforeAndAfter();
+    }
+
+    // ----- Je viens set les beat précedent et beat suivant pour qu'ils restent dans la range 1 - 4
+    [Button]
+    private void SetBeforeAndAfter()
+    {
         if (_beatNumber <= 1)
         {
             _beatBefore = 4;
@@ -46,7 +56,6 @@ public class TempoDecoder : MonoBehaviour
         {
             _beatAfter = _beatNumber + 1;
         }
-        #endregion
     }
 
     private void DecodeBeat(int beatIndex)
