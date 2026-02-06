@@ -56,9 +56,8 @@ public class TempoManager : MonoBehaviour
 
         if (_time >= _beatTempo)
         {
-            OnBeat?.Invoke(BeatIndex);
-
             BeatIndex++;
+            OnBeat?.Invoke(BeatIndex);
             _time -= _beatTempo;
         }
 
