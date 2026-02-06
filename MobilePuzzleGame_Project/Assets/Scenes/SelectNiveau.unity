@@ -1111,6 +1111,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1746548657}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &500800684
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 500800685}
+  - component: {fileID: 500800686}
+  m_Layer: 0
+  m_Name: TempoManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &500800685
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500800684}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1746548657}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &500800686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500800684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fd98181c0c2ffe42917a8a63053271c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TempoManager
+  _bpm: 60
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1361,9 +1406,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c1da6ff6ba84d241a32b3b1d0b12154, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputManager
-  _touchRaycastMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!4 &901881269
 Transform:
   m_ObjectHideFlags: 0
@@ -2937,6 +2979,7 @@ Transform:
   - {fileID: 318731608}
   - {fileID: 499597660}
   - {fileID: 901881269}
+  - {fileID: 500800685}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1794319753

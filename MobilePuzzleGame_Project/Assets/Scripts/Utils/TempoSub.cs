@@ -19,7 +19,6 @@ public class TempoSubscriber : MonoBehaviour
             yield return null;
 
         TempoManager.Instance.OnBeat += HandleBeat;
-        Debug.Log("ça marche");
     }
 
     private void OnDisable()

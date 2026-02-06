@@ -17,6 +17,7 @@ public class TempoManager : MonoBehaviour
 
     // --- Beat ---
     private float _beatTempo;
+    public float BeatTempo => _beatTempo;
     private int _beatIndex;
     public int BeatIndex
     {
