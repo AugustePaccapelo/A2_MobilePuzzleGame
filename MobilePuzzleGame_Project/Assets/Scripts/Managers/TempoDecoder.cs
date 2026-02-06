@@ -1,9 +1,10 @@
 using System;
 using NaughtyAttributes;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
-/// Décodeur Universel pour les plateformes
+/// DÃ©codeur Universel pour les plateformes
 /// 
 /// Author = Maxence Bernard
 /// </summary>
@@ -13,7 +14,7 @@ public class TempoDecoder : MonoBehaviour
 
     [BoxGroup("GD")]
     [HorizontalLine(color: EColor.Blue)]
-    [Label("Tempo de déclenchement"), SerializeField, MinValue(1), MaxValue(4)] private int _beatNumber;
+    [Label("Tempo de dÃ©clenchement"), SerializeField, MinValue(1), MaxValue(4)] private int _beatNumber;
     public int BeatNumber
     {
         get { return _beatNumber; }
@@ -21,9 +22,13 @@ public class TempoDecoder : MonoBehaviour
     }
 
     // -- Events --
-    private event Action OnBeatBefore;
-    private event Action OnBeat;
-    private event Action OnBeatAfter;
+    public event Action OnBeatBefore;
+    public event Action OnBeat;
+    public event Action OnBeatAfter;
+    public event Action OnOffBeat;
+
+    private UnityEvent _unityOnBeat;
+    private UnityEvent _unityOnOffBeat;
 
     private int _beatBefore;
     private int _beatAfter;
@@ -35,7 +40,7 @@ public class TempoDecoder : MonoBehaviour
         SetBeforeAndAfter();
     }
 
-    // ----- Je viens set les beat précedent et beat suivant pour qu'ils restent dans la range 1 - 4
+    // ----- Je viens set les beat prÃ©cedent et beat suivant pour qu'ils restent dans la range 1 - 4
     [Button]
     private void SetBeforeAndAfter()
     {
@@ -68,12 +73,18 @@ public class TempoDecoder : MonoBehaviour
         else if (beatIndex == _beatNumber)
         {
             OnBeat?.Invoke();
+            _unityOnBeat?.Invoke();
         }
         else if (beatIndex == _beatAfter)
         {
             OnBeatAfter?.Invoke();
         }
 
+        if (beatIndex != _beatBefore)
+        {
+            OnOffBeat?.Invoke();
+            _unityOnOffBeat?.Invoke();
+        }
     }
 
     private void OnDestroy()
