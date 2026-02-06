@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4303229466985585032}
   - component: {fileID: 2883853477815172454}
+  - component: {fileID: 1982557112424302246}
   - component: {fileID: 5735252364482087982}
   m_Layer: 0
   m_Name: Portal B
@@ -52,6 +53,18 @@ MonoBehaviour:
   _onTeleportation:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1982557112424302246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991148375215259201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 049b9f1c35d392d4383026c85efdcfb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PortalAutoPosition
 --- !u!61 &5735252364482087982
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -660,6 +673,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8639853143588452584}
   - component: {fileID: 1856882122863449078}
+  - component: {fileID: 2429150913861535620}
   - component: {fileID: 7226542340303275905}
   m_Layer: 0
   m_Name: Portal A
@@ -702,6 +716,18 @@ MonoBehaviour:
   _onTeleportation:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2429150913861535620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8647852405366599350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 049b9f1c35d392d4383026c85efdcfb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PortalAutoPosition
 --- !u!61 &7226542340303275905
 BoxCollider2D:
   m_ObjectHideFlags: 0

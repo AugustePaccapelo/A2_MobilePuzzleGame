@@ -37,8 +37,6 @@ public class Portal : MonoBehaviour
             {
                 collision.GetComponentInChildren<BallVisual>().DeactivateMask();
             }
-
-            //Gestion de la balle fantôme
             
 
             //Vérification de la position pour la téléportation
@@ -51,23 +49,8 @@ public class Portal : MonoBehaviour
                 // On tourne la direction de la balle de sorte à ce qu'elle s'oriente relativement au portail de sortie
                 Vector2 ballDirectionRotated = RotateVector2(ballDirection, DegToRad);
 
-                //Téléporter la balle à l'autre portail en prenant compte de sa vitesse et de sa position relative au portail
-                Vector2 finalPosition;
-
-                DegToRad = -(transform.eulerAngles.z % 360) * Mathf.Deg2Rad;
-
-                // On tourne la position pour un repère à 0 degré
-                finalPosition = RotateVector2(_portalToBall, DegToRad);
-
-                finalPosition = new Vector2(-finalPosition.x, finalPosition.y); // On inverse le X
-
-                //Et on retourne pour la différence
-                DegToRad = _exitPortal.transform.eulerAngles.z * Mathf.Deg2Rad;
-
-                finalPosition = RotateVector2(finalPosition, DegToRad);
-
                 //Téléportation
-                collision.gameObject.transform.position = _exitPortal.transform.position + (Vector3)finalPosition;
+                collision.gameObject.transform.position = _exitPortal.transform.position;
                 _onTeleportation?.Invoke();
 
                 if (ballDirectionRotated.magnitude < 3f)
@@ -83,7 +66,7 @@ public class Portal : MonoBehaviour
     }
 
 
-    private Vector2 RotateVector2(Vector2 vector, float angleInRad)
+    public static Vector2 RotateVector2(Vector2 vector, float angleInRad)
     {
         vector = new Vector2(
                     vector.x * Mathf.Cos(angleInRad) - vector.y * Mathf.Sin(angleInRad),
