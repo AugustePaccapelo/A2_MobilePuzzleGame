@@ -19,3 +19,6 @@ MonoBehaviour:
   - obstacle: 1
     icon: {fileID: 2800000, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
     prefabToPlace: {fileID: 4255258721759593863, guid: 8026f30579e268048ae5cb9b97a5a06a, type: 3}
+  - obstacle: 3
+    icon: {fileID: 2800000, guid: 005888ede18a58e4db8d069cfa3007cb, type: 3}
+    prefabToPlace: {fileID: 0}

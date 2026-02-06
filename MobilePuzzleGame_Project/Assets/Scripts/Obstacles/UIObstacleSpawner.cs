@@ -17,6 +17,10 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     private ObstacleData _obstacleData;
     [SerializeField] private PlacableObstacle _obstacle;
+    [SerializeField] private string _textPrefix = "";
+    [SerializeField] private string _textSufix = "x";
+
+    [SerializeField] private Text _numberText;
     [SerializeField] private Transform _obstaclesContainer;
 
     // ----- Others ----- \\
@@ -70,6 +74,8 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         GetObstacleData();
         UpdateObstacle();
 
+        if (_obstacle == PlacableObstacle.Empty) return;
+
         if (_prefabToSpawn == null)
         {
             Debug.LogWarning(name + ": prefab to spawn is null.");
@@ -82,9 +88,10 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     public void OnTouchedDown(ToucheData touchData)
     {
-        if (_numAllowedObstacle <= 0) return;
+        if (_obstacle == PlacableObstacle.Empty || _numAllowedObstacle <= 0) return;
 
         _numAllowedObstacle--;
+        _numberText.text = _textPrefix + _numAllowedObstacle + _textSufix;
         touchData.fingerInput.isTracked = true;
         SpawnObstacle(touchData.screenPosition, touchData.fingerInput);
     }
@@ -98,7 +105,11 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     private void OnObstaclePickedUp(PlacableObstacle obj)
     {
-        if (obj == _obstacle) _numAllowedObstacle++;
+        if (obj == _obstacle)
+        {
+            _numAllowedObstacle++;
+            _numberText.text = _textPrefix + _numAllowedObstacle + _textSufix;
+        }
     }
 
     private GameObject SpawnObstacle(Vector3 position, FingerInput fingerInput)
@@ -137,6 +148,8 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         }
 
         icon.texture = obsInfo.icon;
+
+        _numberText.text = _textPrefix + _numAllowedObstacle + _textSufix;
     }
 
     // ----- Destructor ----- \\
