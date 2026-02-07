@@ -4,16 +4,14 @@ using UnityEngine.Events;
 
 public class CorThrowing : MonoBehaviour
 {
-    [SerializeField] private int beatToThrow = 1;
-    [SerializeField] private TempoSubscriber tempoSubscriber;
-    
+    private TempoDecoder _tempoDecoder;
     UnityEvent onBallThrown; 
-    public float throwForce = 10f;
-    public float throwAngle = 45f;
-    public bool ballIn = false;
+    [SerializeField] private float throwForce = 10f;
+    [SerializeField] private float throwAngle = 45f;
+    [SerializeField] private bool ballIn = false;
     private int targetLayer;
     private GameObject currentBall;
-    public Animator animator;
+    [SerializeField] private Animator animator;
 
     void Start()
     {
@@ -21,47 +19,40 @@ public class CorThrowing : MonoBehaviour
         targetLayer = LayerMask.NameToLayer("Note");
         onBallThrown = new UnityEvent();
         
-        if (tempoSubscriber != null)
+        if (_tempoDecoder != null)
         {
-            tempoSubscriber.onBeat.AddListener(OnBeatReceived);
+            _tempoDecoder.OnBeat += OnBeatReceived;
         }
     }
 
-    public void OnBeatReceived(int beatIndex)
-{
-    if (!ballIn) return;
-    if (currentBall == null) return;
-    if (beatIndex != beatToThrow) return;
-
-    ThrowBall(currentBall);
-}
-
-
-    void Update()
+    private void OnBeatReceived()
     {
-        
+        if (!ballIn) return;
+        if (currentBall == null) return;
+
+        ThrowBall(currentBall);
     }
 
     void OnTriggerEnter2D(Collider2D other)
-{
-    if (other.gameObject.layer == targetLayer)
     {
-        other.GetComponent<SpriteRenderer>().enabled = false;
-        StartCoroutine(HandleBallEnter(other));
+        if (other.gameObject.layer == targetLayer)
+        {
+            other.GetComponent<SpriteRenderer>().enabled = false;
+            StartCoroutine(HandleBallEnter(other));
+        }
     }
-}
 
-IEnumerator HandleBallEnter(Collider2D other)
-{
-    ballIn = true;
-    currentBall = other.gameObject;
+    IEnumerator HandleBallEnter(Collider2D other)
+    {
+        ballIn = true;
+        currentBall = other.gameObject;
 
-    LockBallPosition(currentBall);
+        LockBallPosition(currentBall);
 
-    var sr = other.GetComponent<SpriteRenderer>();
-    sr.enabled = false;
-    yield return new WaitForSeconds(0.5f);
-}
+        var sr = other.GetComponent<SpriteRenderer>();
+        sr.enabled = false;
+        yield return new WaitForSeconds(0.5f);
+    }
 
 
     void OnTriggerExit2D(Collider2D other)

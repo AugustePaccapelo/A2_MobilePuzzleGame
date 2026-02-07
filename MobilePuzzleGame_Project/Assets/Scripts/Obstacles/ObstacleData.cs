@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public enum PlacableObstacle
@@ -8,7 +7,9 @@ public enum PlacableObstacle
     Wall,
     Drum,
     Portal,
-    Empty
+    Empty,
+    Cor,
+    Trumpet
 }
 
 [Serializable]
