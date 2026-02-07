@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 // Author : Auguste Paccapelo & Maxence Bernard
 
@@ -24,6 +23,8 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     [SerializeField] private RectTransform _buttonsContainer;
 
     [SerializeField] private RectTransform _rotationIndicator;
+
+    private Rigidbody2D _rigidBody;
 
     private Finger _currentFinger;
     public Finger CurrentFinger => _currentFinger;
@@ -46,6 +47,9 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     private bool _isThisSelected = false;
     public bool IsThisSelected => _isThisSelected;
+
+    private bool _canBePlaced = true;
+    private int _numObjetsInCollider = 0;
 
     static private bool _hasAnObstacleSelected = false;
     static public bool HasAnObstacleSelected => _hasAnObstacleSelected;
@@ -80,6 +84,11 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     private void OnDisable()
     {
         if (_isThisSelected) UnSelectCurrent();
+    }
+
+    private void Awake()
+    {
+        _rigidBody = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
@@ -117,9 +126,31 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     public void OnTouchedUp(ToucheData touchData)
     {
-        if (_currentFinger != null && _currentFinger.currentTouch.isTap)
+        if (_currentFinger != null)
         {
-            Select();
+            if (_currentFinger.currentTouch.isTap)
+            {
+                Select();
+            }
+            if (!_canBePlaced)
+            {
+                PickupObstacleWithFingerAtPos(_currentFinger.screenPosition);
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        _numObjetsInCollider++;
+        _canBePlaced = false;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        _numObjetsInCollider--;
+        if (_numObjetsInCollider == 0)
+        {
+            _canBePlaced = true;
         }
     }
 
@@ -212,7 +243,8 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
         Vector3 position = Camera.main.ScreenToWorldPoint(_currentFinger.screenPosition);
         position.z = 0;
-        transform.position = position;
+        //transform.position = position;
+        _rigidBody.MovePosition(position);
     }
 
     private void MoveStickingObstacle()
@@ -237,7 +269,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
             }
 
-            //On tourne la direction à 45 degré pour avoir les 8 raycast autour du portail
+            //On tourne la direction Ã  45 degrÃ© pour avoir les 8 raycast autour du portail
             _direction = Portal.RotateVector2(_direction, 45 * Mathf.Deg2Rad);
 
             Debug.DrawLine(transform.position, transform.position + (Vector3)_direction);
@@ -358,15 +390,16 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     public void SetAngle (float angle)
     {
-        Vector3 rotation = _mainObject.transform.eulerAngles;
+        Vector3 rotation = transform.eulerAngles;
         rotation.z = angle;
         rotation.z %= 360;
-        _mainObject.transform.eulerAngles = rotation;
+        transform.eulerAngles = rotation;
+        _canvas.transform.eulerAngles = Vector3.zero;
     }
 
     public float GetAngle ()
     {
-        return _mainObject.transform.eulerAngles.z;
+        return transform.eulerAngles.z;
     }
 
     // ----- Destructor ----- \\

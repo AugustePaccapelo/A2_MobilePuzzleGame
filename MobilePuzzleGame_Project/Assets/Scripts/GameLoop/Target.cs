@@ -31,7 +31,6 @@ public class Target : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Destroy(collision.gameObject);
-        Debug.Log("Eated a key.");
     }
 
     // ----- Destructor ----- \\

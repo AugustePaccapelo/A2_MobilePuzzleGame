@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 // Author : Auguste Paccapelo
 
@@ -18,6 +17,8 @@ public class Key : MonoBehaviour
     static public event Action onAllKeysPickedUp;
 
     // ----- Others ----- \\
+
+    [SerializeField] private LayerMask _layerThatCanCollect;
 
     static private int _numKeys = 0;
     static private int _numKeysPickedUp = 0;
@@ -41,6 +42,10 @@ public class Key : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // 1 << go.layer => exact layerMask of go
+        // if Note = 6 => 00100000
+        if (((1 << collision.gameObject.layer) & _layerThatCanCollect) == 0) return;
+
         _numKeysPickedUp++;
         onKeyPickedUp?.Invoke();
         if (_numKeysPickedUp == _numKeys)
