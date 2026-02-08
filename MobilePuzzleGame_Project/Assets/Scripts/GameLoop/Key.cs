@@ -31,7 +31,11 @@ public class Key : MonoBehaviour
 
     private void OnDisable() { }
 
-    private void Awake() { }
+    private void Awake()
+    {
+        _numKeys = 0;
+        _numKeysPickedUp = 0;
+    }
 
     private void Start()
     {
@@ -60,5 +64,5 @@ public class Key : MonoBehaviour
 
     // ----- Destructor ----- \\
 
-    private void OnDestroy() { }
+    private void OnDestroy() {}
 }

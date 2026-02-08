@@ -169,6 +169,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5299980575488522980}
     m_Modifications:
+    - target: {fileID: 1166708033972436219, guid: 5c590d9bb66f28f46b7d314101811cc7, type: 3}
+      propertyPath: _obstacle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036313424578627155, guid: 5c590d9bb66f28f46b7d314101811cc7, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 37146ccfd6f2dd64897200d9c4579904, type: 3}
     - target: {fileID: 3572185665244225490, guid: 5c590d9bb66f28f46b7d314101811cc7, type: 3}
       propertyPath: m_DynamicOccludee
       value: 0
@@ -177,10 +185,18 @@ PrefabInstance:
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5020135210407967327, guid: 5c590d9bb66f28f46b7d314101811cc7, type: 3}
+      propertyPath: _obstacle
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5055448466360502942, guid: 5c590d9bb66f28f46b7d314101811cc7, type: 3}
       propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5321443741865017591, guid: 5c590d9bb66f28f46b7d314101811cc7, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 4492ee7f78fad1b439ce455d58b23f1c, type: 3}
     - target: {fileID: 5323387780465026516, guid: 5c590d9bb66f28f46b7d314101811cc7, type: 3}
       propertyPath: m_Name
       value: LevelsMustHave
@@ -188,6 +204,14 @@ PrefabInstance:
     - target: {fileID: 6365116758744356436, guid: 5c590d9bb66f28f46b7d314101811cc7, type: 3}
       propertyPath: m_DynamicOccludee
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7358986913278333678, guid: 5c590d9bb66f28f46b7d314101811cc7, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: 197d8678d0f54cb49a6253e50c4f5c8e, type: 3}
+    - target: {fileID: 7661420217220671558, guid: 5c590d9bb66f28f46b7d314101811cc7, type: 3}
+      propertyPath: _obstacle
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8556204431531972084, guid: 5c590d9bb66f28f46b7d314101811cc7, type: 3}
       propertyPath: m_LocalPosition.x

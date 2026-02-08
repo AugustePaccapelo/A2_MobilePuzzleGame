@@ -185,6 +185,8 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         }
 
         // Rotation Handle handling
+        if (_currentFingerState == FingerState.Rotating) return;
+
         Vector2 rotationHandlePos = center + Polar2Cart(_indicatorStartAngle, _indicatorDistance);
         
         _rotationIndicator.transform.position = rotationHandlePos;
@@ -210,7 +212,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     private void HandlePlacement()
     {
-        if (_currentFinger == null) return;
+        if (_currentFinger == null || GameManager.CurrentGameState != GameState.PlayerPlacingPlatforms) return;
 
         if (_currentFinger.currentTouch.ended)
         {

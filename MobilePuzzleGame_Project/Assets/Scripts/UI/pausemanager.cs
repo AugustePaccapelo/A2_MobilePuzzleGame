@@ -34,9 +34,15 @@ public class pausemanager : MonoBehaviour
 
     public void closemenu()
     {
-        Debug.Log("Menu Closed");
-        pausemenu.SetActive(false);
-        Time.timeScale = 1;
+        if (GameManager.CurrentGameState == GameState.GamePlaying)
+        {
+            Time.timeScale = 1;
+            pausemenu.SetActive(false);
+        }
+        else
+        {
+            pausemenu.SetActive(false);
+        }
     }
 
     void savevolume()

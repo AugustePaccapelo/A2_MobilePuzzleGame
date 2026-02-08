@@ -2,7 +2,7 @@ using UnityEngine;
 
 // Author : Auguste Paccapelo
 
-public class Lock : MonoBehaviour
+public class GhostNote : MonoBehaviour
 {
     // ---------- VARIABLES ---------- \\
 
@@ -12,32 +12,31 @@ public class Lock : MonoBehaviour
 
     // ----- Others ----- \\
 
+    [SerializeField] private float _lifeDuration = 4f;
+    private float _timer = 0f;
+
     // ---------- FUNCTIONS ---------- \\
 
     // ----- Buil-in ----- \\
 
-    private void OnEnable()
-    {
-        Key.onAllKeysPickedUp += DestroyLock;
-    }
+    private void OnEnable() { }
 
-    private void OnDisable()
-    {
-        Key.onAllKeysPickedUp -= DestroyLock;
-    }
+    private void OnDisable() { }
 
     private void Awake() { }
 
     private void Start() { }
 
-    private void Update() { }
+    private void Update()
+    {
+        _timer += Time.deltaTime;
+        if (_timer >= _lifeDuration)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // ----- My Functions ----- \\
-
-    private void DestroyLock()
-    {
-        Destroy(gameObject);
-    }
 
     // ----- Destructor ----- \\
 

@@ -31,6 +31,11 @@ public class Target : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Destroy(collision.gameObject);
+        if (GameManager.CurrentGameState == GameState.GamePlaying)
+        {
+            Debug.Log("Game Won !");
+            GameManager.Instance.FinishLevel();
+        }
     }
 
     // ----- Destructor ----- \\

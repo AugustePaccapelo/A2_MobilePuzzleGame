@@ -18,12 +18,13 @@ public class NoteSpawner : MonoBehaviour
 
     [SerializeField] private Transform _spawnPos;
     [SerializeField] private GameObject _notePrefab;
+    [SerializeField] private GameObject _ghostNotePrefab;
     [SerializeField] private Transform _noteContainer;
 
     // ----- Others ----- \\
 
-    [SerializeField] private List<float> _timeOfSpawnOfNotes = new List<float>();
-    private float _currentTime = 0f;
+    [SerializeField] private float _ghostNoteSpawnDelay = 2f;
+    private float _timerGhostNote = 0f;
 
     [SerializeField] private Vector2 _initialVelocity;
 
@@ -31,9 +32,15 @@ public class NoteSpawner : MonoBehaviour
 
     // ----- Buil-in ----- \\
 
-    private void OnEnable() { }
+    private void OnEnable()
+    {
+        GameManager.onGameStart += OnGameStart;
+    }
 
-    private void OnDisable() { }
+    private void OnDisable()
+    {
+        GameManager.onGameStart -= OnGameStart;
+    }
 
     private void Awake() { }
 
@@ -41,26 +48,33 @@ public class NoteSpawner : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.CurrentGameState != GameState.GamePlaying || _timeOfSpawnOfNotes.Count <= 0) return;
+        if (GameManager.CurrentGameState != GameState.PlayerPlacingPlatforms) return;
 
-        _currentTime += Time.deltaTime;
-
-        int length = _timeOfSpawnOfNotes.Count;
-        for (int i = length - 1; i > -1 ; i--)
+        _timerGhostNote += Time.deltaTime;
+        if (_timerGhostNote >= _ghostNoteSpawnDelay)
         {
-            if (_currentTime >= _timeOfSpawnOfNotes[i])
-            {
-                SpawnNote();
-                _timeOfSpawnOfNotes.RemoveAt(i);
-            }
+            _timerGhostNote = 0f;
+            SpawnGhostNote();
         }
     }
 
     // ----- My Functions ----- \\
 
+    private void OnGameStart()
+    {
+        SpawnNote();
+    }
+
     private void SpawnNote()
     {
         GameObject newNote = Instantiate(_notePrefab, _noteContainer);
+        newNote.transform.position = _spawnPos.position;
+        newNote.GetComponent<Rigidbody2D>().linearVelocity = _initialVelocity;
+    }
+
+    private void SpawnGhostNote()
+    {
+        GameObject newNote = Instantiate(_ghostNotePrefab, _noteContainer);
         newNote.transform.position = _spawnPos.position;
         newNote.GetComponent<Rigidbody2D>().linearVelocity = _initialVelocity;
     }

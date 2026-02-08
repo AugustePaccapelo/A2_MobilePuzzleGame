@@ -24,6 +24,10 @@ public class GameManager : MonoBehaviour
 
     // ----- Objects ----- \\
 
+    // ----- Events ----- \\
+
+    static public event Action onGameStart;
+
     // ----- Others ----- \\
 
     private static GameState _currentGameState = GameState.NotInLevel;
@@ -56,26 +60,21 @@ public class GameManager : MonoBehaviour
         InitNotInLevel();
     }
 
-    float timer = 0f;
     void Update()
     {
-        timer += Time.deltaTime;
-        if (timer >= 5f)
-        {
-            _currentGameState = GameState.GamePlaying;
-        }
+        _currentSate?.Invoke();
     }
 
     // ----- My Functions ----- \\
 
-    public void StartGame()
-    {
-        InitGamePlaying();
-    }
-
     public void LoadLevel()
     {
         InitInitatingLevel();
+    }
+
+    public void StartGame()
+    {
+        InitGamePlaying();
     }
 
     public void FinishLevel()
@@ -113,13 +112,14 @@ public class GameManager : MonoBehaviour
 
     private void PlayerPlacingPlatform()
     {
-
+        
     }
 
     private void InitGamePlaying()
     {
         _currentGameState = GameState.GamePlaying;
         _currentSate = GamePlaying;
+        onGameStart?.Invoke();
     }
 
     private void GamePlaying()
