@@ -9,6 +9,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3109029540695778437, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: m_Size.x
+      value: 2.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3109029540695778437, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: m_Size.y
+      value: 1.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 3109029540695778437, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1366730619506090548, guid: b9cf1fe7aea0c8d46babe732bfc9b1dc, type: 3}

@@ -17,9 +17,21 @@ PrefabInstance:
       value: 0.471
       objectReference: {fileID: 0}
     - target: {fileID: 3109029540695778437, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: m_Size.x
+      value: 3.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3109029540695778437, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: m_Size.y
+      value: 0.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 3109029540695778437, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 6269151359678188129, guid: 34f6d3db38ef67341a1d47e422bb9e61, type: 3}
+      objectReference: {fileID: -5987363914897507321, guid: f2611a068a8473241959439f6650614f, type: 3}
+    - target: {fileID: 3109029540695778437, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4828745220624606857, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0.918
