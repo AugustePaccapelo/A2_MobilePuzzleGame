@@ -9,7 +9,7 @@ public class MenuManager : MonoBehaviour
     public GameObject creditsPanel;
     void Start()
     {
-        creditsPanel.SetActive(false);
+        //creditsPanel.SetActive(false);
     }
 
     // Update is called once per frame
