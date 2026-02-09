@@ -7,8 +7,10 @@ public class MenuManager : MonoBehaviour
 {
 
     public GameObject creditsPanel;
+    public GameObject hamburgerMenu;
     void Start()
     {
+        hamburgerMenu.SetActive(false);
         creditsPanel.SetActive(false);
     }
 
@@ -43,5 +45,11 @@ public class MenuManager : MonoBehaviour
     {
         Debug.Log("Return to Menu button clicked.");
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void HamburgerMenu()
+    {
+        Debug.Log("Hamburger Menu button clicked.");
+        hamburgerMenu.SetActive(!hamburgerMenu.activeSelf);
     }
 }

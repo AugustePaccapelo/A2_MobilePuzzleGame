@@ -7,11 +7,13 @@ public class pausemanager : MonoBehaviour
 {
     public GameObject pausemenu;
     public Slider volumeslider;
+   // public Slider sfxvolumeslider;
 
     void Start()
     {
         pausemenu.SetActive(false);
         volumeslider.onValueChanged.AddListener(delegate { setvolume(); });
+       // sfxvolumeslider.onValueChanged.AddListener(delegate { setSfxVolume(); });
     }
 
     // Update is called once per frame
@@ -50,6 +52,11 @@ public class pausemanager : MonoBehaviour
         PlayerPrefs.SetFloat("volume", volumeslider.value);
         PlayerPrefs.Save();
     }
+
+    /*void setSfxVolume()
+    {
+        
+    }*/
 
     void setvolume()
     {
