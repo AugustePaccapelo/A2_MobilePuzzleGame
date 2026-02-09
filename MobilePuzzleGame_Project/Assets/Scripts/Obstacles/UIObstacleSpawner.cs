@@ -1,3 +1,5 @@
+using UnityEditor;
+using UnityEditor.Actions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -48,15 +50,14 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     private void Reset()
     {
         _numAllowedObstacle = 0;
-        GetObstacleData();
-        UpdateObstacle();
+        DelayFuncToShutUpUnity();
     }
 
     private void OnValidate()
     {
         NumAllowedObstacle = _numAllowedObstacle;
-        GetObstacleData();
-        UpdateObstacle();
+        EditorApplication.delayCall += DelayFuncToShutUpUnity;
+        //DelayFuncToShutUpUnity();
     }
 
     private void OnEnable()
@@ -71,9 +72,8 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     private void Awake()
     {
-        GetObstacleData();
-        UpdateObstacle();
-
+        DelayFuncToShutUpUnity();
+        
         if (_obstacle == PlacableObstacle.Empty) return;
 
         if (_prefabToSpawn == null)
@@ -88,7 +88,7 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     public void OnTouchedDown(ToucheData touchData)
     {
-        if (_obstacle == PlacableObstacle.Empty || _numAllowedObstacle <= 0) return;
+        if (_obstacle == PlacableObstacle.Empty || _numAllowedObstacle <= 0 || GameManager.CurrentGameState != GameState.PlayerPlacingPlatforms) return;
 
         _numAllowedObstacle--;
         _numberText.text = _textPrefix + _numAllowedObstacle + _textSufix;
@@ -103,6 +103,12 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     // ----- My Functions ----- \\
 
+    private void DelayFuncToShutUpUnity()
+    {
+        GetObstacleData();
+        UpdateObstacle();
+    }
+
     private void OnObstaclePickedUp(PlacableObstacle obj)
     {
         if (obj == _obstacle)
@@ -114,8 +120,6 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     private GameObject SpawnObstacle(Vector3 position, FingerInput fingerInput)
     {
-        if (GameManager.CurrentGameState != GameState.PlayerPlacingPlatforms) return null;
-
         GameObject obstacle = Instantiate(_prefabToSpawn, _obstaclesContainer);
         obstacle.transform.position = position;
         ObstaclesPlacer obstaclesPlacer = obstacle.GetComponent<ObstaclesPlacer>();

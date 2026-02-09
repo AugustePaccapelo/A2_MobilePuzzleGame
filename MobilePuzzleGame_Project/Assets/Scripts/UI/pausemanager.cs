@@ -8,8 +8,11 @@ public class pausemanager : MonoBehaviour
 
     void Start()
     {
-        if (pausemenu != null) pausemenu.SetActive(false);
-        volumeslider.onValueChanged.AddListener(delegate { setvolume(); });
+        if (pausemenu != null)
+        {
+            pausemenu.SetActive(false);
+            volumeslider.onValueChanged.AddListener(delegate { setvolume(); });
+        }       
     }
 
     // Update is called once per frame
