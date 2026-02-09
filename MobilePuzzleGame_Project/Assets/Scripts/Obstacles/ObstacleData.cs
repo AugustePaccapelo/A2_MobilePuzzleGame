@@ -9,14 +9,15 @@ public enum PlacableObstacle
     Portal,
     Empty,
     Cor,
-    Trumpet
+    Trumpet,
+    TempoDrum
 }
 
 [Serializable]
 public class ObstacleInfo
 {
     public PlacableObstacle obstacle;
-    public Texture icon;
+    public Sprite icon;
     public GameObject prefabToPlace;
 }
 

@@ -142,14 +142,14 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
         _prefabToSpawn = obsInfo.prefabToPlace;
 
-        RawImage icon;
+        Image icon;
         if (!TryGetComponent(out icon))
         {
             Debug.LogError(name + ": don't have a raw image component.");
             return;
         }
 
-        icon.texture = obsInfo.icon;
+        icon.sprite = obsInfo.icon;
 
         _numberText.text = _textPrefix + _numAllowedObstacle + _textSufix;
     }

@@ -1,6 +1,4 @@
-using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
 
 public class pausemanager : MonoBehaviour
@@ -34,15 +32,8 @@ public class pausemanager : MonoBehaviour
 
     public void closemenu()
     {
-        if (GameManager.CurrentGameState == GameState.GamePlaying)
-        {
-            Time.timeScale = 1;
-            pausemenu.SetActive(false);
-        }
-        else
-        {
-            pausemenu.SetActive(false);
-        }
+        Time.timeScale = 1;
+        pausemenu.SetActive(false);
     }
 
     void savevolume()

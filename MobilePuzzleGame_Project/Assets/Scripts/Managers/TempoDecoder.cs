@@ -14,11 +14,26 @@ public class TempoDecoder : MonoBehaviour
 
     [BoxGroup("GD")]
     [HorizontalLine(color: EColor.Blue)]
-    [Label("Tempo de déclenchement"), SerializeField, MinValue(1), MaxValue(4)] private int _beatNumber;
+    [Label("Tempo de déclenchement"), SerializeField, MinValue(0), MaxValue(4)] private int _beatNumber = 0;
     public int BeatNumber
     {
         get { return _beatNumber; }
-        set { _beatNumber = value; SetBeforeAndAfter(); }
+        set
+        { 
+            if (value < 0)
+            {
+                _beatNumber = 4;
+            }
+            else if (value > 4)
+            {
+                _beatNumber = 0;
+            }
+            else
+            {
+                _beatNumber = value;
+            }
+            SetBeforeAndAfter();
+        }
     }
 
     // -- Events --
@@ -27,8 +42,8 @@ public class TempoDecoder : MonoBehaviour
     public event Action OnBeatAfter;
     public event Action OnOffBeat;
 
-    private UnityEvent _unityOnBeat;
-    private UnityEvent _unityOnOffBeat;
+    [SerializeField] private UnityEvent _unityOnBeat;
+    [SerializeField] private UnityEvent _unityOnOffBeat;
 
     private int _beatBefore;
     private int _beatAfter;
@@ -40,10 +55,22 @@ public class TempoDecoder : MonoBehaviour
         SetBeforeAndAfter();
     }
 
+    private void OnValidate()
+    {
+        BeatNumber = _beatNumber;
+    }
+
     // ----- Je viens set les beat précedent et beat suivant pour qu'ils restent dans la range 1 - 4
     [Button]
     private void SetBeforeAndAfter()
     {
+        // 0 va être pour ceux qui n'ont pas de tempo d'activation
+        if (_beatNumber == 0)
+        {
+            _beatBefore = _beatAfter = 0;
+            return;
+        }
+
         if (_beatNumber <= 1)
         {
             _beatBefore = 4;
@@ -65,7 +92,6 @@ public class TempoDecoder : MonoBehaviour
 
     private void DecodeBeat(int beatIndex)
     {
-        
         if (beatIndex == _beatBefore)
         {
             OnBeatBefore?.Invoke();
@@ -74,13 +100,14 @@ public class TempoDecoder : MonoBehaviour
         {
             OnBeat?.Invoke();
             _unityOnBeat?.Invoke();
+            return;
         }
         else if (beatIndex == _beatAfter)
         {
             OnBeatAfter?.Invoke();
         }
 
-        if (beatIndex != _beatBefore)
+        if (beatIndex != _beatNumber)
         {
             OnOffBeat?.Invoke();
             _unityOnOffBeat?.Invoke();

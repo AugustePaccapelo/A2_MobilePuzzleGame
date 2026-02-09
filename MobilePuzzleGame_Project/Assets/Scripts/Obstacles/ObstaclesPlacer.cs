@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using NaughtyAttributes;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
+using UnityEngine.UI;
 
 // Author : Auguste Paccapelo & Maxence Bernard
 
@@ -24,6 +26,8 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     [SerializeField] private RectTransform _rotationIndicator;
 
+    [SerializeField] private Text _tempoText;
+
     private Rigidbody2D _rigidBody;
 
     private Finger _currentFinger;
@@ -31,6 +35,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     static private List<ObstaclesPlacer> _allObstacles = new();
 
     private RotationHandle _rotationHandle;
+    private TempoDecoder _tempoDecoder;
 
     // ----- Boolean ----- \\
     [SerializeField] private bool _stickToWall;
@@ -89,12 +94,19 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     private void Awake()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
+
+        _tempoDecoder = GetComponentInChildren<TempoDecoder>();
+        if (_tempoDecoder == null)
+        {
+            Debug.LogWarning(name + ": no tempo decoder found.");
+        }
     }
 
     private void Start()
     {
         _allObstacles.Add(this);
         _canvas.enabled = false;
+        _canvas.worldCamera = Camera.main;
 
         Vector2 indicatorVecToStartPos = _rotationIndicator.position - transform.position;
         _indicatorDistance = indicatorVecToStartPos.magnitude;
@@ -155,6 +167,11 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     }
 
     // ----- My Functions ----- \\
+
+    private bool IsPosInButtons(Vector2 pos)
+    {
+        return RectTransformUtility.RectangleContainsScreenPoint(_buttonsContainer, pos);
+    }
 
     private void HandleUI()
     {
@@ -337,6 +354,12 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     private void OnFingerUp(Vector2 obj)
     {
+        // If click on a button
+        if (IsPosInButtons(Camera.main.ScreenToWorldPoint(obj)))
+        {
+            return;
+        }
+
         if (_currentFinger == null || _currentFinger.screenPosition != obj)
         {
             UnSelectCurrent();
@@ -402,6 +425,17 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     public float GetAngle ()
     {
         return transform.eulerAngles.z;
+    }
+
+    private void UpdateTempo()
+    {
+        _tempoText.text = _tempoDecoder.BeatNumber.ToString();
+    }
+
+    public void ChangeTempo()
+    {
+        _tempoDecoder.BeatNumber++;
+        UpdateTempo();
     }
 
     // ----- Destructor ----- \\

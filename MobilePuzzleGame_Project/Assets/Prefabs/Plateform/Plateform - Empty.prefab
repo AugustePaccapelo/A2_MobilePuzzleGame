@@ -143,6 +143,7 @@ MonoBehaviour:
   _canvas: {fileID: 8527410748462166950}
   _buttonsContainer: {fileID: 2427621838275888893}
   _rotationIndicator: {fileID: 4828745220624606857}
+  _tempoText: {fileID: 298741748422247073}
   _stickToWall: 0
   _stickToWallLayer:
     serializedVersion: 2
@@ -231,6 +232,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2290367862833106075}
   - component: {fileID: 5056500260986993283}
+  - component: {fileID: 5838961840421207797}
+  - component: {fileID: 1612617051695194005}
+  - component: {fileID: 3269819050180978921}
   m_Layer: 9
   m_Name: MainObject
   m_TagString: Untagged
@@ -300,6 +304,447 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5838961840421207797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6938468153120656900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a3c2fa001dbe0d478430ee61f2cbd4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TempoDecoder
+  _beatNumber: 0
+  _unityOnBeat:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3269819050180978921}
+        m_TargetAssemblyTypeName: TweenCoreComponent, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _unityOnOffBeat:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1612617051695194005}
+        m_TargetAssemblyTypeName: TweenCoreComponent, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1612617051695194005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6938468153120656900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa4fedc28c2c3a949ae6f1e79d896062, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TweenCoreComponent
+  _name: OffBeat
+  _playOnStart: 0
+  _isParallel: 0
+  _isLoop: 0
+  _isInfinite: 0
+  _numIteration: 1
+  _DestroyWhenFinished: 0
+  _surviveOnUnload: 0
+  _properties:
+  - rid: 8011100205439516743
+  - rid: 8011100205439516744
+  _unityEvents:
+    OnStart:
+      m_PersistentCalls:
+        m_Calls: []
+    OnUpdate:
+      m_PersistentCalls:
+        m_Calls: []
+    OnFinish:
+      m_PersistentCalls:
+        m_Calls: []
+    OnLoopFinish:
+      m_PersistentCalls:
+        m_Calls: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 8011100205439516743
+      type: {class: 'TweenCoreProperty`1[[UnityEngine.Vector3, UnityEngine.CoreModule]]', ns: , asm: Assembly-CSharp}
+      data:
+        _tweenTargetObj: {fileID: 2647636526995389716}
+        obj: {fileID: 5999533727941872117}
+        _lastKnownObject: {fileID: 5999533727941872117}
+        _lastKnownTweenTargetGO: {fileID: 2647636526995389716}
+        type: 2
+        ease: 1
+        duration: 0.25
+        delay: 0
+        fromCurrentValue: 1
+        isIncreasingValue: 1
+        easeAnimationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        typeAnimationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        propertyName: localScale
+        propertyIndex: 7
+        isEmpty: 0
+        _startValue: {x: 0, y: 0, z: 0}
+        _finalValue: {x: 0.05, y: 0.05, z: 0.05}
+        _increaseValue: {x: 0, y: 0, z: 0}
+        _unityEvents:
+          unityOnStart:
+            m_PersistentCalls:
+              m_Calls: []
+          unityOnUpdate:
+            m_PersistentCalls:
+              m_Calls: []
+          unityOnUpdateValue:
+            m_PersistentCalls:
+              m_Calls: []
+          unityOnFinish:
+            m_PersistentCalls:
+              m_Calls: []
+    - rid: 8011100205439516744
+      type: {class: 'TweenCoreProperty`1[[UnityEngine.Vector3, UnityEngine.CoreModule]]', ns: , asm: Assembly-CSharp}
+      data:
+        _tweenTargetObj: {fileID: 2647636526995389716}
+        obj: {fileID: 5999533727941872117}
+        _lastKnownObject: {fileID: 5999533727941872117}
+        _lastKnownTweenTargetGO: {fileID: 2647636526995389716}
+        type: 0
+        ease: 0
+        duration: 0.25
+        delay: 0
+        fromCurrentValue: 1
+        isIncreasingValue: 1
+        easeAnimationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        typeAnimationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        propertyName: localScale
+        propertyIndex: 7
+        isEmpty: 0
+        _startValue: {x: 0, y: 0, z: 0}
+        _finalValue: {x: -0.05, y: -0.05, z: -0.05}
+        _increaseValue: {x: 0, y: 0, z: 0}
+        _unityEvents:
+          unityOnStart:
+            m_PersistentCalls:
+              m_Calls: []
+          unityOnUpdate:
+            m_PersistentCalls:
+              m_Calls: []
+          unityOnUpdateValue:
+            m_PersistentCalls:
+              m_Calls: []
+          unityOnFinish:
+            m_PersistentCalls:
+              m_Calls: []
+--- !u!114 &3269819050180978921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6938468153120656900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa4fedc28c2c3a949ae6f1e79d896062, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TweenCoreComponent
+  _name: OnBeat
+  _playOnStart: 0
+  _isParallel: 0
+  _isLoop: 0
+  _isInfinite: 0
+  _numIteration: 1
+  _DestroyWhenFinished: 0
+  _surviveOnUnload: 0
+  _properties:
+  - rid: 8011100205439516745
+  - rid: 8011100205439516746
+  _unityEvents:
+    OnStart:
+      m_PersistentCalls:
+        m_Calls: []
+    OnUpdate:
+      m_PersistentCalls:
+        m_Calls: []
+    OnFinish:
+      m_PersistentCalls:
+        m_Calls: []
+    OnLoopFinish:
+      m_PersistentCalls:
+        m_Calls: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 8011100205439516745
+      type: {class: 'TweenCoreProperty`1[[UnityEngine.Vector3, UnityEngine.CoreModule]]', ns: , asm: Assembly-CSharp}
+      data:
+        _tweenTargetObj: {fileID: 2647636526995389716}
+        obj: {fileID: 5999533727941872117}
+        _lastKnownObject: {fileID: 5999533727941872117}
+        _lastKnownTweenTargetGO: {fileID: 2647636526995389716}
+        type: 7
+        ease: 1
+        duration: 0.25
+        delay: 0
+        fromCurrentValue: 1
+        isIncreasingValue: 1
+        easeAnimationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        typeAnimationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        propertyName: localScale
+        propertyIndex: 7
+        isEmpty: 0
+        _startValue: {x: 0, y: 0, z: 0}
+        _finalValue: {x: 0.25, y: 0.25, z: 0.25}
+        _increaseValue: {x: 0, y: 0, z: 0}
+        _unityEvents:
+          unityOnStart:
+            m_PersistentCalls:
+              m_Calls: []
+          unityOnUpdate:
+            m_PersistentCalls:
+              m_Calls: []
+          unityOnUpdateValue:
+            m_PersistentCalls:
+              m_Calls: []
+          unityOnFinish:
+            m_PersistentCalls:
+              m_Calls: []
+    - rid: 8011100205439516746
+      type: {class: 'TweenCoreProperty`1[[UnityEngine.Vector3, UnityEngine.CoreModule]]', ns: , asm: Assembly-CSharp}
+      data:
+        _tweenTargetObj: {fileID: 2647636526995389716}
+        obj: {fileID: 5999533727941872117}
+        _lastKnownObject: {fileID: 5999533727941872117}
+        _lastKnownTweenTargetGO: {fileID: 2647636526995389716}
+        type: 0
+        ease: 0
+        duration: 0.25
+        delay: 0
+        fromCurrentValue: 1
+        isIncreasingValue: 1
+        easeAnimationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        typeAnimationCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 1
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        propertyName: localScale
+        propertyIndex: 7
+        isEmpty: 0
+        _startValue: {x: 0, y: 0, z: 0}
+        _finalValue: {x: -0.25, y: -0.25, z: -0.25}
+        _increaseValue: {x: 0, y: 0, z: 0}
+        _unityEvents:
+          unityOnStart:
+            m_PersistentCalls:
+              m_Calls: []
+          unityOnUpdate:
+            m_PersistentCalls:
+              m_Calls: []
+          unityOnUpdateValue:
+            m_PersistentCalls:
+              m_Calls: []
+          unityOnFinish:
+            m_PersistentCalls:
+              m_Calls: []
 --- !u!1001 &808360299146796196
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -311,6 +756,102 @@ PrefabInstance:
     - target: {fileID: 396975607602069674, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
       propertyPath: m_Name
       value: PlatformsCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 557084529099472258, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1086079312230473221, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_Text
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1086079312230473221, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_FontData.m_BestFit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1086079312230473221, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 1086079312230473221, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 1086079312230473221, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_FontData.m_HorizontalOverflow
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1312206134562011023, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1312206134562011023, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1312206134562011023, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 1312206134562011023, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 1312206134562011023, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 1312206134562011023, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 1312206134562011023, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.125
+      objectReference: {fileID: 0}
+    - target: {fileID: 1312206134562011023, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2142873873516803838, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429728573368195757, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0.000099182
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429728573368195757, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -0.000049591
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429728573368195757, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429728573368195757, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429728573368195757, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429728573368195757, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.000049591064
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429728573368195757, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000024795532
+      objectReference: {fileID: 0}
+    - target: {fileID: 2429728573368195757, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3491031628635280819, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4054395576146269381, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
       propertyPath: m_Pivot.x
@@ -392,19 +933,70 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8040214137281088314, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
-      propertyPath: m_PresetInfoIsWorld
+    - target: {fileID: 4431514911563277409, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5117604752142164329, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8711395881593183388, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
-      propertyPath: m_Texture
+    - target: {fileID: 5117604752142164329, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5117604752142164329, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 2800000, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+      objectReference: {fileID: 7667104590087981076}
+    - target: {fileID: 5117604752142164329, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5117604752142164329, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeTempo
+      objectReference: {fileID: 0}
+    - target: {fileID: 5117604752142164329, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ObstaclesPlacer, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5117604752142164329, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5503284755783302897, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6973700749598221613, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7667104590087981076}
+    - target: {fileID: 6973700749598221613, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Flip
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665868644412077587, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+--- !u!114 &298741748422247073 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1086079312230473221, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+  m_PrefabInstance: {fileID: 808360299146796196}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
 --- !u!224 &2427621838275888893 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3064552606572878425, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
