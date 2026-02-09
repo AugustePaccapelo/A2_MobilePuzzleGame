@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
@@ -9,18 +7,16 @@ public class LevelManager : MonoBehaviour
     public static LevelManager Instance { get; private set; }
     public GameObject levelButtonPrefab;
     public Transform buttonContainer;
-    public string levelFolder = "Levels";
+    static public string levelFolder = "Levels";
     private List<Button> levelButtons = new List<Button>();
-    public GameObject UINiveau;
     public GameObject UIMenu;
     public ScrollRect scrollbar;
 
-    private string currentLevelPrefabName;
-    private GameObject currentLevelInstance;
+    static private string currentLevelPrefabName;
+    static private GameObject currentLevelInstance;
 
     void Start()
     {
-        UINiveau.SetActive(false);
         UIMenu.SetActive(true);
 
         var gridLayout = buttonContainer.GetComponent<UnityEngine.UI.GridLayoutGroup>();
@@ -81,7 +77,6 @@ public void LoadLevelByName(string prefabName)
             Destroy(currentLevelInstance);
 
         currentLevelInstance = Instantiate(levelPrefab);
-        UINiveau.SetActive(true);
         UIMenu.SetActive(false);
         currentLevelPrefabName = prefabName;
         GameManager.Instance.LoadLevel();
@@ -107,7 +102,6 @@ public void LoadLevelByName(string prefabName)
 
     public void BackToMenu()
     {
-        UINiveau.SetActive(false);
         UIMenu.SetActive(true);
         if (currentLevelInstance != null)
         {
@@ -116,7 +110,7 @@ public void LoadLevelByName(string prefabName)
             currentLevelPrefabName = null;
         }
     }
-    public void ReloadCurrentLevel()
+    static public void ReloadCurrentLevel()
     {
         if (currentLevelInstance != null)
         {

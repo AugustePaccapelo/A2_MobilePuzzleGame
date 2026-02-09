@@ -8,7 +8,7 @@ public class pausemanager : MonoBehaviour
 
     void Start()
     {
-        pausemenu.SetActive(false);
+        if (pausemenu != null) pausemenu.SetActive(false);
         volumeslider.onValueChanged.AddListener(delegate { setvolume(); });
     }
 
@@ -26,7 +26,6 @@ public class pausemanager : MonoBehaviour
 
     void openmenu()
     {
-        Debug.Log("Menu Opened");
         pausemenu.SetActive(true);
     }
 
@@ -46,6 +45,5 @@ public class pausemanager : MonoBehaviour
     {
         AudioListener.volume = volumeslider.value;
         savevolume();
-        Debug.Log("Volume set to: " + volumeslider.value);  
     }
 }
