@@ -79,6 +79,22 @@ PrefabInstance:
       propertyPath: _obstacleType
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 7667104590087981076, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: _allowedRotations.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667104590087981076, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: '_allowedRotations.Array.data[1]'
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667104590087981076, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: '_allowedRotations.Array.data[2]'
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667104590087981076, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: '_allowedRotations.Array.data[3]'
+      value: 270
+      objectReference: {fileID: 0}
     - target: {fileID: 8809155142300406912, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

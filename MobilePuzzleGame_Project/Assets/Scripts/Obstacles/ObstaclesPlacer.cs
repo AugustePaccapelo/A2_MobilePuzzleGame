@@ -50,6 +50,8 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     [SerializeField] private PlacableObstacle _obstacleType;
 
+    [SerializeField] private List<float> _allowedRotations = new List<float>();
+
     private bool _isThisSelected = false;
     public bool IsThisSelected => _isThisSelected;
 
@@ -314,7 +316,31 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
         angle *= Mathf.Rad2Deg;
         angle += _startAngle;
+        // Keep angle between 0 - 360
+        
+        if (_allowedRotations.Count != 0) angle = GetCLosestAngleInList((angle + 360) % 360);
         SetAngle(angle);
+    }
+
+    private float GetCLosestAngleInList(float angle)
+    {
+        float closest = _allowedRotations[0];
+        float minDifference = Mathf.Abs(angle - closest);
+
+        float currentDifference;
+
+        int length = _allowedRotations.Count;
+        for (int i = 1; i < length; i++)
+        {
+            currentDifference = Mathf.Abs(angle - _allowedRotations[i]);
+            if (currentDifference < minDifference)
+            {
+                closest = _allowedRotations[i];
+                minDifference = currentDifference;
+            }
+        }
+        
+        return closest;
     }
 
     private Vector2 Polar2Cart(float angle, float distance)
@@ -417,7 +443,6 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     {
         Vector3 rotation = transform.eulerAngles;
         rotation.z = angle;
-        rotation.z %= 360;
         transform.eulerAngles = rotation;
         _canvas.transform.eulerAngles = Vector3.zero;
     }
