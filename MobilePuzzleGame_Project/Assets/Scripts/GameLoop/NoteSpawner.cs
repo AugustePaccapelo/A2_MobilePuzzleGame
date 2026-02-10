@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 // Author : Auguste Paccapelo
@@ -20,13 +19,14 @@ public class NoteSpawner : MonoBehaviour
     [SerializeField] private GameObject _notePrefab;
     [SerializeField] private GameObject _ghostNotePrefab;
     [SerializeField] private Transform _noteContainer;
+    private TempoDecoder _tempoDecoder;
 
     // ----- Others ----- \\
 
-    [SerializeField] private float _ghostNoteSpawnDelay = 2f;
-    private float _timerGhostNote = 0f;
-
     [SerializeField] private Vector2 _initialVelocity;
+
+    private bool _hasGameStarted = false;
+    private bool _hasSpawnedNote = false;
 
     // ---------- FUNCTIONS ---------- \\
 
@@ -35,34 +35,42 @@ public class NoteSpawner : MonoBehaviour
     private void OnEnable()
     {
         GameManager.onGameStart += OnGameStart;
-    }
+        _tempoDecoder.OnBeat += OnBeat;
+    }    
 
     private void OnDisable()
     {
         GameManager.onGameStart -= OnGameStart;
+        _tempoDecoder.OnBeat -= OnBeat;
     }
 
-    private void Awake() { }
+    private void Awake()
+    {
+        _tempoDecoder = GetComponent<TempoDecoder>();
+    }
 
     private void Start() { }
 
-    private void Update()
-    {
-        if (GameManager.CurrentGameState != GameState.PlayerPlacingPlatforms) return;
-
-        _timerGhostNote += Time.deltaTime;
-        if (_timerGhostNote >= _ghostNoteSpawnDelay)
-        {
-            _timerGhostNote = 0f;
-            SpawnGhostNote();
-        }
-    }
+    private void Update() { }
 
     // ----- My Functions ----- \\
 
+    private void OnBeat()
+    {
+        if (_hasGameStarted)
+        {
+            if (_hasSpawnedNote) return;
+            SpawnNote();
+            _hasSpawnedNote = true;
+            return;
+        }
+
+        SpawnGhostNote();
+    }
+
     private void OnGameStart()
     {
-        SpawnNote();
+        _hasGameStarted = true;
     }
 
     private void SpawnNote()

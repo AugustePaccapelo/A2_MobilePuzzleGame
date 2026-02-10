@@ -10,33 +10,39 @@ public class GhostNote : MonoBehaviour
 
     // ----- Objects ----- \\
 
-    // ----- Others ----- \\
+    private TempoDecoder _tempoDecoder;
 
-    [SerializeField] private float _lifeDuration = 4f;
-    private float _timer = 0f;
+    // ----- Others ----- \\
 
     // ---------- FUNCTIONS ---------- \\
 
     // ----- Buil-in ----- \\
 
-    private void OnEnable() { }
+    private void OnEnable()
+    {
+        _tempoDecoder.OnBeat += OnBeat;
+    }    
 
-    private void OnDisable() { }
+    private void OnDisable()
+    {
+        _tempoDecoder.OnBeat -= OnBeat;
+    }
 
-    private void Awake() { }
+    private void Awake()
+    {
+        _tempoDecoder = GetComponent<TempoDecoder>();
+    }
 
     private void Start() { }
 
-    private void Update()
-    {
-        _timer += Time.deltaTime;
-        if (_timer >= _lifeDuration)
-        {
-            Destroy(gameObject);
-        }
-    }
+    private void Update() { }
 
     // ----- My Functions ----- \\
+
+    private void OnBeat()
+    {
+        Destroy(gameObject);
+    }
 
     // ----- Destructor ----- \\
 

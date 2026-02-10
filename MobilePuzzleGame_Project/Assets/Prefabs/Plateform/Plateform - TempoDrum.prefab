@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: _obstacleType
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 139795146738246682, guid: 727fed3b58c9e484fb1c1aeb5fc4f3b1, type: 3}
+      propertyPath: _isBasedOnTempo
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1285714044367485070, guid: 727fed3b58c9e484fb1c1aeb5fc4f3b1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -142,13 +142,16 @@ MonoBehaviour:
   _mainObject: {fileID: 6938468153120656900}
   _canvas: {fileID: 8527410748462166950}
   _buttonsContainer: {fileID: 2427621838275888893}
+  _buttonTempo: {fileID: 1624351442964015706}
   _rotationIndicator: {fileID: 4828745220624606857}
   _tempoText: {fileID: 298741748422247073}
+  _isBasedOnTempo: 0
   _stickToWall: 0
   _stickToWallLayer:
     serializedVersion: 2
     m_Bits: 0
   _obstacleType: 3
+  _allowedRotations: []
 --- !u!61 &5775204933995134023
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -997,6 +1000,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
+--- !u!1 &1624351442964015706 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2142873873516803838, guid: 81cedb539dc32124681d3286f96aa183, type: 3}
+  m_PrefabInstance: {fileID: 808360299146796196}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2427621838275888893 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3064552606572878425, guid: 81cedb539dc32124681d3286f96aa183, type: 3}

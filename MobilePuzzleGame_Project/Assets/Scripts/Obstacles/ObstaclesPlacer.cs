@@ -23,12 +23,14 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     [SerializeField] private GameObject _mainObject;
     [SerializeField] private Canvas _canvas;
     [SerializeField] private RectTransform _buttonsContainer;
+    [SerializeField] private GameObject _buttonTempo;
 
     [SerializeField] private RectTransform _rotationIndicator;
 
     [SerializeField] private Text _tempoText;
 
     private Rigidbody2D _rigidBody;
+    private SpriteRenderer _renderer;
 
     private Finger _currentFinger;
     public Finger CurrentFinger => _currentFinger;
@@ -38,6 +40,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     private TempoDecoder _tempoDecoder;
 
     // ----- Boolean ----- \\
+    [SerializeField] private bool _isBasedOnTempo = false;
     [SerializeField] private bool _stickToWall;
 
     // ----- Events ----- \\
@@ -51,6 +54,8 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     [SerializeField] private PlacableObstacle _obstacleType;
 
     [SerializeField] private List<float> _allowedRotations = new List<float>();
+
+    [SerializeField] private Color _nonPlacableColorFeedBack = Color.red;
 
     private bool _isThisSelected = false;
     public bool IsThisSelected => _isThisSelected;
@@ -102,6 +107,8 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         {
             Debug.LogWarning(name + ": no tempo decoder found.");
         }
+
+        _renderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void Start()
@@ -123,6 +130,9 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         {
             Debug.LogError(name + " no rotation handle found.");
         }
+
+        if (!_isBasedOnTempo) _buttonTempo.SetActive(false);
+        else ChangeTempo();
     }
 
     private void Update()
@@ -157,6 +167,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     {
         _numObjetsInCollider++;
         _canBePlaced = false;
+        _renderer.color = _nonPlacableColorFeedBack;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -165,6 +176,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         if (_numObjetsInCollider == 0)
         {
             _canBePlaced = true;
+            _renderer.color = Color.white;
         }
     }
 
@@ -459,7 +471,9 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     public void ChangeTempo()
     {
-        _tempoDecoder.BeatNumber++;
+        // Skip 0
+        if (_tempoDecoder.BeatNumber == 4) _tempoDecoder.BeatNumber = 1;
+        else  _tempoDecoder.BeatNumber++;
         UpdateTempo();
     }
 

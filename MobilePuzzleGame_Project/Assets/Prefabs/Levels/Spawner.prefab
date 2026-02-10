@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4686816484884973093}
   - component: {fileID: 1896601835296682097}
   - component: {fileID: 6465733880972174941}
+  - component: {fileID: 6905472402917878095}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -111,6 +112,25 @@ MonoBehaviour:
   _noteContainer: {fileID: 0}
   _ghostNoteSpawnDelay: 4
   _initialVelocity: {x: 0, y: 0}
+--- !u!114 &6905472402917878095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 188092221770241315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a3c2fa001dbe0d478430ee61f2cbd4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TempoDecoder
+  _beatNumber: 1
+  _unityOnBeat:
+    m_PersistentCalls:
+      m_Calls: []
+  _unityOnOffBeat:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6689029738520307861
 GameObject:
   m_ObjectHideFlags: 0
