@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEditor.Actions;
 using UnityEngine;
@@ -50,7 +51,8 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     private void Reset()
     {
         _numAllowedObstacle = 0;
-        DelayFuncToShutUpUnity();
+        GetObstacleData();
+        UpdateObstacle();
     }
 
     private void OnValidate()
@@ -72,8 +74,9 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     private void Awake()
     {
-        DelayFuncToShutUpUnity();
-        
+        GetObstacleData();
+        UpdateObstacle();
+
         if (_obstacle == PlacableObstacle.Empty) return;
 
         if (_prefabToSpawn == null)
@@ -105,8 +108,12 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     private void DelayFuncToShutUpUnity()
     {
+        EditorApplication.delayCall -= DelayFuncToShutUpUnity;
+
+        if (gameObject == null) return;
+
         GetObstacleData();
-        UpdateObstacle();
+        UpdateObstacle();        
     }
 
     private void OnObstaclePickedUp(PlacableObstacle obj)

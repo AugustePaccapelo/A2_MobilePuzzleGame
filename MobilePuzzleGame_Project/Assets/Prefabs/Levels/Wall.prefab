@@ -45,7 +45,7 @@ SpriteShapeRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -97,7 +97,7 @@ SpriteShapeRenderer:
   - {fileID: 6620342096396375129, guid: b4a99e9a82b975648937aceee785e3e7, type: 3}
   m_LocalAABB:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 1.0000001, y: 1.0000001, z: 0}
+    m_Extent: {x: 1.045, y: 1.045, z: 0}
   m_SpriteSortPoint: 0
 --- !u!114 &3554210216813727978
 MonoBehaviour:

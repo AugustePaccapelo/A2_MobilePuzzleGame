@@ -201,6 +201,14 @@ PrefabInstance:
       propertyPath: _obstacle
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1188893868859200808, guid: 5c590d9bb66f28f46b7d314101811cc7, type: 3}
+      propertyPath: _obstacle
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1188893868859200808, guid: 5c590d9bb66f28f46b7d314101811cc7, type: 3}
+      propertyPath: _numAllowedObstacle
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1333524242102740137, guid: 5c590d9bb66f28f46b7d314101811cc7, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -733,6 +741,10 @@ PrefabInstance:
       propertyPath: 'm_Sprites.Array.data[7]'
       value: 
       objectReference: {fileID: 6620342096396375129, guid: b4a99e9a82b975648937aceee785e3e7, type: 3}
+    - target: {fileID: 6670577993210807977, guid: 5c590d9bb66f28f46b7d314101811cc7, type: 3}
+      propertyPath: m_Text
+      value: 2x
+      objectReference: {fileID: 0}
     - target: {fileID: 7049201846146560688, guid: 5c590d9bb66f28f46b7d314101811cc7, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -761,6 +773,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 37146ccfd6f2dd64897200d9c4579904, type: 3}
+    - target: {fileID: 7997801002644055032, guid: 5c590d9bb66f28f46b7d314101811cc7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1202344774534831966, guid: 4492ee7f78fad1b439ce455d58b23f1c, type: 3}
     - target: {fileID: 8466668830195381947, guid: 5c590d9bb66f28f46b7d314101811cc7, type: 3}
       propertyPath: m_IsActive
       value: 0
