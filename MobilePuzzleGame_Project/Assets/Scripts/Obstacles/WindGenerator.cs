@@ -66,10 +66,10 @@ public class WindGenerator : MonoBehaviour
             if (value < 0)
             {
                 Debug.LogWarning(name + ": force fall speed cannot be negative.");
-                _force = 0;
+                _forceFallSPeed = 0;
                 return;
             }
-            _force = value;
+            _forceFallSPeed = value;
         }
     }
 
@@ -120,7 +120,7 @@ public class WindGenerator : MonoBehaviour
 
         _numTempoSinceActivated++;
         if (_numTempoSinceActivated >= _numTempoActivated)
-        {
+        {            
             _isActive = false;
             _onDeactivated?.Invoke();
         }
@@ -136,7 +136,7 @@ public class WindGenerator : MonoBehaviour
     private void OnObjectStayInRange(Collider2D collision)
     {
         if (!_isActive) return;
-
+        
         Rigidbody2D noteRB = collision.GetComponent<Rigidbody2D>();
 
         Vector2 vecToObj = collision.transform.position - transform.position;
@@ -145,7 +145,7 @@ public class WindGenerator : MonoBehaviour
         float fallOf = distance * _forceFallSPeed;
         float realForce = Mathf.Max(0, _force - fallOf);
 
-        noteRB.AddForce(transform.up * realForce);
+        noteRB.AddForce(transform.right * realForce);
 
         _onObjectInWind?.Invoke();
     }

@@ -23,8 +23,11 @@ MonoBehaviour:
     icon: {fileID: 4444105475525789574, guid: 197d8678d0f54cb49a6253e50c4f5c8e, type: 3}
     prefabToPlace: {fileID: 4528162780032252372, guid: 727fed3b58c9e484fb1c1aeb5fc4f3b1, type: 3}
   - obstacle: 4
-    icon: {fileID: 1202344774534831966, guid: 4492ee7f78fad1b439ce455d58b23f1c, type: 3}
+    icon: {fileID: 724445275633213848, guid: 17467f89e1bcbf343947686517a077c4, type: 3}
     prefabToPlace: {fileID: 985393860385920337, guid: e41eaadb147231c4eafff55c41285c08, type: 3}
   - obstacle: 6
     icon: {fileID: 4444105475525789574, guid: 197d8678d0f54cb49a6253e50c4f5c8e, type: 3}
     prefabToPlace: {fileID: 3365818236890580282, guid: f2497b346d238a64e9f46fdb9d010562, type: 3}
+  - obstacle: 5
+    icon: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+    prefabToPlace: {fileID: 362559892393866452, guid: c5d82b6e7e5ac2c4f8730904368cf178, type: 3}

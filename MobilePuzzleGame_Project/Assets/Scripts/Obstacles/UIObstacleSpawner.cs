@@ -110,7 +110,7 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     {
         EditorApplication.delayCall -= DelayFuncToShutUpUnity;
 
-        if (gameObject == null || this == null) return;
+        if (this == null || gameObject == null) return;
 
         GetObstacleData();
         UpdateObstacle();        

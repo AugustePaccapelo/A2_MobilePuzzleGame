@@ -327,7 +327,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5020135210407967327, guid: 5c590d9bb66f28f46b7d314101811cc7, type: 3}
       propertyPath: _obstacle
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5020135210407967327, guid: 5c590d9bb66f28f46b7d314101811cc7, type: 3}
       propertyPath: _numAllowedObstacle
@@ -432,7 +432,7 @@ PrefabInstance:
     - target: {fileID: 7997801002644055032, guid: 5c590d9bb66f28f46b7d314101811cc7, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1202344774534831966, guid: 4492ee7f78fad1b439ce455d58b23f1c, type: 3}
+      objectReference: {fileID: 724445275633213848, guid: 17467f89e1bcbf343947686517a077c4, type: 3}
     - target: {fileID: 8466668830195381947, guid: 5c590d9bb66f28f46b7d314101811cc7, type: 3}
       propertyPath: m_IsActive
       value: 0

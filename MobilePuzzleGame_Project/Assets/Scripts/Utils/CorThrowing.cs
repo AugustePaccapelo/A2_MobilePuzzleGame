@@ -82,7 +82,6 @@ public class CorThrowing : MonoBehaviour
     public void ThrowBall(GameObject ball)
     {
         //ball.GetComponent<SpriteRenderer>().enabled = true;
-        Debug.Log("rghsfh");
         ball.SetActive(true);
         ball.transform.position = _exitPoint.position;
         Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
