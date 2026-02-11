@@ -106,12 +106,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96400089122f3c144a2f4e8bcc82a042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NoteSpawner
+  _sprites:
+  - {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+  - {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  _renderer: {fileID: 0}
   _spawnPos: {fileID: 2063088868099052705}
   _notePrefab: {fileID: 526553371341305797, guid: d1169d383ba6ea841b211150a6ae46f6, type: 3}
   _ghostNotePrefab: {fileID: 4686103283589405785, guid: 926f510b64a2fd243ab09c5dbc38bc26, type: 3}
   _noteContainer: {fileID: 0}
-  _ghostNoteSpawnDelay: 4
   _initialVelocity: {x: 0, y: 0}
+  _id: 1
 --- !u!114 &6905472402917878095
 MonoBehaviour:
   m_ObjectHideFlags: 0
