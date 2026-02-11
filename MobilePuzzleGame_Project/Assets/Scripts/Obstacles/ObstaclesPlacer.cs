@@ -79,6 +79,10 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     private float _buttonContainerDistance;
     private float _buttonStartAngle;
 
+    private bool _hasBeenPlaced = false;
+    private Vector2 _lastPos;
+    private float _lastAngle;
+
     #region StickingToWall Variables
     // -- Position la plus proche --
     private Vector3 _closestPosition;
@@ -152,14 +156,12 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     {
         if (_currentFinger != null)
         {
-            if (_currentFinger.currentTouch.isTap)
-            {
-                Select();
-            }
-            if (!_canBePlaced && _currentFinger.screenPosition == touchData.screenPosition)
-            {
-                PickupObstacleWithFingerAtPos(_currentFinger.screenPosition);
-            }
+            //if (_currentFinger.currentTouch.isTap)
+            //{
+            //    Select();
+            //    return;
+            //}
+            Select();
         }
     }
 
@@ -403,6 +405,27 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
             UnSelectCurrent();
             return;
         }
+        
+        if (!_canBePlaced)
+        {
+            if (!_hasBeenPlaced)
+            {
+                PickupObstacleWithFingerAtPos(_currentFinger.screenPosition);
+            }
+            else
+            {
+                _rigidBody.MovePosition(_lastPos);
+                Vector3 angle = transform.eulerAngles;
+                angle.z = _lastAngle;
+                transform.eulerAngles = angle;
+            }
+
+            return;
+        }
+
+        _hasBeenPlaced = true;
+        _lastPos = transform.position;
+        _lastAngle = transform.eulerAngles.z;
 
         _currentFinger = null;
         _buttonsContainer.gameObject.SetActive(true);
