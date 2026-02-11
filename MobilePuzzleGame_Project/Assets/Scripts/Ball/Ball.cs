@@ -2,16 +2,29 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
+    [SerializeField] private int _id = 1;
+    public int Id
     {
-        
+        get => _id;
+        set
+        {
+            if (value < 1)
+            {
+                Debug.LogWarning(name + ": id cannot be less than 1.");
+                _id = 1;
+                return;
+            }
+            _id = value;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnValidate()
     {
-        
+        Id = _id;
+    }
+
+    private void Awake()
+    {
+        Id = _id;
     }
 }

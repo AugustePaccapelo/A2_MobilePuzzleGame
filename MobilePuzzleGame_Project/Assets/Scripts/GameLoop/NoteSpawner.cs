@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 // Author : Auguste Paccapelo
@@ -13,8 +15,11 @@ public class NoteSpawner : MonoBehaviour
 
     // ----- Prefabs & Assets ----- \\
 
+    [SerializeField] private List<Sprite> _sprites = new();
+
     // ----- Objects ----- \\
 
+    [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private Transform _spawnPos;
     [SerializeField] private GameObject _notePrefab;
     [SerializeField] private GameObject _ghostNotePrefab;
@@ -24,6 +29,22 @@ public class NoteSpawner : MonoBehaviour
     // ----- Others ----- \\
 
     [SerializeField] private Vector2 _initialVelocity;
+
+    [SerializeField] private int _id = 1;
+    public int Id
+    {
+        get => _id;
+        set
+        {
+            if (value < 1)
+            {
+                Debug.LogWarning(name + ": id cannot be less than 1.");
+                _id = 1;
+                return;
+            }
+            _id = value;
+        }
+    }
 
     private bool _hasGameStarted = false;
     private bool _hasSpawnedNote = false;
@@ -44,9 +65,16 @@ public class NoteSpawner : MonoBehaviour
         _tempoDecoder.OnBeat -= OnBeat;
     }
 
+    private void OnValidate()
+    {
+        Id = _id;
+        EditorApplication.delayCall += DelayFuncToShutUpUnity;
+    }
+
     private void Awake()
     {
         _tempoDecoder = GetComponent<TempoDecoder>();
+        Id = _id;
     }
 
     private void Start() { }
@@ -54,6 +82,34 @@ public class NoteSpawner : MonoBehaviour
     private void Update() { }
 
     // ----- My Functions ----- \\
+
+    private void DelayFuncToShutUpUnity()
+    {
+        EditorApplication.delayCall -= DelayFuncToShutUpUnity;
+
+        if (this == null || gameObject == null) return;
+
+        SetSprite();
+    }
+
+    private void SetSprite()
+    {
+        if (_sprites.Count < 0)
+        {
+            Debug.LogWarning(name + ": no sprites were given.");
+            return;
+        }
+
+        if (_id <= _sprites.Count)
+        {
+            _renderer.sprite = _sprites[_id - 1];
+        }
+        else
+        {
+            Debug.LogError(name + ": key id not in the sprites.");
+            _renderer.sprite = _sprites[0];
+        }
+    }
 
     private void OnBeat()
     {
@@ -79,6 +135,8 @@ public class NoteSpawner : MonoBehaviour
         GameObject newNote = Instantiate(_notePrefab, _noteContainer);
         newNote.transform.position = _spawnPos.position;
         newNote.GetComponent<Rigidbody2D>().linearVelocity = _initialVelocity;
+        Ball note = newNote.GetComponent<Ball>();
+        note.Id = _id;
     }
 
     private void SpawnGhostNote()
