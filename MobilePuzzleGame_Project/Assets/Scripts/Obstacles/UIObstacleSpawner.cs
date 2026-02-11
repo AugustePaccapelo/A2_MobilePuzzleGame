@@ -128,6 +128,7 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     private GameObject SpawnObstacle(Vector3 position, FingerInput fingerInput)
     {
         GameObject obstacle = Instantiate(_prefabToSpawn, _obstaclesContainer);
+        Debug.Log(_prefabToSpawn);
         obstacle.transform.position = position;
         ObstaclesPlacer obstaclesPlacer = obstacle.GetComponent<ObstaclesPlacer>();
         

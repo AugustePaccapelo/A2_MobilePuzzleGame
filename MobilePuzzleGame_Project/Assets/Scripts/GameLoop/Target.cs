@@ -12,6 +12,8 @@ public class Target : MonoBehaviour
 
     // ----- Others ----- \\
 
+    [SerializeField] private LayerMask _layerToDestroy;
+
     // ---------- FUNCTIONS ---------- \\
 
     // ----- Buil-in ----- \\
@@ -30,6 +32,10 @@ public class Target : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // 1 << go.layer => exact layerMask of go
+        // if Note = 6 => 00100000
+        if (((1 << collision.gameObject.layer) & _layerToDestroy) == 0) return;
+
         Destroy(collision.gameObject);
         if (GameManager.CurrentGameState == GameState.GamePlaying)
         {

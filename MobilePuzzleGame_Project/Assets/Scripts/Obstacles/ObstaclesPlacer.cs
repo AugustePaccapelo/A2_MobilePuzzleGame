@@ -156,7 +156,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
             {
                 Select();
             }
-            if (!_canBePlaced)
+            if (!_canBePlaced && _currentFinger.screenPosition == touchData.screenPosition)
             {
                 PickupObstacleWithFingerAtPos(_currentFinger.screenPosition);
             }

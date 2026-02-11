@@ -151,3 +151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c850d8ed98b5a947a5e9bc66f57476b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Target
+  _layerToDestroy:
+    serializedVersion: 2
+    m_Bits: 16512

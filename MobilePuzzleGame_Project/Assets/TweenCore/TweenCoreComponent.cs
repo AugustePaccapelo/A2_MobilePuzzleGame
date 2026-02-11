@@ -134,6 +134,6 @@ public class TweenCoreComponent : MonoBehaviour
 
     private void OnDestroy()
     {
-        _tween?.Stop(false);
+        StopAndDontChangeValue();
     }
 }
