@@ -1,6 +1,5 @@
-using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.Actions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,6 +24,8 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     [SerializeField] private Text _numberText;
     [SerializeField] private Transform _obstaclesContainer;
+
+    static private Dictionary<PlacableObstacle, Stack<GameObject>> _obstaclesPool = new();
 
     // ----- Others ----- \\
 
@@ -89,6 +90,18 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         }
     }
 
+    private void Start()
+    {
+        if (_obstacle == PlacableObstacle.Empty) return;
+
+        GameObject platform;
+        for (int i = 0; i < _numAllowedObstacle; i++)
+        {
+            platform = Instantiate(_prefabToSpawn, _obstaclesContainer);
+            AddObstacleToPool(platform);
+        }
+    }
+
     public void OnTouchedDown(ToucheData touchData)
     {
         if (_obstacle == PlacableObstacle.Empty || _numAllowedObstacle <= 0 || GameManager.CurrentGameState != GameState.PlayerPlacingPlatforms) return;
@@ -101,10 +114,44 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     public void OnTouchedUp(ToucheData toucheData)
     {
-        ObstaclesPlacer.PickupObstacleWithFingerAtPos(toucheData.screenPosition);
+        Ray ray = Camera.main.ScreenPointToRay(toucheData.screenPosition);
+        RaycastHit2D[] hits = Physics2D.GetRayIntersectionAll(ray);
+
+        ObstaclesPlacer obstaclePlacer;
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.collider.TryGetComponent(out obstaclePlacer))
+            {
+                obstaclePlacer.Pickup();
+            }
+        }
     }
 
     // ----- My Functions ----- \\
+
+    private void AddObstacleToPool(GameObject go)
+    {
+        if (!_obstaclesPool.ContainsKey(_obstacle))
+        {
+            _obstaclesPool.Add(_obstacle, new());
+        }
+
+        _obstaclesPool[_obstacle].Push(go);
+        go.SetActive(false);
+        go.GetComponent<ObstaclesPlacer>().ResetState();
+    }
+
+    private GameObject GetObstacleFromPool()
+    {
+        if (!_obstaclesPool.ContainsKey(_obstacle)) return null;
+        if (_obstaclesPool[_obstacle] == null) return null;
+        if (_obstaclesPool[_obstacle].Count == 0) return null;
+
+        GameObject go = _obstaclesPool[_obstacle].Pop();
+        go.SetActive(true);
+
+        return go;
+    }
 
     private void DelayFuncToShutUpUnity()
     {
@@ -116,19 +163,21 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         UpdateObstacle();        
     }
 
-    private void OnObstaclePickedUp(PlacableObstacle obj)
+    private void OnObstaclePickedUp(PlacableObstacle obj, GameObject go)
     {
         if (obj == _obstacle)
         {
             _numAllowedObstacle++;
             _numberText.text = _textPrefix + _numAllowedObstacle + _textSufix;
+            AddObstacleToPool(go);
         }
     }
 
     private GameObject SpawnObstacle(Vector3 position, FingerInput fingerInput)
     {
-        GameObject obstacle = Instantiate(_prefabToSpawn, _obstaclesContainer);
-        Debug.Log(_prefabToSpawn);
+        //GameObject obstacle = Instantiate(_prefabToSpawn, _obstaclesContainer);
+        GameObject obstacle = GetObstacleFromPool();
+
         obstacle.transform.position = position;
         ObstaclesPlacer obstaclesPlacer = obstacle.GetComponent<ObstaclesPlacer>();
         
@@ -168,5 +217,10 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     // ----- Destructor ----- \\
 
-    private void OnDestroy() { }
+    private void OnDestroy()
+    {
+        if (!_obstaclesPool.ContainsKey(_obstacle)) return;
+
+        _obstaclesPool.Remove(_obstacle);
+    }
 }

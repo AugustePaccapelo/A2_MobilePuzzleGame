@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
         InitPlayerPlacingPlatform();
     }
 
-    private void InitPlayerPlacingPlatform()
+    public void InitPlayerPlacingPlatform()
     {
         _currentGameState = GameState.PlayerPlacingPlatforms;
         _currentSate = PlayerPlacingPlatform;
@@ -120,6 +120,7 @@ public class GameManager : MonoBehaviour
         _currentGameState = GameState.GamePlaying;
         _currentSate = GamePlaying;
         onGameStart?.Invoke();
+        TempoManager.Instance.ResetTime();
     }
 
     private void GamePlaying()

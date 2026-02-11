@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using NaughtyAttributes;
 using UnityEditor;
 using UnityEngine;
@@ -34,7 +35,6 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     private Finger _currentFinger;
     public Finger CurrentFinger => _currentFinger;
-    static private List<ObstaclesPlacer> _allObstacles = new();
 
     private RotationHandle _rotationHandle;
     private TempoDecoder _tempoDecoder;
@@ -45,7 +45,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     // ----- Events ----- \\
 
-    static public event Action<PlacableObstacle> onObstaclePickedUp;
+    static public event Action<PlacableObstacle, GameObject> onObstaclePickedUp;
 
     // ----- Others ----- \\
 
@@ -78,6 +78,10 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     private float _buttonContainerDistance;
     private float _buttonStartAngle;
+
+    private bool _hasBeenPlaced = false;
+    private Vector2 _lastPos;
+    private float _lastAngle;
 
     #region StickingToWall Variables
     // -- Position la plus proche --
@@ -113,7 +117,6 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     private void Start()
     {
-        _allObstacles.Add(this);
         _canvas.enabled = false;
         _canvas.worldCamera = Camera.main;
 
@@ -152,14 +155,12 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     {
         if (_currentFinger != null)
         {
-            if (_currentFinger.currentTouch.isTap)
-            {
-                Select();
-            }
-            if (!_canBePlaced && _currentFinger.screenPosition == touchData.screenPosition)
-            {
-                PickupObstacleWithFingerAtPos(_currentFinger.screenPosition);
-            }
+            //if (_currentFinger.currentTouch.isTap)
+            //{
+            //    Select();
+            //    return;
+            //}
+            Select();
         }
     }
 
@@ -181,6 +182,17 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     }
 
     // ----- My Functions ----- \\
+
+    public void ResetState()
+    {
+        _currentFinger = null;
+        _hasBeenPlaced = false;
+        _numObjetsInCollider = 0;
+        _canBePlaced = true;
+        _renderer.color = Color.white;
+        _isThisSelected = false;
+        _canvas.enabled = false;
+    }
 
     private bool IsPosInButtons(Vector2 pos)
     {
@@ -245,7 +257,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     {
         if (_currentFinger == null || GameManager.CurrentGameState != GameState.PlayerPlacingPlatforms) return;
 
-        if (_currentFinger.currentTouch.ended)
+        if (_currentFinger.currentTouch.phase == UnityEngine.InputSystem.TouchPhase.Ended)
         {
             _currentFinger = null;
             return;
@@ -360,18 +372,10 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         return new Vector2(Mathf.Cos(angle) * distance, Mathf.Sin(angle) * distance);
     }
 
-    static public void PickupObstacleWithFingerAtPos(Vector2 screenPos)
+    public void Pickup()
     {
-        int length = _allObstacles.Count;
-        for (int i = length - 1; i > -1; i--)
-        {
-            if (_allObstacles[i]._currentFinger != null && _allObstacles[i]._currentFinger.screenPosition == screenPos)
-            {
-                onObstaclePickedUp?.Invoke(_allObstacles[i]._obstacleType);
-                Destroy(_allObstacles[i].gameObject);
-                _allObstacles.RemoveAt(i);
-            }
-        }
+        UnSelect();
+        onObstaclePickedUp?.Invoke(_obstacleType, gameObject);
     }
 
     public void SetFinger(Finger finger)
@@ -403,6 +407,27 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
             UnSelectCurrent();
             return;
         }
+        
+        if (!_canBePlaced)
+        {
+            if (!_hasBeenPlaced)
+            {
+                Pickup();
+            }
+            else
+            {
+                _rigidBody.MovePosition(_lastPos);
+                Vector3 angle = transform.eulerAngles;
+                angle.z = _lastAngle;
+                transform.eulerAngles = angle;
+            }
+
+            return;
+        }
+
+        _hasBeenPlaced = true;
+        _lastPos = transform.position;
+        _lastAngle = transform.eulerAngles.z;
 
         _currentFinger = null;
         _buttonsContainer.gameObject.SetActive(true);
