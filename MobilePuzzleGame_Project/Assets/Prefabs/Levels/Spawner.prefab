@@ -108,7 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NoteSpawner
   _sprites:
   - {fileID: 2537499946855854851, guid: 6d31973e575434646a2c3247985ff66a, type: 3}
-  - {fileID: 2537499946855854851, guid: 6d31973e575434646a2c3247985ff66a, type: 3}
+  - {fileID: -1998943685123882031, guid: e50e262fd607fe6428ec37628c3c13dc, type: 3}
   _renderer: {fileID: 1896601835296682097}
   _spawnPos: {fileID: 2063088868099052705}
   _notePrefab: {fileID: 526553371341305797, guid: d1169d383ba6ea841b211150a6ae46f6, type: 3}
