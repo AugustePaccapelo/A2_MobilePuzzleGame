@@ -120,6 +120,7 @@ public class GameManager : MonoBehaviour
         _currentGameState = GameState.GamePlaying;
         _currentSate = GamePlaying;
         onGameStart?.Invoke();
+        TempoManager.Instance.ResetTime();
     }
 
     private void GamePlaying()

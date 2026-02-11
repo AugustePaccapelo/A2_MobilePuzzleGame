@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using Unity.Properties;
+using UnityEditor;
 using UnityEngine;
 
 // Author : Auguste Paccapelo
@@ -8,9 +11,29 @@ public class Lock : MonoBehaviour
 
     // ----- Prefabs & Assets ----- \\
 
+    [SerializeField] private List<Sprite> _sprites = new();
+
     // ----- Objects ----- \\
 
+    [SerializeField] private SpriteRenderer _lockRenderer;
+
     // ----- Others ----- \\
+
+    [SerializeField] private int _lockId = 1;
+    public int LockId
+    {
+        get => _lockId;
+        set
+        {
+            if (value < 1)
+            {
+                Debug.Log(name + ": id cannot be less than 1.");
+                _lockId = 1;
+                return;
+            }
+            _lockId = value;
+        }
+    }
 
     // ---------- FUNCTIONS ---------- \\
 
@@ -26,7 +49,16 @@ public class Lock : MonoBehaviour
         Key.onAllKeysPickedUp -= DestroyLock;
     }
 
-    private void Awake() { }
+    private void Awake()
+    {
+        SetSprite();
+    }
+
+    private void OnValidate()
+    {
+        LockId = _lockId;
+        EditorApplication.delayCall += DelayFuncToShutUpUnity;
+    }
 
     private void Start() { }
 
@@ -34,8 +66,38 @@ public class Lock : MonoBehaviour
 
     // ----- My Functions ----- \\
 
-    private void DestroyLock()
+    private void DelayFuncToShutUpUnity()
     {
+        EditorApplication.delayCall -= DelayFuncToShutUpUnity;
+
+        if (this == null || gameObject == null) return;
+
+        SetSprite();
+    }
+
+    private void SetSprite()
+    {
+        if (_sprites.Count < 0)
+        {
+            Debug.LogWarning(name + ": no sprites were given.");
+            return;
+        }
+
+        if (_lockId <= _sprites.Count)
+        {
+            _lockRenderer.sprite = _sprites[_lockId - 1];
+        }
+        else
+        {
+            Debug.LogError(name + ": key id not in the sprites.");
+            _lockRenderer.sprite = _sprites[0];
+        }
+    }
+
+    private void DestroyLock(int id)
+    {
+        if (id != _lockId) return;
+
         Destroy(gameObject);
     }
 

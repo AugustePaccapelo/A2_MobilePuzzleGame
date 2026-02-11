@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 // Author : Auguste Paccapelo
@@ -9,19 +11,38 @@ public class Key : MonoBehaviour
 
     // ----- Prefabs & Assets ----- \\
 
+    [SerializeField] private List<Sprite> _sprites = new();
+
     // ----- Objects ----- \\
 
     // ----- Events ----- \\
 
-    static public event Action onKeyPickedUp;
-    static public event Action onAllKeysPickedUp;
+    static public event Action<int> onKeyPickedUp;
+    static public event Action<int> onAllKeysPickedUp;
 
     // ----- Others ----- \\
 
+    [SerializeField] private int _keyId = 1;
+    public int KeyId
+    {
+        get => _keyId;
+        set
+        {
+            if (value < 1)
+            {
+                Debug.Log(name + ": id cannot be less than 1.");
+                _keyId = 1;
+                return;
+            }
+            _keyId = value;
+        }
+    }
+
     [SerializeField] private LayerMask _layerThatCanCollect;
 
-    static private int _numKeys = 0;
-    static private int _numKeysPickedUp = 0;
+    // Id; number
+    static private Dictionary<int, int> _mapNumKeys = new();
+    static private Dictionary<int, int> _mapNumKeysPickedUp = new();
 
     // ---------- FUNCTIONS ---------- \\
 
@@ -33,13 +54,26 @@ public class Key : MonoBehaviour
 
     private void Awake()
     {
-        _numKeys = 0;
-        _numKeysPickedUp = 0;
+        _mapNumKeys.Clear();
+        _mapNumKeysPickedUp.Clear();
+
+        SetSprite();
+    }
+
+    private void OnValidate()
+    {
+        KeyId = _keyId;
+        EditorApplication.delayCall += DelayFuncToShutUpUnity;
     }
 
     private void Start()
     {
-        _numKeys++;
+        if (!_mapNumKeys.ContainsKey(_keyId))
+        {
+            _mapNumKeys.Add(_keyId, 1);
+            _mapNumKeysPickedUp.Add(_keyId, 0);
+        }
+        else _mapNumKeys[_keyId]++;
     }
 
     private void Update() { }
@@ -50,17 +84,48 @@ public class Key : MonoBehaviour
         // if Note = 6 => 00100000
         if (((1 << collision.gameObject.layer) & _layerThatCanCollect) == 0) return;
 
-        _numKeysPickedUp++;
-        onKeyPickedUp?.Invoke();
-        if (_numKeysPickedUp == _numKeys)
+        _mapNumKeysPickedUp[_keyId]++;
+        onKeyPickedUp?.Invoke(_keyId);
+
+        if (_mapNumKeysPickedUp[_keyId] == _mapNumKeys[_keyId])
         {
-            onAllKeysPickedUp?.Invoke();
+            onAllKeysPickedUp?.Invoke(_keyId);
         }
 
         Destroy(gameObject);
     }
 
     // ----- My Functions ----- \\
+
+    private void DelayFuncToShutUpUnity()
+    {
+        EditorApplication.delayCall -= DelayFuncToShutUpUnity;
+
+        if (this == null || gameObject == null) return;
+
+        SetSprite();
+    }
+
+    private void SetSprite()
+    {
+        if (_sprites.Count < 0)
+        {
+            Debug.LogWarning(name + ": no sprites were given.");
+            return;
+        }
+
+        SpriteRenderer renderer = GetComponentInChildren<SpriteRenderer>();
+
+        if (_keyId <= _sprites.Count)
+        {
+            renderer.sprite = _sprites[_keyId - 1];
+        }
+        else
+        {
+            Debug.LogError(name + ": key id not in the sprites.");
+            renderer.sprite = _sprites[0];
+        }
+    }
 
     // ----- Destructor ----- \\
 
