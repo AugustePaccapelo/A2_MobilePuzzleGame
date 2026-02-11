@@ -21,7 +21,10 @@ public class Lock : MonoBehaviour
         Key.onAllKeysPickedUp += DestroyLock;
     }
 
-    private void OnDisable() { }
+    private void OnDisable()
+    {
+        Key.onAllKeysPickedUp -= DestroyLock;
+    }
 
     private void Awake() { }
 

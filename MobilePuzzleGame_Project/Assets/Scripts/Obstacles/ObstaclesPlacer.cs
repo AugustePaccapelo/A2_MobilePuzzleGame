@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
+using NaughtyAttributes;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
+using UnityEngine.UI;
 
-// Author : Auguste Paccapelo
+// Author : Auguste Paccapelo & Maxence Bernard
 
 public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 {
@@ -20,14 +23,25 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     [SerializeField] private GameObject _mainObject;
     [SerializeField] private Canvas _canvas;
     [SerializeField] private RectTransform _buttonsContainer;
+    [SerializeField] private GameObject _buttonTempo;
 
     [SerializeField] private RectTransform _rotationIndicator;
+
+    [SerializeField] private Text _tempoText;
+
+    private Rigidbody2D _rigidBody;
+    private SpriteRenderer _renderer;
 
     private Finger _currentFinger;
     public Finger CurrentFinger => _currentFinger;
     static private List<ObstaclesPlacer> _allObstacles = new();
 
     private RotationHandle _rotationHandle;
+    private TempoDecoder _tempoDecoder;
+
+    // ----- Boolean ----- \\
+    [SerializeField] private bool _isBasedOnTempo = false;
+    [SerializeField] private bool _stickToWall;
 
     // ----- Events ----- \\
 
@@ -35,10 +49,19 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     // ----- Others ----- \\
 
+    [SerializeField, EnableIf("_stickToWall")] private LayerMask _stickToWallLayer;
+
     [SerializeField] private PlacableObstacle _obstacleType;
+
+    [SerializeField] private List<float> _allowedRotations = new List<float>();
+
+    [SerializeField] private Color _nonPlacableColorFeedBack = Color.red;
 
     private bool _isThisSelected = false;
     public bool IsThisSelected => _isThisSelected;
+
+    private bool _canBePlaced = true;
+    private int _numObjetsInCollider = 0;
 
     static private bool _hasAnObstacleSelected = false;
     static public bool HasAnObstacleSelected => _hasAnObstacleSelected;
@@ -56,6 +79,16 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     private float _buttonContainerDistance;
     private float _buttonStartAngle;
 
+    #region StickingToWall Variables
+    // -- Position la plus proche --
+    private Vector3 _closestPosition;
+
+    // -- Vectoeur de direction --
+    private Vector2 _direction;
+    private Vector3 _normal;
+
+    #endregion
+
     // ---------- FUNCTIONS ---------- \\
 
     // ----- Buil-in ----- \\
@@ -65,10 +98,24 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         if (_isThisSelected) UnSelectCurrent();
     }
 
+    private void Awake()
+    {
+        _rigidBody = GetComponent<Rigidbody2D>();
+
+        _tempoDecoder = GetComponentInChildren<TempoDecoder>();
+        if (_tempoDecoder == null)
+        {
+            Debug.LogWarning(name + ": no tempo decoder found.");
+        }
+
+        _renderer = GetComponentInChildren<SpriteRenderer>();
+    }
+
     private void Start()
     {
         _allObstacles.Add(this);
         _canvas.enabled = false;
+        _canvas.worldCamera = Camera.main;
 
         Vector2 indicatorVecToStartPos = _rotationIndicator.position - transform.position;
         _indicatorDistance = indicatorVecToStartPos.magnitude;
@@ -83,6 +130,9 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         {
             Debug.LogError(name + " no rotation handle found.");
         }
+
+        if (!_isBasedOnTempo) _buttonTempo.SetActive(false);
+        else ChangeTempo();
     }
 
     private void Update()
@@ -100,44 +150,100 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     public void OnTouchedUp(ToucheData touchData)
     {
-        if (_currentFinger != null && _currentFinger.currentTouch.isTap)
+        if (_currentFinger != null)
         {
-            Select();
+            if (_currentFinger.currentTouch.isTap)
+            {
+                Select();
+            }
+            if (!_canBePlaced)
+            {
+                PickupObstacleWithFingerAtPos(_currentFinger.screenPosition);
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        _numObjetsInCollider++;
+        _canBePlaced = false;
+        _renderer.color = _nonPlacableColorFeedBack;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        _numObjetsInCollider--;
+        if (_numObjetsInCollider == 0)
+        {
+            _canBePlaced = true;
+            _renderer.color = Color.white;
         }
     }
 
     // ----- My Functions ----- \\
+
+    private bool IsPosInButtons(Vector2 pos)
+    {
+        return RectTransformUtility.RectangleContainsScreenPoint(_buttonsContainer, pos);
+    }
 
     private void HandleUI()
     {
         if (!_isThisSelected || !_canvas.enabled) return;
 
         Vector2 center = transform.position;
-        Vector2 pos = center + Polar2Cart(_buttonStartAngle, _buttonContainerDistance);
 
-        _buttonsContainer.position = pos;
+        // Buttons handling
+        Vector2 buttonPos = center + Polar2Cart(_buttonStartAngle, _buttonContainerDistance);
 
-        Vector3[] corners = new Vector3[4];
-        _buttonsContainer.GetWorldCorners(corners);
+        _buttonsContainer.position = buttonPos;
 
-        float leftX = RectTransformUtility.WorldToScreenPoint(Camera.main, corners[0]).x;
+        Vector3[] buttonCorners = new Vector3[4];
+        _buttonsContainer.GetWorldCorners(buttonCorners);
 
-        if (leftX < 0)
+        float buttonLeftX = RectTransformUtility.WorldToScreenPoint(Camera.main, buttonCorners[0]).x;
+
+        if (buttonLeftX < 0)
         {
-            Vector3 difference = Camera.main.ScreenToWorldPoint(new Vector3(-leftX, 0, 0)) - Camera.main.ScreenToWorldPoint(Vector3.zero);
+            Vector3 difference = Camera.main.ScreenToWorldPoint(new Vector3(buttonLeftX, 0, 0)) - Camera.main.ScreenToWorldPoint(Vector3.zero);
 
-            pos.x += difference.x;
+            buttonPos.x -= difference.x;
 
-            float angle = Mathf.Acos(((pos.x - center.x) / _buttonContainerDistance) % 1);
-            pos.y = center.y + Mathf.Sin(angle) * _buttonContainerDistance;
+            float angle = Mathf.Acos(((buttonPos.x - center.x) / _buttonContainerDistance) % 1);
+            buttonPos.y = center.y + Mathf.Sin(angle) * _buttonContainerDistance;
 
-            _buttonsContainer.position = pos;
+            _buttonsContainer.position = buttonPos;
+        }
+
+        // Rotation Handle handling
+        if (_currentFingerState == FingerState.Rotating) return;
+
+        Vector2 rotationHandlePos = center + Polar2Cart(_indicatorStartAngle, _indicatorDistance);
+        
+        _rotationIndicator.transform.position = rotationHandlePos;
+
+        Vector3[] rotationHandleCorners = new Vector3[4];
+        _rotationIndicator.GetWorldCorners(rotationHandleCorners);
+
+        float rotationHandleRightX = RectTransformUtility.WorldToScreenPoint(Camera.main, rotationHandleCorners[3]).x;
+
+        if (rotationHandleRightX > Screen.currentResolution.width)
+        {
+            Vector3 difference = Camera.main.ScreenToWorldPoint(new Vector3(rotationHandleRightX, 0, 0)) - Camera.main.ScreenToWorldPoint(new Vector3(Screen.currentResolution.width, 0, 0));
+
+            rotationHandlePos.x -= difference.x;
+
+            // -Acos to rotation clockwise
+            float angle = -Mathf.Acos(((rotationHandlePos.x - center.x) / _indicatorDistance) % 1);
+            rotationHandlePos.y = center.y + Mathf.Sin(angle) * _indicatorDistance;
+            
+            _rotationIndicator.transform.position = rotationHandlePos;
         }
     }
 
     private void HandlePlacement()
     {
-        if (_currentFinger == null) return;
+        if (_currentFinger == null || GameManager.CurrentGameState != GameState.PlayerPlacingPlatforms) return;
 
         if (_currentFinger.currentTouch.ended)
         {
@@ -148,7 +254,15 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         switch (_currentFingerState)
         {
             case FingerState.Moving:
-                MoveObstacle();
+
+                if (_stickToWall)
+                {
+                    MoveStickingObstacle();
+                }
+                else
+                {
+                    MoveObstacle();
+                }
                 break;
             case FingerState.Rotating:
                 RotateObstacle();
@@ -162,7 +276,40 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
         Vector3 position = Camera.main.ScreenToWorldPoint(_currentFinger.screenPosition);
         position.z = 0;
-        transform.position = position;
+        //transform.position = position;
+        _rigidBody.MovePosition(position);
+    }
+
+    private void MoveStickingObstacle()
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, _direction, 100f, _stickToWallLayer);
+            if (hit.collider == null)
+            {
+                _direction = Portal.RotateVector2(_direction, 45 * Mathf.Deg2Rad);
+                continue;
+            }
+
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Wall"))
+            {
+
+                if (Vector2.Distance(transform.position, hit.point) < Vector2.Distance(transform.position, _closestPosition) || _closestPosition == Vector3.zero)
+                {
+                    _closestPosition = hit.point;
+                    _normal = hit.normal;
+                }
+
+            }
+
+            //On tourne la direction à 45 degré pour avoir les 8 raycast autour du portail
+            _direction = Portal.RotateVector2(_direction, 45 * Mathf.Deg2Rad);
+
+            Debug.DrawLine(transform.position, transform.position + (Vector3)_direction);
+        }
+
+        transform.position = _closestPosition + (transform.position - _closestPosition).normalized * GetComponentInChildren<SpriteRenderer>().transform.localScale.x;
+        transform.up = _normal;
     }
 
     private void RefreshScreenPos()
@@ -181,7 +328,31 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
         angle *= Mathf.Rad2Deg;
         angle += _startAngle;
+        // Keep angle between 0 - 360
+        
+        if (_allowedRotations.Count != 0) angle = GetCLosestAngleInList((angle + 360) % 360);
         SetAngle(angle);
+    }
+
+    private float GetCLosestAngleInList(float angle)
+    {
+        float closest = _allowedRotations[0];
+        float minDifference = Mathf.Abs(angle - closest);
+
+        float currentDifference;
+
+        int length = _allowedRotations.Count;
+        for (int i = 1; i < length; i++)
+        {
+            currentDifference = Mathf.Abs(angle - _allowedRotations[i]);
+            if (currentDifference < minDifference)
+            {
+                closest = _allowedRotations[i];
+                minDifference = currentDifference;
+            }
+        }
+        
+        return closest;
     }
 
     private Vector2 Polar2Cart(float angle, float distance)
@@ -221,6 +392,12 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     private void OnFingerUp(Vector2 obj)
     {
+        // If click on a button
+        if (IsPosInButtons(Camera.main.ScreenToWorldPoint(obj)))
+        {
+            return;
+        }
+
         if (_currentFinger == null || _currentFinger.screenPosition != obj)
         {
             UnSelectCurrent();
@@ -276,15 +453,28 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     public void SetAngle (float angle)
     {
-        Vector3 rotation = _mainObject.transform.eulerAngles;
+        Vector3 rotation = transform.eulerAngles;
         rotation.z = angle;
-        rotation.z %= 360;
-        _mainObject.transform.eulerAngles = rotation;
+        transform.eulerAngles = rotation;
+        _canvas.transform.eulerAngles = Vector3.zero;
     }
 
     public float GetAngle ()
     {
-        return _mainObject.transform.eulerAngles.z;
+        return transform.eulerAngles.z;
+    }
+
+    private void UpdateTempo()
+    {
+        _tempoText.text = _tempoDecoder.BeatNumber.ToString();
+    }
+
+    public void ChangeTempo()
+    {
+        // Skip 0
+        if (_tempoDecoder.BeatNumber == 4) _tempoDecoder.BeatNumber = 1;
+        else  _tempoDecoder.BeatNumber++;
+        UpdateTempo();
     }
 
     // ----- Destructor ----- \\

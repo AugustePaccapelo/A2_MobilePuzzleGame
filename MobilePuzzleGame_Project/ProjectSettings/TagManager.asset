@@ -17,9 +17,9 @@ TagManager:
   - Obstacle
   - Key
   - Lock
-  - 
-  - 
-  - 
+  - Wall
+  - Wind
+  - GhostNote
   - 
   - 
   - 

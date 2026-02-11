@@ -18,6 +18,13 @@ public class TweenCoreComponent : MonoBehaviour
 
     // ----- Others ----- \\
 
+    [SerializeField] private string _name = "";
+    public string TweenName
+    {
+        get => _name;
+        set => _name = value;
+    }
+
     [SerializeField] private bool _playOnStart = true;
     [SerializeField] private bool _isParallel = true;
     [SerializeField] private bool _isLoop = false;
@@ -125,5 +132,8 @@ public class TweenCoreComponent : MonoBehaviour
 
     // ----- Destructor ----- \\
 
-    private void OnDestroy() { }
+    private void OnDestroy()
+    {
+        _tween?.Stop(false);
+    }
 }

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 public enum PlacableObstacle
@@ -8,14 +7,17 @@ public enum PlacableObstacle
     Wall,
     Drum,
     Portal,
-    Empty
+    Empty,
+    Cor,
+    Trumpet,
+    TempoDrum
 }
 
 [Serializable]
 public class ObstacleInfo
 {
     public PlacableObstacle obstacle;
-    public Texture icon;
+    public Sprite icon;
     public GameObject prefabToPlace;
 }
 

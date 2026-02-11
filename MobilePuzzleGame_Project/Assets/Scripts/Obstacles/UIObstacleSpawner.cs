@@ -1,3 +1,6 @@
+using Unity.VisualScripting;
+using UnityEditor;
+using UnityEditor.Actions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -55,8 +58,8 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     private void OnValidate()
     {
         NumAllowedObstacle = _numAllowedObstacle;
-        GetObstacleData();
-        UpdateObstacle();
+        EditorApplication.delayCall += DelayFuncToShutUpUnity;
+        //DelayFuncToShutUpUnity();
     }
 
     private void OnEnable()
@@ -88,7 +91,7 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     public void OnTouchedDown(ToucheData touchData)
     {
-        if (_obstacle == PlacableObstacle.Empty || _numAllowedObstacle <= 0) return;
+        if (_obstacle == PlacableObstacle.Empty || _numAllowedObstacle <= 0 || GameManager.CurrentGameState != GameState.PlayerPlacingPlatforms) return;
 
         _numAllowedObstacle--;
         _numberText.text = _textPrefix + _numAllowedObstacle + _textSufix;
@@ -102,6 +105,16 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     }
 
     // ----- My Functions ----- \\
+
+    private void DelayFuncToShutUpUnity()
+    {
+        EditorApplication.delayCall -= DelayFuncToShutUpUnity;
+
+        if (this == null || gameObject == null) return;
+
+        GetObstacleData();
+        UpdateObstacle();        
+    }
 
     private void OnObstaclePickedUp(PlacableObstacle obj)
     {
@@ -140,14 +153,14 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
         _prefabToSpawn = obsInfo.prefabToPlace;
 
-        RawImage icon;
+        Image icon;
         if (!TryGetComponent(out icon))
         {
-            Debug.LogError(name + ": don't have a raw image componenet.");
+            Debug.LogError(name + ": don't have a raw image component.");
             return;
         }
 
-        icon.texture = obsInfo.icon;
+        icon.sprite = obsInfo.icon;
 
         _numberText.text = _textPrefix + _numAllowedObstacle + _textSufix;
     }

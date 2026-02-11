@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 // Author : Auguste Paccapelo
 
@@ -19,6 +18,8 @@ public class Key : MonoBehaviour
 
     // ----- Others ----- \\
 
+    [SerializeField] private LayerMask _layerThatCanCollect;
+
     static private int _numKeys = 0;
     static private int _numKeysPickedUp = 0;
 
@@ -30,7 +31,11 @@ public class Key : MonoBehaviour
 
     private void OnDisable() { }
 
-    private void Awake() { }
+    private void Awake()
+    {
+        _numKeys = 0;
+        _numKeysPickedUp = 0;
+    }
 
     private void Start()
     {
@@ -41,6 +46,10 @@ public class Key : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // 1 << go.layer => exact layerMask of go
+        // if Note = 6 => 00100000
+        if (((1 << collision.gameObject.layer) & _layerThatCanCollect) == 0) return;
+
         _numKeysPickedUp++;
         onKeyPickedUp?.Invoke();
         if (_numKeysPickedUp == _numKeys)
@@ -55,5 +64,5 @@ public class Key : MonoBehaviour
 
     // ----- Destructor ----- \\
 
-    private void OnDestroy() { }
+    private void OnDestroy() {}
 }

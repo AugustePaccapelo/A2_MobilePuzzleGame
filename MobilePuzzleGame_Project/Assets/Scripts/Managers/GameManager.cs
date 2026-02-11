@@ -24,6 +24,10 @@ public class GameManager : MonoBehaviour
 
     // ----- Objects ----- \\
 
+    // ----- Events ----- \\
+
+    static public event Action onGameStart;
+
     // ----- Others ----- \\
 
     private static GameState _currentGameState = GameState.NotInLevel;
@@ -56,15 +60,8 @@ public class GameManager : MonoBehaviour
         InitNotInLevel();
     }
 
-    float timer = 0f;
     void Update()
     {
-        timer += Time.deltaTime;
-        if (timer >= 5f && _currentGameState == GameState.GamePlaying)
-        {
-            // _currentGameState = GameState.GamePlaying;
-        }
-        
         _currentSate?.Invoke();
     }
 
@@ -122,8 +119,7 @@ public class GameManager : MonoBehaviour
     {
         _currentGameState = GameState.GamePlaying;
         _currentSate = GamePlaying;
-        
-        Debug.Log("Game playing !");
+        onGameStart?.Invoke();
     }
 
     private void GamePlaying()
@@ -140,6 +136,12 @@ public class GameManager : MonoBehaviour
     private void GameEnding()
     {
         Debug.Log("Game endend !");
+        
+        int currentLevel = PlayerData.Instance.GetCurrentLevel();
+        PlayerData.Instance.UnlockLevel(currentLevel + 1);
+        
+        if (LevelEndPanel.Instance != null)
+            LevelEndPanel.Instance.ShowPanel(currentLevel);
     }
 
     // ----- Destructor ----- \\

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 // Author : Auguste Paccapelo
@@ -18,49 +17,72 @@ public class NoteSpawner : MonoBehaviour
 
     [SerializeField] private Transform _spawnPos;
     [SerializeField] private GameObject _notePrefab;
+    [SerializeField] private GameObject _ghostNotePrefab;
     [SerializeField] private Transform _noteContainer;
+    private TempoDecoder _tempoDecoder;
 
     // ----- Others ----- \\
 
-    [SerializeField] private List<float> _timeOfSpawnOfNotes = new List<float>();
-    private float _currentTime = 0f;
-
     [SerializeField] private Vector2 _initialVelocity;
+
+    private bool _hasGameStarted = false;
+    private bool _hasSpawnedNote = false;
 
     // ---------- FUNCTIONS ---------- \\
 
     // ----- Buil-in ----- \\
 
-    private void OnEnable() { }
+    private void OnEnable()
+    {
+        GameManager.onGameStart += OnGameStart;
+        _tempoDecoder.OnBeat += OnBeat;
+    }    
 
-    private void OnDisable() { }
+    private void OnDisable()
+    {
+        GameManager.onGameStart -= OnGameStart;
+        _tempoDecoder.OnBeat -= OnBeat;
+    }
 
-    private void Awake() { }
+    private void Awake()
+    {
+        _tempoDecoder = GetComponent<TempoDecoder>();
+    }
 
     private void Start() { }
 
-    private void Update()
-    {
-        if (GameManager.CurrentGameState != GameState.GamePlaying || _timeOfSpawnOfNotes.Count <= 0) return;
-
-        _currentTime += Time.deltaTime;
-
-        int length = _timeOfSpawnOfNotes.Count;
-        for (int i = length - 1; i > -1 ; i--)
-        {
-            if (_currentTime >= _timeOfSpawnOfNotes[i])
-            {
-                SpawnNote();
-                _timeOfSpawnOfNotes.RemoveAt(i);
-            }
-        }
-    }
+    private void Update() { }
 
     // ----- My Functions ----- \\
+
+    private void OnBeat()
+    {
+        if (_hasGameStarted)
+        {
+            if (_hasSpawnedNote) return;
+            SpawnNote();
+            _hasSpawnedNote = true;
+            return;
+        }
+
+        SpawnGhostNote();
+    }
+
+    private void OnGameStart()
+    {
+        _hasGameStarted = true;
+    }
 
     private void SpawnNote()
     {
         GameObject newNote = Instantiate(_notePrefab, _noteContainer);
+        newNote.transform.position = _spawnPos.position;
+        newNote.GetComponent<Rigidbody2D>().linearVelocity = _initialVelocity;
+    }
+
+    private void SpawnGhostNote()
+    {
+        GameObject newNote = Instantiate(_ghostNotePrefab, _noteContainer);
         newNote.transform.position = _spawnPos.position;
         newNote.GetComponent<Rigidbody2D>().linearVelocity = _initialVelocity;
     }

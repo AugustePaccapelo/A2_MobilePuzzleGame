@@ -88,7 +88,7 @@ public class InputManager : MonoBehaviour
         _allFingers.Add(newFinger);
 
         List<RaycastResult> uiRaycastResults = UIRaycast(obj.screenPosition);
-
+        
         if (!CallUITouchedDown(uiRaycastResults))
         {
             RaycastHit2D physicRaycastResult = PhysiscRaycast(obj.screenPosition);
@@ -165,7 +165,7 @@ public class InputManager : MonoBehaviour
         ITouchableOnDown touchable;
 
         bool hasTouchSomething = false;
-
+        
         foreach (RaycastResult result in results)
         {
             if (result.gameObject.TryGetComponent(out touchable))
