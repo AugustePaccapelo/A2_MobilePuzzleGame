@@ -21,9 +21,9 @@ public class TempoDecoder : MonoBehaviour
     }
 
     // -- Events --
-    private event Action OnBeatBefore;
-    private event Action OnBeat;
-    private event Action OnBeatAfter;
+    public event Action OnBeatBefore;
+    public event Action OnBeat;
+    public event Action OnBeatAfter;
 
     private int _beatBefore;
     private int _beatAfter;
