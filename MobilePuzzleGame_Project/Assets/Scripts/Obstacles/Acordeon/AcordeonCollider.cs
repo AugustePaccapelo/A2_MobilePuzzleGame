@@ -15,6 +15,7 @@ public class AcordeonCollider : MonoBehaviour
     {
         if (_parent.State == AcordeonState.Extend && _parent.ActionDone)
         {
+            collision.gameObject.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * _parent.Power, ForceMode2D.Impulse);
             _parent.ActionDone = false;
         }
