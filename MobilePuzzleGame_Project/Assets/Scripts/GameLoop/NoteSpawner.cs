@@ -71,6 +71,7 @@ public class NoteSpawner : MonoBehaviour
     private void OnGameStart()
     {
         _hasGameStarted = true;
+        _hasSpawnedNote = false;
     }
 
     private void SpawnNote()

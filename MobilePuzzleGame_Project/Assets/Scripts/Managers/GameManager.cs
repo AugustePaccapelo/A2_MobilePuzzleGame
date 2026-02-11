@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
         InitPlayerPlacingPlatform();
     }
 
-    private void InitPlayerPlacingPlatform()
+    public void InitPlayerPlacingPlatform()
     {
         _currentGameState = GameState.PlayerPlacingPlatforms;
         _currentSate = PlayerPlacingPlatform;

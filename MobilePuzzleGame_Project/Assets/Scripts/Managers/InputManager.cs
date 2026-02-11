@@ -73,7 +73,8 @@ public class InputManager : MonoBehaviour
         for (int i = length - 1; i > -1; i--)
         {
             finger = _allFingers[i];
-            if (finger.finger.currentTouch.ended)
+            //if (finger.finger.currentTouch.ended)
+            if (finger.finger.currentTouch.phase == UnityEngine.InputSystem.TouchPhase.Ended)
             {
                 _allFingers.RemoveAt(i);
             }

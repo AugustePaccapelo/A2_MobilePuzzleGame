@@ -257,7 +257,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     {
         if (_currentFinger == null || GameManager.CurrentGameState != GameState.PlayerPlacingPlatforms) return;
 
-        if (_currentFinger.currentTouch.ended)
+        if (_currentFinger.currentTouch.phase == UnityEngine.InputSystem.TouchPhase.Ended)
         {
             _currentFinger = null;
             return;
