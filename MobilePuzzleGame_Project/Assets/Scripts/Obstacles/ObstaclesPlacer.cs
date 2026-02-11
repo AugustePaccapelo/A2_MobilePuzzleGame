@@ -147,6 +147,8 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     public void OnTouchedDown(ToucheData touchData)
     {
         FingerInput fingerInput = InputManager.Instance.GetNewFingerAtPosAndTrack(touchData.screenPosition);
+        if (fingerInput == null) return;
+
         _currentFinger = fingerInput.finger;
         _currentFingerState = FingerState.Moving;
     }
