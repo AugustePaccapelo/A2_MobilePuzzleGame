@@ -230,6 +230,9 @@ MonoBehaviour:
   _extendDuration: 0.4
   _retractDuration: 0.3
   _power: 2
+  OnUse:
+    m_PersistentCalls:
+      m_Calls: []
   _topPart: {fileID: 9146873433388654033}
   _bottomPart: {fileID: 8631762066556904038}
 --- !u!114 &7531301369620004471
