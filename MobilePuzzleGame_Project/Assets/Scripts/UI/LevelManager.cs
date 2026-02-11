@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +17,13 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         UIMenu.SetActive(true);
 
         var gridLayout = buttonContainer.GetComponent<UnityEngine.UI.GridLayoutGroup>();
@@ -56,9 +62,14 @@ public class LevelManager : MonoBehaviour
         Text txt = btnObj.GetComponentInChildren<Text>();
         if (txt != null) txt.text = prefab.name;
 
+        bool isUnlocked = PlayerData.Instance.IsLevelUnlocked(i);
+        btn.interactable = isUnlocked;
+
         string prefabName = prefab.name;
+        int levelIndex = i;
         btn.onClick.RemoveAllListeners();
         btn.onClick.AddListener(() => LoadLevelByName(prefabName));
+        btn.onClick.AddListener(() => PlayerData.Instance.SetCurrentLevel(levelIndex));
 
         levelButtons.Add(btn);
     }
@@ -84,6 +95,14 @@ public void LoadLevelByName(string prefabName)
     }
 }
 
+public void LoadLevelByIndex(int levelIndex)
+{
+    GameObject[] levelPrefabs = Resources.LoadAll<GameObject>(levelFolder);
+    if (levelIndex >= 0 && levelIndex < levelPrefabs.Length)
+    {
+        LoadLevelByName(levelPrefabs[levelIndex].name);
+    }
+}
 
     public void UnlockLevel(int levelID)
     {
