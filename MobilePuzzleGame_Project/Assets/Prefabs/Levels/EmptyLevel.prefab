@@ -809,10 +809,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2253659724660792759, guid: 0f9f067562dee14479cbff371a0a2470, type: 3}
+      propertyPath: m_Text
+      value: 0x
+      objectReference: {fileID: 0}
     - target: {fileID: 3011183780225931915, guid: 0f9f067562dee14479cbff371a0a2470, type: 3}
       propertyPath: _obstaclesContainer
       value: 
       objectReference: {fileID: 3645666192385374770}
+    - target: {fileID: 3254371215111895270, guid: 0f9f067562dee14479cbff371a0a2470, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -872413962176401102, guid: 3bd7824be7ae7f544903d88457f6b708, type: 3}
     - target: {fileID: 3642967184000363528, guid: 0f9f067562dee14479cbff371a0a2470, type: 3}
       propertyPath: m_Name
       value: UIObstaclesContainer
@@ -839,6 +847,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4524867364900773572, guid: 0f9f067562dee14479cbff371a0a2470, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6029176887008464438, guid: 0f9f067562dee14479cbff371a0a2470, type: 3}
+      propertyPath: _obstacle
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6029176887008464438, guid: 0f9f067562dee14479cbff371a0a2470, type: 3}
+      propertyPath: _numAllowedObstacle
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6029176887008464438, guid: 0f9f067562dee14479cbff371a0a2470, type: 3}
