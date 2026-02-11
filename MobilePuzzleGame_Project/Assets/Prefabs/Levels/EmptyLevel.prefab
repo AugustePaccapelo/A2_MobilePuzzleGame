@@ -1720,19 +1720,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3554210216813727978, guid: 6f150801a3bb6454181588ddad17ff24, type: 3}
       propertyPath: m_ColliderSegment.Array.data[2].x
-      value: 2.8650959
+      value: 1.65
       objectReference: {fileID: 0}
     - target: {fileID: 3554210216813727978, guid: 6f150801a3bb6454181588ddad17ff24, type: 3}
       propertyPath: m_ColliderSegment.Array.data[2].y
-      value: 4.8499703
+      value: 4.84997
       objectReference: {fileID: 0}
     - target: {fileID: 3554210216813727978, guid: 6f150801a3bb6454181588ddad17ff24, type: 3}
       propertyPath: m_ColliderSegment.Array.data[3].x
-      value: 2.83547
+      value: 1.65
       objectReference: {fileID: 0}
     - target: {fileID: 3554210216813727978, guid: 6f150801a3bb6454181588ddad17ff24, type: 3}
       propertyPath: m_ColliderSegment.Array.data[3].y
-      value: -15.093734
+      value: -15.01
       objectReference: {fileID: 0}
     - target: {fileID: 3554210216813727978, guid: 6f150801a3bb6454181588ddad17ff24, type: 3}
       propertyPath: m_ColliderSegment.Array.data[4].x
@@ -1808,19 +1808,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3554210216813727978, guid: 6f150801a3bb6454181588ddad17ff24, type: 3}
       propertyPath: m_Spline.m_ControlPoints.Array.data[2].position.x
-      value: 2.8650959
+      value: 1.65
       objectReference: {fileID: 0}
     - target: {fileID: 3554210216813727978, guid: 6f150801a3bb6454181588ddad17ff24, type: 3}
       propertyPath: m_Spline.m_ControlPoints.Array.data[2].position.y
-      value: 4.8499703
+      value: 4.84997
       objectReference: {fileID: 0}
     - target: {fileID: 3554210216813727978, guid: 6f150801a3bb6454181588ddad17ff24, type: 3}
       propertyPath: m_Spline.m_ControlPoints.Array.data[3].position.x
-      value: 2.83547
+      value: 1.65
       objectReference: {fileID: 0}
     - target: {fileID: 3554210216813727978, guid: 6f150801a3bb6454181588ddad17ff24, type: 3}
       propertyPath: m_Spline.m_ControlPoints.Array.data[3].position.y
-      value: -15.093734
+      value: -15.01
       objectReference: {fileID: 0}
     - target: {fileID: 3807426907895128092, guid: 6f150801a3bb6454181588ddad17ff24, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.size
@@ -1844,19 +1844,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3807426907895128092, guid: 6f150801a3bb6454181588ddad17ff24, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].x
-      value: 2.8650959
+      value: 1.65
       objectReference: {fileID: 0}
     - target: {fileID: 3807426907895128092, guid: 6f150801a3bb6454181588ddad17ff24, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[2].y
-      value: 4.8499703
+      value: 4.84997
       objectReference: {fileID: 0}
     - target: {fileID: 3807426907895128092, guid: 6f150801a3bb6454181588ddad17ff24, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].x
-      value: 2.83547
+      value: 1.65
       objectReference: {fileID: 0}
     - target: {fileID: 3807426907895128092, guid: 6f150801a3bb6454181588ddad17ff24, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[3].y
-      value: -15.093734
+      value: -15.01
       objectReference: {fileID: 0}
     - target: {fileID: 3807426907895128092, guid: 6f150801a3bb6454181588ddad17ff24, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[4].x
@@ -1912,19 +1912,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5967866762538208578, guid: 6f150801a3bb6454181588ddad17ff24, type: 3}
       propertyPath: m_LocalAABB.m_Center.x
-      value: 0.34729958
+      value: -0.26024818
       objectReference: {fileID: 0}
     - target: {fileID: 5967866762538208578, guid: 6f150801a3bb6454181588ddad17ff24, type: 3}
       propertyPath: m_LocalAABB.m_Center.y
-      value: -5.1218815
+      value: -5.080015
       objectReference: {fileID: 0}
     - target: {fileID: 5967866762538208578, guid: 6f150801a3bb6454181588ddad17ff24, type: 3}
       propertyPath: m_LocalAABB.m_Extent.x
-      value: 2.5177963
+      value: 1.9102485
       objectReference: {fileID: 0}
     - target: {fileID: 5967866762538208578, guid: 6f150801a3bb6454181588ddad17ff24, type: 3}
       propertyPath: m_LocalAABB.m_Extent.y
-      value: 9.971852
+      value: 9.929985
       objectReference: {fileID: 0}
     - target: {fileID: 5967866762538208578, guid: 6f150801a3bb6454181588ddad17ff24, type: 3}
       propertyPath: 'm_Sprites.Array.data[0]'

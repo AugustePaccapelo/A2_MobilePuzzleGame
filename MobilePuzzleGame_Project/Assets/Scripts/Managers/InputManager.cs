@@ -153,7 +153,7 @@ public class InputManager : MonoBehaviour
         ToucheData newData = new();
         newData.screenPosition = screenPos;
         newData.worldPosition = hit.point;
-        newData.fingerInput = GetNewFingerAtPosAndDontTrack(screenPos);
+        newData.fingerInput = GetNewFingerAtPosAndDontTrack(screenPos, true);
 
         touchable.OnTouchedDown(newData);
 
@@ -173,7 +173,7 @@ public class InputManager : MonoBehaviour
                 ToucheData newData = new();
                 newData.screenPosition = result.screenPosition;
                 newData.worldPosition = result.worldPosition;
-                newData.fingerInput = GetNewFingerAtPosAndDontTrack(result.screenPosition);
+                newData.fingerInput = GetNewFingerAtPosAndDontTrack(result.screenPosition, true);
 
                 touchable.OnTouchedDown(newData);
 
@@ -196,7 +196,7 @@ public class InputManager : MonoBehaviour
         ToucheData newData = new();
         newData.screenPosition = screenPos;
         newData.worldPosition = hit.point;
-        newData.fingerInput = GetNewFingerAtPosAndDontTrack(screenPos);
+        newData.fingerInput = GetNewFingerAtPosAndDontTrack(screenPos, true);
 
         touchable.OnTouchedUp(newData);
 
@@ -216,7 +216,7 @@ public class InputManager : MonoBehaviour
                 ToucheData newData = new();
                 newData.screenPosition = result.screenPosition;
                 newData.worldPosition = result.worldPosition;
-                newData.fingerInput = GetNewFingerAtPosAndDontTrack(result.screenPosition);
+                newData.fingerInput = GetNewFingerAtPosAndDontTrack(result.screenPosition, true);
 
                 touchable.OnTouchedUp(newData);
 
