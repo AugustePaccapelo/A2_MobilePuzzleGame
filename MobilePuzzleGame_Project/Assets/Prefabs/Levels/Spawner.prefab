@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: 2537499946855854851, guid: 6d31973e575434646a2c3247985ff66a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -107,9 +107,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NoteSpawner
   _sprites:
-  - {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  - {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  _renderer: {fileID: 0}
+  - {fileID: 2537499946855854851, guid: 6d31973e575434646a2c3247985ff66a, type: 3}
+  - {fileID: 2537499946855854851, guid: 6d31973e575434646a2c3247985ff66a, type: 3}
+  _renderer: {fileID: 1896601835296682097}
   _spawnPos: {fileID: 2063088868099052705}
   _notePrefab: {fileID: 526553371341305797, guid: d1169d383ba6ea841b211150a6ae46f6, type: 3}
   _ghostNotePrefab: {fileID: 4686103283589405785, guid: 926f510b64a2fd243ab09c5dbc38bc26, type: 3}
