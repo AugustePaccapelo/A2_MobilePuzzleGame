@@ -95,6 +95,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6938468153120656900, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3541487705044102017}
+    - targetCorrespondingSourceObject: {fileID: 6938468153120656900, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6036451122383085283}
   m_SourcePrefab: {fileID: 100100000, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
 --- !u!1 &855057170079687178 stripped
 GameObject:
@@ -147,3 +150,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.9731161, y: 0.77026343}
   m_EdgeRadius: 0
+--- !u!114 &6036451122383085283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855057170079687178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15fe98b7ede81d94a9ab4f84089f96d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DrumEvent

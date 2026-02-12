@@ -1,6 +1,7 @@
 using NaughtyAttributes;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Acordeon : MonoBehaviour
 {
@@ -28,6 +29,9 @@ public class Acordeon : MonoBehaviour
     [Header("Puissance d'éjection")]
     [BoxGroup("GD"), Label("Puissance"), SerializeField] private float _power;
     public float Power => _power;
+
+    [Header("Events")]
+    [BoxGroup("GD"), SerializeField] private UnityEvent OnUse;
     #endregion
 
     #region GP Variables
@@ -100,6 +104,7 @@ public class Acordeon : MonoBehaviour
     {
         _state = AcordeonState.Extend;
         StartCoroutine(MoveObject(new Vector2(0 , _topPart.localPosition.y), _bottomPart.localPosition + Vector3.up * _extendDistance , _extendDuration));
+        OnUse.Invoke();
     }
 
     private void RetractState()

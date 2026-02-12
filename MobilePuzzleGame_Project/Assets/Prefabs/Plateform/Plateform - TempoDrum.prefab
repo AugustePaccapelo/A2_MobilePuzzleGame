@@ -67,6 +67,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 855057170079687178, guid: 727fed3b58c9e484fb1c1aeb5fc4f3b1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9044877712832591963}
+    - targetCorrespondingSourceObject: {fileID: 855057170079687178, guid: 727fed3b58c9e484fb1c1aeb5fc4f3b1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4009595250187502930}
   m_SourcePrefab: {fileID: 100100000, guid: 727fed3b58c9e484fb1c1aeb5fc4f3b1, type: 3}
 --- !u!1 &1999396076445146852 stripped
 GameObject:
@@ -88,6 +91,21 @@ MonoBehaviour:
   _colliderToModify: {fileID: 4456698958479108707}
   _bouncyMaterial: {fileID: 6200000, guid: a5277a72570c2da458b5276f20f4407d, type: 2}
   _nonBouncyMaterial: {fileID: 6200000, guid: d97e6a2fe4ef2d0468ab28c40c2815b3, type: 2}
+--- !u!114 &4009595250187502930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999396076445146852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15fe98b7ede81d94a9ab4f84089f96d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DrumEvent
+  OnBounce:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &4456698958479108707 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 3295488974991300237, guid: 727fed3b58c9e484fb1c1aeb5fc4f3b1, type: 3}
