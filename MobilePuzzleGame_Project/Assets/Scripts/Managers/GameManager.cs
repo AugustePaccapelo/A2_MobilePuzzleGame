@@ -71,6 +71,10 @@ public class GameManager : MonoBehaviour
     {
         InitInitatingLevel();
     }
+    public void QuitLevel()
+    {
+        InitNotInLevel();
+    }
 
     public void StartGame()
     {
