@@ -5,7 +5,7 @@ using UnityEngine.Events;
 public class CorThrowing : MonoBehaviour
 {
     private TempoDecoder _tempoDecoder;
-    UnityEvent onBallThrown; 
+    [SerializeField] private UnityEvent onBallThrown; 
     [SerializeField] private float throwForce = 10f;
     [SerializeField] private float throwAngle = 45f;
     [SerializeField] private bool ballIn = false;

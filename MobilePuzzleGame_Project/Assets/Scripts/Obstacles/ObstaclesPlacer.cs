@@ -192,6 +192,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         _renderer.color = Color.white;
         _isThisSelected = false;
         _canvas.enabled = false;
+        SetAngle(0);
     }
 
     private bool IsPosInButtons(Vector2 pos)
@@ -421,13 +422,13 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
                 angle.z = _lastAngle;
                 transform.eulerAngles = angle;
             }
-
-            return;
         }
-
-        _hasBeenPlaced = true;
-        _lastPos = transform.position;
-        _lastAngle = transform.eulerAngles.z;
+        else
+        {
+            _hasBeenPlaced = true;
+            _lastPos = transform.position;
+            _lastAngle = transform.eulerAngles.z;
+        }
 
         _currentFinger = null;
         _buttonsContainer.gameObject.SetActive(true);

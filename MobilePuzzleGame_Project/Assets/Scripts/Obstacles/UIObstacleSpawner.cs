@@ -66,11 +66,24 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     private void OnEnable()
     {
         ObstaclesPlacer.onObstaclePickedUp += OnObstaclePickedUp;
+
+        if (_obstacle == PlacableObstacle.Empty) return;
+
+        GameObject platform;
+        for (int i = 0; i < _numAllowedObstacle; i++)
+        {
+            platform = Instantiate(_prefabToSpawn, _obstaclesContainer);
+            AddObstacleToPool(platform);
+        }
     }
 
     private void OnDisable()
     {
         ObstaclesPlacer.onObstaclePickedUp -= OnObstaclePickedUp;
+
+        if (!_obstaclesPool.ContainsKey(_obstacle)) return;
+
+        _obstaclesPool.Remove(_obstacle);
     }
 
     private void Awake()
@@ -90,17 +103,7 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         }
     }
 
-    private void Start()
-    {
-        if (_obstacle == PlacableObstacle.Empty) return;
-
-        GameObject platform;
-        for (int i = 0; i < _numAllowedObstacle; i++)
-        {
-            platform = Instantiate(_prefabToSpawn, _obstaclesContainer);
-            AddObstacleToPool(platform);
-        }
-    }
+    private void Start() { }
 
     public void OnTouchedDown(ToucheData touchData)
     {
@@ -146,7 +149,7 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         if (!_obstaclesPool.ContainsKey(_obstacle)) return null;
         if (_obstaclesPool[_obstacle] == null) return null;
         if (_obstaclesPool[_obstacle].Count == 0) return null;
-
+        
         GameObject go = _obstaclesPool[_obstacle].Pop();
         go.SetActive(true);
 
@@ -217,10 +220,5 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     // ----- Destructor ----- \\
 
-    private void OnDestroy()
-    {
-        if (!_obstaclesPool.ContainsKey(_obstacle)) return;
-
-        _obstaclesPool.Remove(_obstacle);
-    }
+    private void OnDestroy() { }
 }

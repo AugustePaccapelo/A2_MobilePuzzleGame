@@ -10,9 +10,10 @@ public class GhostNote : MonoBehaviour
 
     // ----- Objects ----- \\
 
-    private TempoDecoder _tempoDecoder;
-
     // ----- Others ----- \\
+
+    [SerializeField] private int _numBeatToSurvive = 0;
+    private int _currentNumBeat = 0;
 
     // ---------- FUNCTIONS ---------- \\
 
@@ -20,18 +21,17 @@ public class GhostNote : MonoBehaviour
 
     private void OnEnable()
     {
-        _tempoDecoder.OnBeat += OnBeat;
-    }    
+        TempoManager.Instance.OnBeat += OnBeat;
+        GameManager.onGameStart += OnGameStart;
+    }
 
     private void OnDisable()
     {
-        _tempoDecoder.OnBeat -= OnBeat;
+        TempoManager.Instance.OnBeat -= OnBeat;
+        GameManager.onGameStart -= OnGameStart;
     }
 
-    private void Awake()
-    {
-        _tempoDecoder = GetComponent<TempoDecoder>();
-    }
+    private void Awake() { }
 
     private void Start() { }
 
@@ -39,9 +39,18 @@ public class GhostNote : MonoBehaviour
 
     // ----- My Functions ----- \\
 
-    private void OnBeat()
+    private void OnGameStart()
     {
         Destroy(gameObject);
+    }
+
+    private void OnBeat(int obj)
+    {
+        _currentNumBeat++;
+        if (_currentNumBeat >= _numBeatToSurvive)
+        {
+            Destroy(gameObject);
+        }
     }
 
     // ----- Destructor ----- \\
