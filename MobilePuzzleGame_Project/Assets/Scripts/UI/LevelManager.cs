@@ -103,6 +103,9 @@ public void LoadLevelByIndex(int levelIndex)
     GameObject[] levelPrefabs = Resources.LoadAll<GameObject>(levelFolder);
     if (levelIndex >= 0 && levelIndex < levelPrefabs.Length)
     {
+        if (PlayerData.Instance != null)
+            PlayerData.Instance.SetCurrentLevel(levelIndex);
+
         LoadLevelByName(levelPrefabs[levelIndex].name);
     }
 }
