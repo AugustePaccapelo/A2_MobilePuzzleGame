@@ -53,7 +53,9 @@ public class LevelEndPanel : MonoBehaviour
     {
         Time.timeScale = 1f;
         gameObject.SetActive(false);
+        GameManager.Instance.QuitLevel();
         LevelManager.Instance.BackToMenu();
+        Debug.Log("Retour au menu !");
     }
 
     private void OnDestroy() { }

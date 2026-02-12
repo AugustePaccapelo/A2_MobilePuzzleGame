@@ -34,3 +34,6 @@ MonoBehaviour:
   - obstacle: 7
     icon: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
     prefabToPlace: {fileID: 5634124973526351595, guid: 0ea23bdcd4e9e8b449d5a2d85d8573e7, type: 3}
+  - obstacle: 2
+    icon: {fileID: 8286961866841642650, guid: 4acbd6888da7d0246b48fb61920009d4, type: 3}
+    prefabToPlace: {fileID: 1767400113848212432, guid: c46bc22c01f1cc54abd83f03c24ed64d, type: 3}

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: dc5a8f1477faf7e428120959be2c5fe6
+guid: 5975d736a0abd62488fb9ae72e4cccd3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1451627872473536229
-    second: FondInGame_0
+      213: -4245247938147672426
+    second: Prefab 5_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,24 +96,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FondInGame_0
+      name: Prefab 5_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5e657d4ebd7352410800000000000000
-      internalID: 1451627872473536229
+      spriteID: 69e9f371e79d515c0800000000000000
+      internalID: -4245247938147672426
       vertices: []
       indices: 
       edges: []
@@ -138,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      FondInGame_0: 1451627872473536229
+      Prefab 5_0: -4245247938147672426
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
