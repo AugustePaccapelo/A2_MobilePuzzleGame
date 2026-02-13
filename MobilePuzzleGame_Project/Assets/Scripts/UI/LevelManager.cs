@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -61,14 +62,15 @@ public class LevelManager : MonoBehaviour
         GameObject prefab = levelPrefabs[i];
         GameObject btnObj = Instantiate(levelButtonPrefab, buttonContainer, false);
         Button btn = btnObj.GetComponent<Button>();
-        Text txt = btnObj.GetComponentInChildren<Text>();
-        if (txt != null) txt.text = prefab.name;
+        TextMeshProUGUI txt = btnObj.GetComponentInChildren<TextMeshProUGUI>();
+        //if (txt != null) txt.text = prefab.name;
 
         bool isUnlocked = PlayerData.Instance.IsLevelUnlocked(i);
         btn.interactable = isUnlocked;
 
         string prefabName = prefab.name;
         int levelIndex = i;
+        txt.text = (levelIndex + 1).ToString();
         btn.onClick.RemoveAllListeners();
         btn.onClick.AddListener(() => LoadLevelByName(prefabName));
         btn.onClick.AddListener(() => PlayerData.Instance.SetCurrentLevel(levelIndex));

@@ -7,8 +7,7 @@ public enum GameState
 {
     NotInLevel,
     InitLevel,
-    PlayerPlacingPlatforms,
-    GamePlaying,
+    InGame,
     EndingLevel
 }
 
@@ -27,6 +26,7 @@ public class GameManager : MonoBehaviour
     // ----- Events ----- \\
 
     static public event Action onGameStart;
+    static public event Action onGameRestart;
 
     // ----- Others ----- \\
 
@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
     public static GameState CurrentGameState => _currentGameState;
 
     private Action _currentSate;
+
+    private bool _hasGameStarted = false;
 
     // ---------- FUNCTIONS ---------- \\
 
@@ -81,6 +83,11 @@ public class GameManager : MonoBehaviour
         InitGamePlaying();
     }
 
+    public void RestartGame()
+    {
+        InitGamePlaying();
+    }
+
     public void FinishLevel()
     {
         InitGameEnding();
@@ -105,26 +112,23 @@ public class GameManager : MonoBehaviour
 
     private void InitatingLevel()
     {
-        InitPlayerPlacingPlatform();
-    }
-
-    public void InitPlayerPlacingPlatform()
-    {
-        _currentGameState = GameState.PlayerPlacingPlatforms;
-        _currentSate = PlayerPlacingPlatform;
-    }
-
-    private void PlayerPlacingPlatform()
-    {
-        
+        InitGamePlaying();
     }
 
     private void InitGamePlaying()
     {
         TempoManager.Instance.ResetTime();
-        _currentGameState = GameState.GamePlaying;
+        _currentGameState = GameState.InGame;
         _currentSate = GamePlaying;
-        onGameStart?.Invoke();
+        if (_hasGameStarted)
+        {
+            onGameRestart?.Invoke();
+        }
+        else
+        {
+            _hasGameStarted = true;
+            onGameStart?.Invoke();
+        }            
     }
 
     private void GamePlaying()
@@ -136,6 +140,7 @@ public class GameManager : MonoBehaviour
     {
         _currentGameState = GameState.EndingLevel;
         _currentSate = GameEnding;
+        _hasGameStarted = false;
     }
 
     private void GameEnding()

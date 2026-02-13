@@ -233,7 +233,7 @@ public class TweenCore
     public static TweenCore CreateTween()
     {
         TweenCore tween = new TweenCore();
-        TweenCoreManager.Instance.AddTween(tween);
+        TweenCoreManager.Instance?.AddTween(tween);
         return tween;
     }
 
@@ -438,6 +438,6 @@ public class TweenCore
     /// </summary>
     public void DestroyTween()
     {
-        TweenCoreManager.Instance.RemoveTween(this);
+        TweenCoreManager.Instance?.RemoveTween(this);
     }
 }

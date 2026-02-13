@@ -107,7 +107,8 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     public void OnTouchedDown(ToucheData touchData)
     {
-        if (_obstacle == PlacableObstacle.Empty || _numAllowedObstacle <= 0 || GameManager.CurrentGameState != GameState.PlayerPlacingPlatforms) return;
+        //if (_obstacle == PlacableObstacle.Empty || _numAllowedObstacle <= 0 || GameManager.CurrentGameState != GameState.PlayerPlacingPlatforms) return;
+        if (_obstacle == PlacableObstacle.Empty || _numAllowedObstacle <= 0) return;
 
         _numAllowedObstacle--;
         _numberText.text = _textPrefix + _numAllowedObstacle + _textSufix;
@@ -185,6 +186,7 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         ObstaclesPlacer obstaclesPlacer = obstacle.GetComponent<ObstaclesPlacer>();
         
         obstaclesPlacer.SetFinger(fingerInput.finger);
+        obstaclesPlacer.Select();
 
         return obstacle;
     }

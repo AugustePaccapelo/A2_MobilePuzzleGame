@@ -42,11 +42,13 @@ public class Lock : MonoBehaviour
     private void OnEnable()
     {
         Key.onAllKeysPickedUp += DestroyLock;
+        GameManager.onGameRestart += OnRestart;
     }
 
     private void OnDisable()
     {
         Key.onAllKeysPickedUp -= DestroyLock;
+        GameManager.onGameRestart -= OnRestart;
     }
 
     private void Awake()
@@ -65,6 +67,11 @@ public class Lock : MonoBehaviour
     private void Update() { }
 
     // ----- My Functions ----- \\
+
+    private void OnRestart()
+    {
+        gameObject.SetActive(true);
+    }
 
     private void DelayFuncToShutUpUnity()
     {
@@ -98,7 +105,8 @@ public class Lock : MonoBehaviour
     {
         if (id != _lockId) return;
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     // ----- Destructor ----- \\

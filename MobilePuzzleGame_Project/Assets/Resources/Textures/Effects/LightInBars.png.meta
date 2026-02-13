@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 17467f89e1bcbf343947686517a077c4
+guid: 092b92d42f2b7474f9b6b8b5f918db73
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 724445275633213848
-    second: Cor_0
+      213: -5258643288848058832
+    second: LightInBars_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 300
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cor_0
+      name: LightInBars_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 216
-        height: 216
+        width: 254
+        height: 252
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 891e351d32fbd0a00800000000000000
-      internalID: 724445275633213848
+      spriteID: 03638bf4acb8507b0800000000000000
+      internalID: -5258643288848058832
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Cor_0: 724445275633213848
+      LightInBars_0: -5258643288848058832
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
