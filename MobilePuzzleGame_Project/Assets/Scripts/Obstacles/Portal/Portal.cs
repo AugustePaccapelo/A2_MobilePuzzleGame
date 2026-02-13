@@ -13,21 +13,31 @@ public class Portal : MonoBehaviour
 
     [HorizontalLine(color: EColor.Blue)]
     [BoxGroup("GD -- Portail de Sortie")]
-    [Label("Portail de sortie") ,SerializeField, Required] private Portal _exitPortal;
+    [Label("Portail de sortie") ,SerializeField] private Portal _exitPortal;
 
     [HorizontalLine(color: EColor.Blue)]
     [BoxGroup("GD -- Events")]
     [SerializeField] private UnityEvent _onTeleportation;
 
 
+
     private Vector3 _portalToBall;
 
+    private Collider2D _blockingCollider;
+
+    private void Awake()
+    {
+        _blockingCollider = GetComponent<Collider2D>();
+    }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (_exitPortal != null) _blockingCollider.enabled = false;
+        else _blockingCollider.enabled = true;
+
         if (collision.gameObject.GetComponent<Ball>() != null)
         {
-             _portalToBall = collision.transform.position - transform.position;
+            _portalToBall = collision.transform.position - transform.position;
 
             if (Vector2.Distance(transform.position, collision.transform.position) <= collision.transform.localScale.x / 3)
             {
@@ -37,14 +47,14 @@ public class Portal : MonoBehaviour
             {
                 collision.GetComponentInChildren<BallVisual>().DeactivateMask();
             }
-            
+
 
             //Vérification de la position pour la téléportation
             if (Vector2.Dot(transform.up, _portalToBall) < -0.1f)
             {
                 Vector2 ballDirection = collision.GetComponent<Rigidbody2D>().linearVelocity;
 
-                float DegToRad = (_exitPortal.transform.eulerAngles.z %360 - transform.eulerAngles.z % 360 - 180) * Mathf.Deg2Rad;
+                float DegToRad = (_exitPortal.transform.eulerAngles.z % 360 - transform.eulerAngles.z % 360 - 180) * Mathf.Deg2Rad;
 
                 // On tourne la direction de la balle de sorte à ce qu'elle s'oriente relativement au portail de sortie
                 Vector2 ballDirectionRotated = RotateVector2(ballDirection, DegToRad);
@@ -60,9 +70,14 @@ public class Portal : MonoBehaviour
                 }
                 collision.GetComponent<Rigidbody2D>().linearVelocity = ballDirectionRotated;
 
-                
+
             }
         }
+    }
+
+    public void SetExitPortal(Portal exitPortal)
+    {
+        _exitPortal = exitPortal;
     }
 
 
