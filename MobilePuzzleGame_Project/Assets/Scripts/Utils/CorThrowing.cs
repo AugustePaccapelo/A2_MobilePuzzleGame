@@ -32,6 +32,23 @@ public class CorThrowing : MonoBehaviour
         _parent = transform.parent;
     }
 
+    private void OnEnable()
+    {
+        Ball.onBallRespawn += OnBallRespawn;
+    }
+
+    private void OnDisable()
+    {
+        Ball.onBallRespawn -= OnBallRespawn;
+    }
+
+    private void OnBallRespawn()
+    {
+        ballIn = false;
+        _canPickupBall = true;
+        currentBall = null;
+    }
+
     private void OnBeatReceived()
     {
         if (!ballIn) return;
@@ -64,31 +81,44 @@ public class CorThrowing : MonoBehaviour
         //sr.enabled = false;
         other.gameObject.SetActive(false);
 
-        yield return new WaitForSeconds(0.5f);
+        //yield return new WaitForSeconds(0.5f);
+        yield return null;
         ballIn = true;
     }
-
 
     void OnTriggerExit2D(Collider2D other)
     {
         if (ballIn && ((1 << other.gameObject.layer) & _targetLayers) != 0)
         {
-            Debug.Log("exioted");
             ballIn = false;
             _canPickupBall = true;
+            currentBall = null;
         }
     }
 
     public void ThrowBall(GameObject ball)
     {
         //ball.GetComponent<SpriteRenderer>().enabled = true;
+
+        // If ball have moved
+        if (ball.transform.position != transform.position)
+        {
+            ballIn = false;
+            _canPickupBall = true;
+            currentBall = null;
+            return;
+        }
+
         ball.SetActive(true);
         ball.transform.position = _exitPoint.position;
         Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
-        rb.bodyType = RigidbodyType2D.Dynamic;
+        //rb.bodyType = RigidbodyType2D.Dynamic;
         float angleInRadians = (throwAngle + _parent.eulerAngles.z) * Mathf.Deg2Rad;
+        Vector2 dir = (_exitPoint.right + _exitPoint.up).normalized;
         Vector2 throwDirection = new Vector2(Mathf.Cos(angleInRadians), Mathf.Sin(angleInRadians)).normalized;
-        rb.linearVelocity = throwDirection * throwForce;
+        if (transform.lossyScale.x < 0) throwDirection.x *= -1;
+        //rb.linearVelocity = throwDirection * throwForce;
+        rb.linearVelocity = dir * throwForce;
         //ballIn = false;
         onBallThrown?.Invoke();
     }
@@ -96,9 +126,9 @@ public class CorThrowing : MonoBehaviour
     void LockBallPosition(GameObject ball)
     {
         ball.transform.position = transform.position;
-        Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
-        rb.linearVelocity = Vector2.zero;
-        rb.angularVelocity = 0f;
-        rb.bodyType = RigidbodyType2D.Kinematic;
+        //Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
+        //rb.linearVelocity = Vector2.zero;
+        //rb.angularVelocity = 0f;
+        //rb.bodyType = RigidbodyType2D.Kinematic;
     }
 }

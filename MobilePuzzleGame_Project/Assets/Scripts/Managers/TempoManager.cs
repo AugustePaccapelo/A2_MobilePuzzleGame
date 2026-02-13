@@ -65,7 +65,8 @@ public class TempoManager : MonoBehaviour
 
     public void ResetTime()
     {
-        _time = _beatTempo / 2;
-        _beatIndex = 1;
+        //_time = _beatTempo;
+        _time = 0;
+        _beatIndex = 0;
     }
 }

@@ -521,6 +521,14 @@ PrefabInstance:
       propertyPath: 'm_Sprites.Array.data[7]'
       value: 
       objectReference: {fileID: 5683614418356096740, guid: 61f16ab17bc4f8647bce2c794f51314a, type: 3}
+    - target: {fileID: 4467124588352367183, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
+      propertyPath: _obstacle
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4467124588352367183, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
+      propertyPath: _numAllowedObstacle
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4740511486930527048, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -565,6 +573,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4862835548710329503, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 724445275633213848, guid: 17467f89e1bcbf343947686517a077c4, type: 3}
     - target: {fileID: 5160076220818112242, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
       propertyPath: _obstacle
       value: 0
@@ -728,6 +740,10 @@ PrefabInstance:
     - target: {fileID: 7891341554112457446, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
       propertyPath: m_LocalPosition.y
       value: -2.6249
+      objectReference: {fileID: 0}
+    - target: {fileID: 8147858204828088782, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
+      propertyPath: m_Text
+      value: 2x
       objectReference: {fileID: 0}
     - target: {fileID: 9162834839994761591, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
       propertyPath: m_AnchorMax.y
