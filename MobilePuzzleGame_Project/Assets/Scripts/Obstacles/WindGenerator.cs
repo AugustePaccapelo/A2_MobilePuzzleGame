@@ -57,19 +57,19 @@ public class WindGenerator : MonoBehaviour
         }
     }
 
-    [SerializeField] private float _forceFallSPeed = 1.0f;
-    public float ForceFallSpeed
+    [SerializeField] private float _perpandicularFriction = 5.0f;
+    public float PerpandicularFriction
     {
-        get => _forceFallSPeed;
+        get => _perpandicularFriction;
         private set
         {
             if (value < 0)
             {
-                Debug.LogWarning(name + ": force fall speed cannot be negative.");
-                _forceFallSPeed = 0;
+                Debug.LogWarning(name + ": perpandicular friction cannot be negative.");
+                _perpandicularFriction = 0;
                 return;
             }
-            _forceFallSPeed = value;
+            _perpandicularFriction = value;
         }
     }
 
@@ -101,14 +101,12 @@ public class WindGenerator : MonoBehaviour
         GetWindScript();
         GetTempoDecoder();
         _force = 5.0f;
-        _forceFallSPeed = 1.0f;
         _numTempoActivated = 1;
     }
 
     private void OnValidate()
     {
         Force = _force;
-        ForceFallSpeed = _forceFallSPeed;
         NumTempoActivated = _numTempoActivated;
     }
 
@@ -139,13 +137,18 @@ public class WindGenerator : MonoBehaviour
         
         Rigidbody2D noteRB = collision.GetComponent<Rigidbody2D>();
 
-        Vector2 vecToObj = collision.transform.position - transform.position;
-        float distance = vecToObj.magnitude;
+        Vector3 windDir = transform.right.normalized;
+        Vector3 windVelo = windDir * _force;
 
-        float fallOf = distance * _forceFallSPeed;
-        float realForce = Mathf.Max(0, _force - fallOf);
+        noteRB.AddForce(windVelo);
 
-        noteRB.AddForce(transform.right * realForce);
+        Vector3 perpandicularDir = transform.up.normalized;
+        Vector3 velocity = noteRB.linearVelocity;
+
+        float dotResult = Vector3.Dot(perpandicularDir, velocity);
+        Vector3 perpandicularVelo = perpandicularDir * dotResult * _perpandicularFriction;
+
+        noteRB.AddForce(-perpandicularVelo);
 
         _onObjectInWind?.Invoke();
     }

@@ -48,11 +48,16 @@ public class TempoDecoder : MonoBehaviour
     private int _beatBefore;
     private int _beatAfter;
 
-    private void Start()
+    private void OnEnable()
     {
         TempoManager.Instance.OnBeat += DecodeBeat;
 
         SetBeforeAndAfter();
+    }
+
+    private void OnDisable()
+    {
+        TempoManager.Instance.OnBeat -= DecodeBeat;
     }
 
     private void OnValidate()
@@ -113,10 +118,4 @@ public class TempoDecoder : MonoBehaviour
             _unityOnOffBeat?.Invoke();
         }
     }
-
-    private void OnDestroy()
-    {
-        TempoManager.Instance.OnBeat -= DecodeBeat;
-    }
-
 }

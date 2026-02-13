@@ -13,31 +13,31 @@ MonoBehaviour:
   m_Name: WallShapeProfile
   m_EditorClassIdentifier: 
   m_Angles: []
-  m_FillTexture: {fileID: 2800000, guid: b4a99e9a82b975648937aceee785e3e7, type: 3}
+  m_FillTexture: {fileID: 2800000, guid: 61f16ab17bc4f8647bce2c794f51314a, type: 3}
   m_CornerSprites:
   - m_CornerType: 0
     m_Sprites:
-    - {fileID: 6620342096396375129, guid: b4a99e9a82b975648937aceee785e3e7, type: 3}
+    - {fileID: 5683614418356096740, guid: 61f16ab17bc4f8647bce2c794f51314a, type: 3}
   - m_CornerType: 1
     m_Sprites:
-    - {fileID: 6620342096396375129, guid: b4a99e9a82b975648937aceee785e3e7, type: 3}
+    - {fileID: 5683614418356096740, guid: 61f16ab17bc4f8647bce2c794f51314a, type: 3}
   - m_CornerType: 2
     m_Sprites:
-    - {fileID: 6620342096396375129, guid: b4a99e9a82b975648937aceee785e3e7, type: 3}
+    - {fileID: 5683614418356096740, guid: 61f16ab17bc4f8647bce2c794f51314a, type: 3}
   - m_CornerType: 3
     m_Sprites:
-    - {fileID: 6620342096396375129, guid: b4a99e9a82b975648937aceee785e3e7, type: 3}
+    - {fileID: 5683614418356096740, guid: 61f16ab17bc4f8647bce2c794f51314a, type: 3}
   - m_CornerType: 4
     m_Sprites:
-    - {fileID: 6620342096396375129, guid: b4a99e9a82b975648937aceee785e3e7, type: 3}
+    - {fileID: 5683614418356096740, guid: 61f16ab17bc4f8647bce2c794f51314a, type: 3}
   - m_CornerType: 5
     m_Sprites:
-    - {fileID: 6620342096396375129, guid: b4a99e9a82b975648937aceee785e3e7, type: 3}
+    - {fileID: 5683614418356096740, guid: 61f16ab17bc4f8647bce2c794f51314a, type: 3}
   - m_CornerType: 6
     m_Sprites:
-    - {fileID: 6620342096396375129, guid: b4a99e9a82b975648937aceee785e3e7, type: 3}
+    - {fileID: 5683614418356096740, guid: 61f16ab17bc4f8647bce2c794f51314a, type: 3}
   - m_CornerType: 7
     m_Sprites:
-    - {fileID: 6620342096396375129, guid: b4a99e9a82b975648937aceee785e3e7, type: 3}
+    - {fileID: 5683614418356096740, guid: 61f16ab17bc4f8647bce2c794f51314a, type: 3}
   m_FillOffset: 0
   m_UseSpriteBorders: 0

@@ -39,6 +39,8 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     private RotationHandle _rotationHandle;
     private TempoDecoder _tempoDecoder;
 
+    private BoxCollider2D _boxCollider;
+
     // ----- Boolean ----- \\
     [SerializeField] private bool _isBasedOnTempo = false;
     [SerializeField] private bool _stickToWall;
@@ -113,6 +115,8 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         }
 
         _renderer = GetComponentInChildren<SpriteRenderer>();
+
+        _boxCollider = GetComponent<BoxCollider2D>();
     }
 
     private void Start()
@@ -140,6 +144,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     private void Update()
     {
+        CheckCollider();
         HandlePlacement();
         HandleUI();
     }
@@ -147,6 +152,8 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     public void OnTouchedDown(ToucheData touchData)
     {
         FingerInput fingerInput = InputManager.Instance.GetNewFingerAtPosAndTrack(touchData.screenPosition);
+        if (fingerInput == null) return;
+
         _currentFinger = fingerInput.finger;
         _currentFingerState = FingerState.Moving;
     }
@@ -166,22 +173,40 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _numObjetsInCollider++;
-        _canBePlaced = false;
-        _renderer.color = _nonPlacableColorFeedBack;
+        //_numObjetsInCollider++;
+        //_canBePlaced = false;
+        //_renderer.color = _nonPlacableColorFeedBack;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        _numObjetsInCollider--;
-        if (_numObjetsInCollider == 0)
+        //_numObjetsInCollider--;
+        //if (_numObjetsInCollider == 0)
+        //{
+        //    _canBePlaced = true;
+        //    _renderer.color = Color.white;
+        //}
+    }
+
+    // ----- My Functions ----- \\
+
+    private void CheckCollider()
+    {
+        List<Collider2D> colliders = new();
+        _boxCollider.GetContacts(colliders);
+        _numObjetsInCollider = colliders.Count;
+
+        if (_numObjetsInCollider > 0)
+        {
+            _canBePlaced = false;
+            _renderer.color = _nonPlacableColorFeedBack;
+        }
+        else
         {
             _canBePlaced = true;
             _renderer.color = Color.white;
         }
     }
-
-    // ----- My Functions ----- \\
 
     public void ResetState()
     {
