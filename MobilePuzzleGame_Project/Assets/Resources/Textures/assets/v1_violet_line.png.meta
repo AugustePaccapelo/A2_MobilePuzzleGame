@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 946a607db33f68d4dbae387c750da878
+guid: 1c769ccd93b804f40992d96b6fc3ca34
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4578554253628232987
-    second: dragon final v2_0
+      213: -2370786395218577132
+    second: v1_violet_line_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: dragon final v2_0
+      name: v1_violet_line_0
       rect:
         serializedVersion: 2
-        x: 584
+        x: 0
         y: 0
-        width: 742
-        height: 671
+        width: 740
+        height: 697
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5eaa2af1a25b570c0800000000000000
-      internalID: -4578554253628232987
+      spriteID: 419faa2a556491fd0800000000000000
+      internalID: -2370786395218577132
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      dragon final v2_0: -4578554253628232987
+      v1_violet_line_0: -2370786395218577132
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
