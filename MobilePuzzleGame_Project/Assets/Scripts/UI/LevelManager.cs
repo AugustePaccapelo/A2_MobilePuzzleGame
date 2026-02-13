@@ -167,8 +167,11 @@ public void LoadLevelByIndex(int levelIndex)
         float ratioX = _baseResolution.x / Screen.width;
         float ratioY = _baseResolution.y / Screen.height;
 
+        //float ratioX = Screen.width / _baseResolution.x;
+        //float ratioY = Screen.height / _baseResolution.y;
+
         float ratio = Mathf.Min(ratioX, ratioY);
         //Debug.Log(ratioX + "    " + ratioY);
-        level.transform.localScale *= ratio;
+        //level.transform.localScale *= ratio;
     }
 }
