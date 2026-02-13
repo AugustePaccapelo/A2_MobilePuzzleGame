@@ -32,9 +32,12 @@ public class KillZone : MonoBehaviour
     {
         if (((1 << collision.gameObject.layer) & _layerThatCanDestroy) == 0) return;
 
-        Destroy(collision.gameObject);
+        //Destroy(collision.gameObject);
+        collision.gameObject.SetActive(false);
 
-        if (GameManager.CurrentGameState == GameState.GamePlaying) GameManager.Instance.InitPlayerPlacingPlatform();
+        GameManager.Instance.RestartGame();
+
+        //if (GameManager.CurrentGameState == GameState.GamePlaying) GameManager.Instance.InitPlayerPlacingPlatform();
     }
 
     // ----- My Functions ----- \\

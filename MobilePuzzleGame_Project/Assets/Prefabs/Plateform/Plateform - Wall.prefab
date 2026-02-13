@@ -8,14 +8,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2427621838275888893, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.878
-      objectReference: {fileID: 0}
-    - target: {fileID: 2427621838275888893, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.434
-      objectReference: {fileID: 0}
     - target: {fileID: 3109029540695778437, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
       propertyPath: m_Size.x
       value: 3.24
@@ -32,13 +24,21 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4828745220624606857, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.792
+    - target: {fileID: 3707522574439237729, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
       objectReference: {fileID: 0}
-    - target: {fileID: 4828745220624606857, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.203
+    - target: {fileID: 3707522574439237729, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3707522574439237729, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3707522574439237729, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5056500260986993283, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
       propertyPath: m_Size.x
@@ -87,10 +87,6 @@ PrefabInstance:
     - target: {fileID: 6143162779167200730, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
       propertyPath: m_Name
       value: Plateform - Wall
-      objectReference: {fileID: 0}
-    - target: {fileID: 7251722565186148254, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7667104590087981076, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
       propertyPath: _obstacleType

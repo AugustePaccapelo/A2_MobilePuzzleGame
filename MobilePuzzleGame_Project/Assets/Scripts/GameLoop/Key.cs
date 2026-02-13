@@ -48,9 +48,15 @@ public class Key : MonoBehaviour
 
     // ----- Buil-in ----- \\
 
-    private void OnEnable() { }
+    private void OnEnable()
+    {
+        GameManager.onGameRestart += OnRestart;
+    }
 
-    private void OnDisable() { }
+    private void OnDisable()
+    {
+        GameManager.onGameRestart -= OnRestart;
+    }
 
     private void Awake()
     {
@@ -92,10 +98,17 @@ public class Key : MonoBehaviour
             onAllKeysPickedUp?.Invoke(_keyId);
         }
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     // ----- My Functions ----- \\
+
+    private void OnRestart()
+    {
+        gameObject.SetActive(true);
+        _mapNumKeysPickedUp[_keyId] = 0;
+    }
 
     private void DelayFuncToShutUpUnity()
     {

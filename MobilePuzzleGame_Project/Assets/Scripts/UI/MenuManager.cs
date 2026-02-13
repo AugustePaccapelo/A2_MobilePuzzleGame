@@ -6,12 +6,12 @@ public class MenuManager : MonoBehaviour
 {
 
     public GameObject creditsPanel = null;
-    [SerializeField] private GameObject _burgerMenu = null;
+    [SerializeField] private GameObject pauseMenu = null;
 
     void Start()
     {
         if (creditsPanel != null) creditsPanel?.SetActive(false);
-        if (_burgerMenu != null) _burgerMenu?.SetActive(false);
+        if (pauseMenu != null) pauseMenu?.SetActive(false);
     }
 
     // Update is called once per frame
@@ -31,10 +31,28 @@ public class MenuManager : MonoBehaviour
         GameManager.Instance.LoadLevel();
     }
 
-    public void ToggleBurgerMenu()
+    public void PauseGame()
     {
-        _burgerMenu.SetActive(!_burgerMenu.activeSelf);
+        Time.timeScale = 0f;
+        if (pauseMenu != null) pauseMenu?.SetActive(true);
     }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        if (pauseMenu != null) pauseMenu?.SetActive(false);
+    }
+
+    public void ParaOpen()
+    {
+        pauseMenu.SetActive(false);
+    }
+
+    public void ParaClose()
+    {
+        pauseMenu.SetActive(true);
+    }
+
     public void LevelSelect()
     {
         SceneManager.LoadScene("SelectNiveau");
