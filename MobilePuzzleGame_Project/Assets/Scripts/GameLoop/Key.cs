@@ -69,7 +69,9 @@ public class Key : MonoBehaviour
     private void OnValidate()
     {
         KeyId = _keyId;
-        EditorApplication.delayCall += DelayFuncToShutUpUnity;
+        #if UNITY_EDITOR
+            EditorApplication.delayCall += DelayFuncToShutUpUnity;
+        #endif
     }
 
     private void Start()
@@ -116,7 +118,9 @@ public class Key : MonoBehaviour
 
     private void DelayFuncToShutUpUnity()
     {
-        EditorApplication.delayCall -= DelayFuncToShutUpUnity;
+        #if UNITY_EDITOR
+            EditorApplication.delayCall -= DelayFuncToShutUpUnity;
+        #endif
 
         if (this == null || gameObject == null) return;
 

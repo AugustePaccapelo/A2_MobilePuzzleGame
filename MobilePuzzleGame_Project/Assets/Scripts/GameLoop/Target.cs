@@ -46,7 +46,9 @@ public class Target : MonoBehaviour
     private void OnValidate()
     {
         Id = _id;
-        EditorApplication.delayCall += DelayFuncToShutUpUnity;
+        #if UNITY_EDITOR
+            EditorApplication.delayCall += DelayFuncToShutUpUnity;
+        #endif
     }
 
     private void Awake()
@@ -91,8 +93,9 @@ public class Target : MonoBehaviour
 
     private void DelayFuncToShutUpUnity()
     {
-        EditorApplication.delayCall -= DelayFuncToShutUpUnity;
-
+        #if UNITY_EDITOR
+            EditorApplication.delayCall -= DelayFuncToShutUpUnity;
+        #endif
         if (this == null || gameObject == null) return;
 
         SetSprite();

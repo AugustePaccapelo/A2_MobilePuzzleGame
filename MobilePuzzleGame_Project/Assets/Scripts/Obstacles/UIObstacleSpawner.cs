@@ -63,7 +63,9 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     private void OnValidate()
     {
         NumAllowedObstacle = _numAllowedObstacle;
-        EditorApplication.delayCall += DelayFuncToShutUpUnity;
+        #if UNITY_EDITOR
+            EditorApplication.delayCall += DelayFuncToShutUpUnity;
+        #endif
         //DelayFuncToShutUpUnity();
     }
 
@@ -183,7 +185,9 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     private void DelayFuncToShutUpUnity()
     {
-        EditorApplication.delayCall -= DelayFuncToShutUpUnity;
+        #if UNITY_EDITOR
+            EditorApplication.delayCall -= DelayFuncToShutUpUnity;
+        #endif
 
         if (this == null || gameObject == null) return;
 
