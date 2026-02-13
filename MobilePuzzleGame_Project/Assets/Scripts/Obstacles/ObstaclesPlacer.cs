@@ -355,7 +355,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
             Debug.DrawLine(transform.position, transform.position + (Vector3)_direction);
         }
 
-        transform.position = _closestPosition + (transform.position - _closestPosition).normalized * GetComponentInChildren<SpriteRenderer>().transform.localScale.x;
+        transform.position = _closestPosition + (transform.position - _closestPosition).normalized * GetComponentInChildren<SpriteRenderer>().transform.localScale.x * .75f;
         transform.up = _normal;
     }
 
@@ -460,16 +460,17 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         }
         else
         {
+            if (_stickToWall)
+            {
+                PositionStickingObstacle();
+            }
             _hasBeenPlaced = true;
             _lastPos = transform.position;
             _lastAngle = transform.eulerAngles.z;
         }
 
         
-        if (_stickToWall)
-        {
-            PositionStickingObstacle();
-        }
+        
 
         _currentFinger = null;
         _buttonsContainer.gameObject.SetActive(true);
