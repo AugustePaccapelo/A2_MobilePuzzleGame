@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using NaughtyAttributes;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.UI;
@@ -165,6 +163,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
         _currentFinger = fingerInput.finger;
         _currentFingerState = FingerState.Moving;
+        Select();
     }
 
     public void OnTouchedUp(ToucheData touchData)
@@ -328,7 +327,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     private void MoveObstacle()
     {
         if (_currentFinger.currentTouch.phase != UnityEngine.InputSystem.TouchPhase.Moved) return;
-
+        
         Vector3 position = Camera.main.ScreenToWorldPoint(_currentFinger.screenPosition);
         position.z = 0;
         //transform.position = position;

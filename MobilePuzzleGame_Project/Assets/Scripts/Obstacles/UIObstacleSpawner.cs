@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.UI;
 
 // Author : Auguste Paccapelo
@@ -24,6 +25,9 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     [SerializeField] private Text _numberText;
     [SerializeField] private Transform _obstaclesContainer;
+
+    private ObstaclesPlacer _lastObstacle;
+    private Finger _lastFinger;
 
     static private Dictionary<PlacableObstacle, Stack<GameObject>> _obstaclesPool = new();
 
@@ -105,6 +109,26 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     private void Start() { }
 
+    private void Update()
+    {
+        if (_lastObstacle == null) return;
+        if (_lastFinger == null) return;
+
+        if (_lastFinger.currentTouch.valid)
+        {
+            if (_lastFinger.currentTouch.ended)
+            {
+                if (_lastFinger.currentTouch.isTap)
+                {
+                    _lastObstacle.Pickup();
+                }
+
+                _lastObstacle = null;
+                _lastFinger = null;
+            }
+        }
+    }
+
     public void OnTouchedDown(ToucheData touchData)
     {
         //if (_obstacle == PlacableObstacle.Empty || _numAllowedObstacle <= 0 || GameManager.CurrentGameState != GameState.PlayerPlacingPlatforms) return;
@@ -181,10 +205,11 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     {
         //GameObject obstacle = Instantiate(_prefabToSpawn, _obstaclesContainer);
         GameObject obstacle = GetObstacleFromPool();
-
         obstacle.transform.position = position;
         ObstaclesPlacer obstaclesPlacer = obstacle.GetComponent<ObstaclesPlacer>();
-        
+        _lastObstacle = obstaclesPlacer;
+        _lastFinger = fingerInput.finger;
+
         obstaclesPlacer.SetFinger(fingerInput.finger);
         obstaclesPlacer.Select();
 
