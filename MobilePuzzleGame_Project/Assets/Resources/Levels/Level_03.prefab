@@ -377,6 +377,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 443491342315014880, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 530967533059780316, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.23
@@ -623,11 +627,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1299188836613814358, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
       propertyPath: _obstacle
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1299188836613814358, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
       propertyPath: _numAllowedObstacle
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2437207516405016433, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
       propertyPath: m_AnchorMax.y
@@ -859,7 +863,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6839506196570090455, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
       propertyPath: m_Text
-      value: 2x
+      value: 0x
       objectReference: {fileID: 0}
     - target: {fileID: 7528038458632194654, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
       propertyPath: m_AnchorMax.y
@@ -888,7 +892,7 @@ PrefabInstance:
     - target: {fileID: 7819810615918481030, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+      objectReference: {fileID: -872413962176401102, guid: 3bd7824be7ae7f544903d88457f6b708, type: 3}
     - target: {fileID: 7863329001290198592, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
       propertyPath: m_ShapeTexture
       value: 
