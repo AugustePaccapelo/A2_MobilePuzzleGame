@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
@@ -5,6 +6,8 @@ public class Ball : MonoBehaviour
     [SerializeField] private int _id = 1;
     [SerializeField] private LayerMask _obstaclesLayer;
     [SerializeField] private ParticleSystem _collisionParticulePrefab;
+
+    static public event Action onBallRespawn;
 
     public int Id
     {
@@ -43,5 +46,10 @@ public class Ball : MonoBehaviour
         ParticleSystem _particules = Instantiate<ParticleSystem>(_collisionParticulePrefab);
         _particules.transform.position = col.contacts[0].point;
         _particules.Play();
+    }
+
+    static public void TriggerOnBallRespawn()
+    {
+        onBallRespawn?.Invoke();
     }
 }

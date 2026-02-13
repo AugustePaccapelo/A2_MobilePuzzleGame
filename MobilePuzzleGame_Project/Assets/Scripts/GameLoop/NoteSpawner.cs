@@ -99,6 +99,7 @@ public class NoteSpawner : MonoBehaviour
     private void NewObstacleSelected()
     {
         _canSpawnNote = false;
+        if (_currentNote == null) return;
         _currentNote.gameObject.SetActive(false);
     }
 
@@ -153,6 +154,7 @@ public class NoteSpawner : MonoBehaviour
         newNote.SetActive(true);
         newNote.GetComponent<Rigidbody2D>().linearVelocity = _initialVelocity;
         _currentNote.Id = _id;
+        Ball.TriggerOnBallRespawn();
     }
 
     // ----- Destructor ----- \\
