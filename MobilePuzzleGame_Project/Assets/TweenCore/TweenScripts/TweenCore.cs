@@ -69,7 +69,7 @@ public class TweenCore
     public TweenCore Update(float deltaTime)
     {
         if (!_isPlaying || _isPaused) return this;
-
+        
         OnUpdate?.Invoke(this);
         _elapseTime += deltaTime;
 
@@ -138,7 +138,7 @@ public class TweenCore
     {
         // Can't start 2 times
         if (_hasStarted) return this;
-
+        
         // Set values
         _numPropertiesFinished = 0;
         _currentIteration = 0;

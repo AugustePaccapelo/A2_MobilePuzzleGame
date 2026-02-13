@@ -54,7 +54,9 @@ public class NoteSpawner : MonoBehaviour
         GameManager.onGameStart += OnGameStart;
         _tempoDecoder.OnBeat += OnBeat;
         GameObject noteGo = Instantiate(_notePrefab, _noteContainer);
+        noteGo.SetActive(false);
         _currentNote = noteGo.GetComponent<Ball>();
+        SpawnNote();
 
         ObstaclesPlacer.onObstacleSelected += NewObstacleSelected;
         ObstaclesPlacer.onObstacleUnselected += ObstacleUnselected;
@@ -147,8 +149,8 @@ public class NoteSpawner : MonoBehaviour
     private void SpawnNote()
     {
         GameObject newNote = _currentNote.gameObject;
-        newNote.SetActive(true);
         newNote.transform.position = _spawnPos.position;
+        newNote.SetActive(true);
         newNote.GetComponent<Rigidbody2D>().linearVelocity = _initialVelocity;
         _currentNote.Id = _id;
     }
