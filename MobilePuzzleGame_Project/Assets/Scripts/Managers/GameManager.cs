@@ -71,6 +71,10 @@ public class GameManager : MonoBehaviour
     {
         InitInitatingLevel();
     }
+    public void QuitLevel()
+    {
+        InitNotInLevel();
+    }
 
     public void StartGame()
     {
@@ -104,7 +108,7 @@ public class GameManager : MonoBehaviour
         InitPlayerPlacingPlatform();
     }
 
-    private void InitPlayerPlacingPlatform()
+    public void InitPlayerPlacingPlatform()
     {
         _currentGameState = GameState.PlayerPlacingPlatforms;
         _currentSate = PlayerPlacingPlatform;
@@ -117,6 +121,7 @@ public class GameManager : MonoBehaviour
 
     private void InitGamePlaying()
     {
+        TempoManager.Instance.ResetTime();
         _currentGameState = GameState.GamePlaying;
         _currentSate = GamePlaying;
         onGameStart?.Invoke();

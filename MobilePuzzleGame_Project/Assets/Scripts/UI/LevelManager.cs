@@ -15,6 +15,8 @@ public class LevelManager : MonoBehaviour
     static private string currentLevelPrefabName;
     static private GameObject currentLevelInstance;
 
+    static private Vector2 _baseResolution = new Vector2(1080, 1920);
+
     void Start()
     {
         if (Instance != null && Instance != this)
@@ -89,6 +91,7 @@ public void LoadLevelByName(string prefabName)
             Destroy(currentLevelInstance);
 
         currentLevelInstance = Instantiate(levelPrefab);
+        ScaleLevel(currentLevelInstance);
         UIMenu.SetActive(false);
         currentLevelPrefabName = prefabName;
         GameManager.Instance.LoadLevel();
@@ -100,6 +103,9 @@ public void LoadLevelByIndex(int levelIndex)
     GameObject[] levelPrefabs = Resources.LoadAll<GameObject>(levelFolder);
     if (levelIndex >= 0 && levelIndex < levelPrefabs.Length)
     {
+        if (PlayerData.Instance != null)
+            PlayerData.Instance.SetCurrentLevel(levelIndex);
+
         LoadLevelByName(levelPrefabs[levelIndex].name);
     }
 }
@@ -143,10 +149,24 @@ public void LoadLevelByIndex(int levelIndex)
             if (levelPrefab != null)
             {
                 if (currentLevelInstance != null)
+                {
+                    currentLevelInstance.SetActive(false);
                     Destroy(currentLevelInstance);
+                }
 
                 currentLevelInstance = Instantiate(levelPrefab);
+                ScaleLevel(currentLevelInstance);
             }
+        }
     }
-}
+
+    static private void ScaleLevel(GameObject level)
+    {
+        float ratioX = Screen.width / _baseResolution.x;
+        float ratioY = Screen.height / _baseResolution.y;
+
+        float ratio = Mathf.Min(ratioX, ratioY);
+
+        level.transform.localScale *= ratio;
+    }
 }

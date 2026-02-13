@@ -1,16 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class pausemanager : MonoBehaviour
+public class paramanager : MonoBehaviour
 {
-    public GameObject pausemenu;
+    public GameObject paramenu;
     public Slider volumeslider;
 
     void Start()
     {
-        if (pausemenu != null)
+        if (paramenu != null)
         {
-            pausemenu.SetActive(false);
+            paramenu.SetActive(false);
             volumeslider.onValueChanged.AddListener(delegate { setvolume(); });
         }       
     }
@@ -29,13 +29,12 @@ public class pausemanager : MonoBehaviour
 
     void openmenu()
     {
-        pausemenu.SetActive(true);
+        paramenu.SetActive(true);
     }
 
     public void closemenu()
     {
-        Time.timeScale = 1;
-        pausemenu.SetActive(false);
+        paramenu.SetActive(false);
     }
 
     void savevolume()
