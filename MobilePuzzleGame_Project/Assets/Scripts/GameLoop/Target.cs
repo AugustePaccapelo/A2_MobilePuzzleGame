@@ -83,7 +83,7 @@ public class Target : MonoBehaviour
         else
         {
             Debug.Log("Game lost !");
-            GameManager.Instance.InitPlayerPlacingPlatform();
+            GameManager.Instance.RestartGame();
         }
     }
 

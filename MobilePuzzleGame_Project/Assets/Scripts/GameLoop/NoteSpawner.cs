@@ -4,11 +4,6 @@ using UnityEngine;
 
 // Author : Auguste Paccapelo
 
-public enum NoteColor
-{
-    Black, Red, Blue, Green
-}
-
 public class NoteSpawner : MonoBehaviour
 {
     // ---------- VARIABLES ---------- \\
@@ -22,9 +17,10 @@ public class NoteSpawner : MonoBehaviour
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private Transform _spawnPos;
     [SerializeField] private GameObject _notePrefab;
-    [SerializeField] private GameObject _ghostNotePrefab;
     [SerializeField] private Transform _noteContainer;
     private TempoDecoder _tempoDecoder;
+
+    private Ball _currentNote = null;
 
     // ----- Others ----- \\
 
@@ -47,7 +43,7 @@ public class NoteSpawner : MonoBehaviour
     }
 
     private bool _hasGameStarted = false;
-    private bool _hasSpawnedNote = false;
+    private bool _canSpawnNote = false;
 
     // ---------- FUNCTIONS ---------- \\
 
@@ -57,12 +53,23 @@ public class NoteSpawner : MonoBehaviour
     {
         GameManager.onGameStart += OnGameStart;
         _tempoDecoder.OnBeat += OnBeat;
-    }    
+        GameObject noteGo = Instantiate(_notePrefab, _noteContainer);
+        noteGo.SetActive(false);
+        _currentNote = noteGo.GetComponent<Ball>();
+        SpawnNote();
+
+        ObstaclesPlacer.onObstacleSelected += NewObstacleSelected;
+        ObstaclesPlacer.onObstacleUnselected += ObstacleUnselected;
+    }
 
     private void OnDisable()
     {
         GameManager.onGameStart -= OnGameStart;
         _tempoDecoder.OnBeat -= OnBeat;
+        if (_currentNote != null) Destroy(_currentNote);
+
+        ObstaclesPlacer.onObstacleSelected -= NewObstacleSelected;
+        ObstaclesPlacer.onObstacleUnselected -= ObstacleUnselected;
     }
 
     private void OnValidate()
@@ -82,6 +89,18 @@ public class NoteSpawner : MonoBehaviour
     private void Update() { }
 
     // ----- My Functions ----- \\
+
+    private void ObstacleUnselected()
+    {
+        _canSpawnNote = true;
+        TempoManager.Instance.ResetTime();
+    }
+
+    private void NewObstacleSelected()
+    {
+        _canSpawnNote = false;
+        _currentNote.gameObject.SetActive(false);
+    }
 
     private void DelayFuncToShutUpUnity()
     {
@@ -113,37 +132,27 @@ public class NoteSpawner : MonoBehaviour
 
     private void OnBeat()
     {
-        if (_hasGameStarted)
+        if (_hasGameStarted && _canSpawnNote)
         {
-            if (_hasSpawnedNote) return;
             SpawnNote();
-            _hasSpawnedNote = true;
+            _canSpawnNote = false;
             return;
         }
-
-        SpawnGhostNote();
     }
 
     private void OnGameStart()
     {
         _hasGameStarted = true;
-        _hasSpawnedNote = false;
+        _canSpawnNote = true;
     }
 
     private void SpawnNote()
     {
-        GameObject newNote = Instantiate(_notePrefab, _noteContainer);
+        GameObject newNote = _currentNote.gameObject;
         newNote.transform.position = _spawnPos.position;
+        newNote.SetActive(true);
         newNote.GetComponent<Rigidbody2D>().linearVelocity = _initialVelocity;
-        Ball note = newNote.GetComponent<Ball>();
-        note.Id = _id;
-    }
-
-    private void SpawnGhostNote()
-    {
-        GameObject newNote = Instantiate(_ghostNotePrefab, _noteContainer);
-        newNote.transform.position = _spawnPos.position;
-        newNote.GetComponent<Rigidbody2D>().linearVelocity = _initialVelocity;
+        _currentNote.Id = _id;
     }
 
     // ----- Destructor ----- \\

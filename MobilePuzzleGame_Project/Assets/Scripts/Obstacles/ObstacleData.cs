@@ -10,7 +10,8 @@ public enum PlacableObstacle
     Empty,
     Cor,
     Trumpet,
-    TempoDrum
+    TempoDrum,
+    Accordeon
 }
 
 [Serializable]

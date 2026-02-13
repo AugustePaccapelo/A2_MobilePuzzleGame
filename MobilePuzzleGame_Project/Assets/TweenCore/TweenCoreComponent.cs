@@ -50,10 +50,6 @@ public class TweenCoreComponent : MonoBehaviour
 
     // ----- Buil-in ----- \\
 
-    private void OnEnable() { }
-
-    private void OnDisable() { }
-
     private void Awake()
     {
         _tween = TweenCore.CreateTween();
@@ -78,7 +74,8 @@ public class TweenCoreComponent : MonoBehaviour
             _tween.AddProperty(property);
             property.SetBaseValues();
         }
-        TweenCoreManager.Instance.AddTween(_tween);
+
+        TweenCoreManager.Instance?.AddTween(_tween);
 
         _tween.OnStart += OnTweenStart;
         _tween.OnUpdate += OnTweenUpdate;

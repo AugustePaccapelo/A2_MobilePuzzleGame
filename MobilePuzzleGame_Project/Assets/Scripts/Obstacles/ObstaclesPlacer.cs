@@ -39,6 +39,8 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     private RotationHandle _rotationHandle;
     private TempoDecoder _tempoDecoder;
 
+    private BoxCollider2D _boxCollider;
+
     // ----- Boolean ----- \\
     [SerializeField] private bool _isBasedOnTempo = false;
     [SerializeField] private bool _stickToWall;
@@ -65,6 +67,8 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     static private bool _hasAnObstacleSelected = false;
     static public bool HasAnObstacleSelected => _hasAnObstacleSelected;
+    static public event Action onObstacleSelected;
+    static public event Action onObstacleUnselected;
 
     static private ObstaclesPlacer _currentObstacleSelected;
     static public ObstaclesPlacer CurrentObstacleSelected => _currentObstacleSelected;
@@ -102,20 +106,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         if (_isThisSelected) UnSelectCurrent();
     }
 
-    private void Awake()
-    {
-        _rigidBody = GetComponent<Rigidbody2D>();
-
-        _tempoDecoder = GetComponentInChildren<TempoDecoder>();
-        if (_tempoDecoder == null)
-        {
-            Debug.LogWarning(name + ": no tempo decoder found.");
-        }
-
-        _renderer = GetComponentInChildren<SpriteRenderer>();
-    }
-
-    private void Start()
+    private void OnEnable()
     {
         _canvas.enabled = false;
         _canvas.worldCamera = Camera.main;
@@ -127,7 +118,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         Vector2 buttonContainerVecToStartPos = _buttonsContainer.position - transform.position;
         _buttonContainerDistance = buttonContainerVecToStartPos.magnitude;
         _buttonStartAngle = Mathf.Atan2(buttonContainerVecToStartPos.y, buttonContainerVecToStartPos.x);
-        
+
         _rotationHandle = GetComponentInChildren<RotationHandle>();
         if (_rotationHandle == null)
         {
@@ -136,10 +127,33 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
         if (!_isBasedOnTempo) _buttonTempo.SetActive(false);
         else ChangeTempo();
+
+        _canBePlaced = true;
+    }
+
+    private void Awake()
+    {
+        _rigidBody = GetComponent<Rigidbody2D>();
+
+        _tempoDecoder = GetComponentInChildren<TempoDecoder>();
+        if (_tempoDecoder == null)
+        {
+            Debug.LogWarning(name + ": no tempo decoder found.");
+        }
+
+        _renderer = GetComponentInChildren<SpriteRenderer>();
+
+        _boxCollider = GetComponent<BoxCollider2D>();
+    }
+
+    private void Start()
+    {
+        
     }
 
     private void Update()
     {
+        CheckCollider();
         HandlePlacement();
         HandleUI();
     }
@@ -147,6 +161,8 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     public void OnTouchedDown(ToucheData touchData)
     {
         FingerInput fingerInput = InputManager.Instance.GetNewFingerAtPosAndTrack(touchData.screenPosition);
+        if (fingerInput == null) return;
+
         _currentFinger = fingerInput.finger;
         _currentFingerState = FingerState.Moving;
     }
@@ -166,22 +182,40 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _numObjetsInCollider++;
-        _canBePlaced = false;
-        _renderer.color = _nonPlacableColorFeedBack;
+        //_numObjetsInCollider++;
+        //_canBePlaced = false;
+        //_renderer.color = _nonPlacableColorFeedBack;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        _numObjetsInCollider--;
-        if (_numObjetsInCollider == 0)
+        //_numObjetsInCollider--;
+        //if (_numObjetsInCollider == 0)
+        //{
+        //    _canBePlaced = true;
+        //    _renderer.color = Color.white;
+        //}
+    }
+
+    // ----- My Functions ----- \\
+
+    private void CheckCollider()
+    {
+        List<Collider2D> colliders = new();
+        _boxCollider.GetContacts(colliders);
+        _numObjetsInCollider = colliders.Count;
+
+        if (_numObjetsInCollider > 0)
+        {
+            _canBePlaced = false;
+            _renderer.color = _nonPlacableColorFeedBack;
+        }
+        else
         {
             _canBePlaced = true;
             _renderer.color = Color.white;
         }
     }
-
-    // ----- My Functions ----- \\
 
     public void ResetState()
     {
@@ -216,6 +250,10 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
         float buttonLeftX = RectTransformUtility.WorldToScreenPoint(Camera.main, buttonCorners[0]).x;
 
+        Vector3 rotation = _buttonsContainer.eulerAngles;
+        rotation.z = 0;
+        _buttonsContainer.eulerAngles = rotation;
+
         if (buttonLeftX < 0)
         {
             Vector3 difference = Camera.main.ScreenToWorldPoint(new Vector3(buttonLeftX, 0, 0)) - Camera.main.ScreenToWorldPoint(Vector3.zero);
@@ -226,6 +264,9 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
             buttonPos.y = center.y + Mathf.Sin(angle) * _buttonContainerDistance;
 
             _buttonsContainer.position = buttonPos;
+
+            rotation.z = Mathf.Rad2Deg * -(_buttonStartAngle - angle);
+            _buttonsContainer.eulerAngles = rotation;
         }
 
         // Rotation Handle handling
@@ -256,7 +297,8 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     private void HandlePlacement()
     {
-        if (_currentFinger == null || GameManager.CurrentGameState != GameState.PlayerPlacingPlatforms) return;
+        //if (_currentFinger == null || GameManager.CurrentGameState != GameState.PlayerPlacingPlatforms) return;
+        if (_currentFinger == null) return;
 
         if (_currentFinger.currentTouch.phase == UnityEngine.InputSystem.TouchPhase.Ended)
         {
@@ -382,6 +424,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     public void SetFinger(Finger finger)
     {
         _currentFinger = finger;
+        _currentFingerState = FingerState.Moving;
     }
 
     private void OnRotationHandleTouched(ToucheData toucheData)
@@ -435,7 +478,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         _rotationIndicator.position = (Vector2)transform.position + Polar2Cart(_indicatorStartAngle, _indicatorDistance);
     }
 
-    private void Select()
+    public void Select()
     {
         UnSelectCurrent();
 
@@ -446,6 +489,8 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
         InputManager.Instance.onFingerUp += OnFingerUp;
         _rotationHandle.onFingerDown += OnRotationHandleTouched;
+
+        onObstacleSelected?.Invoke();
     }
 
     private void UnSelect()
@@ -461,6 +506,8 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         }
 
         _rotationHandle.onFingerDown -= OnRotationHandleTouched;
+
+        onObstacleUnselected?.Invoke();
     }
 
     static private void UnSelectCurrent()

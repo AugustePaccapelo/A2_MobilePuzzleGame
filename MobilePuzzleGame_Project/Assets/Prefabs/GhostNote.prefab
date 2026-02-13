@@ -89,4 +89,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d46f0afc0326ec44950a538a0fa53e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GhostNote
-  _numBeatToSurvive: 3
+  _numBeatToSurvive: 2
