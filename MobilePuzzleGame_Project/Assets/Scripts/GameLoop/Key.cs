@@ -76,10 +76,14 @@ public class Key : MonoBehaviour
     {
         if (!_mapNumKeys.ContainsKey(_keyId))
         {
-            _mapNumKeys.Add(_keyId, 1);
-            _mapNumKeysPickedUp.Add(_keyId, 0);
+            _mapNumKeys.Add(_keyId, 1);            
         }
         else _mapNumKeys[_keyId]++;
+
+        if (!_mapNumKeysPickedUp.ContainsKey(_keyId))
+        {
+            _mapNumKeysPickedUp.Add(_keyId, 0);
+        }
     }
 
     private void Update() { }

@@ -42,7 +42,6 @@ public class NoteSpawner : MonoBehaviour
         }
     }
 
-    private bool _hasGameStarted = false;
     private bool _canSpawnNote = false;
 
     // ---------- FUNCTIONS ---------- \\
@@ -133,7 +132,7 @@ public class NoteSpawner : MonoBehaviour
 
     private void OnBeat()
     {
-        if (_hasGameStarted && _canSpawnNote)
+        if (_canSpawnNote)
         {
             SpawnNote();
             _canSpawnNote = false;
@@ -143,7 +142,6 @@ public class NoteSpawner : MonoBehaviour
 
     private void OnGameStart()
     {
-        _hasGameStarted = true;
         _canSpawnNote = true;
     }
 
