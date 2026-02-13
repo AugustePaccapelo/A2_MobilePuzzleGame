@@ -67,6 +67,8 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     static private bool _hasAnObstacleSelected = false;
     static public bool HasAnObstacleSelected => _hasAnObstacleSelected;
+    static public event Action onObstacleSelected;
+    static public event Action onObstacleUnselected;
 
     static private ObstaclesPlacer _currentObstacleSelected;
     static public ObstaclesPlacer CurrentObstacleSelected => _currentObstacleSelected;
@@ -104,6 +106,31 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         if (_isThisSelected) UnSelectCurrent();
     }
 
+    private void OnEnable()
+    {
+        _canvas.enabled = false;
+        _canvas.worldCamera = Camera.main;
+
+        Vector2 indicatorVecToStartPos = _rotationIndicator.position - transform.position;
+        _indicatorDistance = indicatorVecToStartPos.magnitude;
+        _indicatorStartAngle = Mathf.Atan2(indicatorVecToStartPos.y, indicatorVecToStartPos.x);
+
+        Vector2 buttonContainerVecToStartPos = _buttonsContainer.position - transform.position;
+        _buttonContainerDistance = buttonContainerVecToStartPos.magnitude;
+        _buttonStartAngle = Mathf.Atan2(buttonContainerVecToStartPos.y, buttonContainerVecToStartPos.x);
+
+        _rotationHandle = GetComponentInChildren<RotationHandle>();
+        if (_rotationHandle == null)
+        {
+            Debug.LogError(name + " no rotation handle found.");
+        }
+
+        if (!_isBasedOnTempo) _buttonTempo.SetActive(false);
+        else ChangeTempo();
+
+        _canBePlaced = true;
+    }
+
     private void Awake()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
@@ -121,25 +148,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     private void Start()
     {
-        _canvas.enabled = false;
-        _canvas.worldCamera = Camera.main;
-
-        Vector2 indicatorVecToStartPos = _rotationIndicator.position - transform.position;
-        _indicatorDistance = indicatorVecToStartPos.magnitude;
-        _indicatorStartAngle = Mathf.Atan2(indicatorVecToStartPos.y, indicatorVecToStartPos.x);
-
-        Vector2 buttonContainerVecToStartPos = _buttonsContainer.position - transform.position;
-        _buttonContainerDistance = buttonContainerVecToStartPos.magnitude;
-        _buttonStartAngle = Mathf.Atan2(buttonContainerVecToStartPos.y, buttonContainerVecToStartPos.x);
         
-        _rotationHandle = GetComponentInChildren<RotationHandle>();
-        if (_rotationHandle == null)
-        {
-            Debug.LogError(name + " no rotation handle found.");
-        }
-
-        if (!_isBasedOnTempo) _buttonTempo.SetActive(false);
-        else ChangeTempo();
     }
 
     private void Update()
@@ -281,7 +290,8 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     private void HandlePlacement()
     {
-        if (_currentFinger == null || GameManager.CurrentGameState != GameState.PlayerPlacingPlatforms) return;
+        //if (_currentFinger == null || GameManager.CurrentGameState != GameState.PlayerPlacingPlatforms) return;
+        if (_currentFinger == null) return;
 
         if (_currentFinger.currentTouch.phase == UnityEngine.InputSystem.TouchPhase.Ended)
         {
@@ -407,6 +417,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     public void SetFinger(Finger finger)
     {
         _currentFinger = finger;
+        _currentFingerState = FingerState.Moving;
     }
 
     private void OnRotationHandleTouched(ToucheData toucheData)
@@ -460,7 +471,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         _rotationIndicator.position = (Vector2)transform.position + Polar2Cart(_indicatorStartAngle, _indicatorDistance);
     }
 
-    private void Select()
+    public void Select()
     {
         UnSelectCurrent();
 
@@ -471,6 +482,8 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
         InputManager.Instance.onFingerUp += OnFingerUp;
         _rotationHandle.onFingerDown += OnRotationHandleTouched;
+
+        onObstacleSelected?.Invoke();
     }
 
     private void UnSelect()
@@ -486,6 +499,8 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         }
 
         _rotationHandle.onFingerDown -= OnRotationHandleTouched;
+
+        onObstacleUnselected?.Invoke();
     }
 
     static private void UnSelectCurrent()
