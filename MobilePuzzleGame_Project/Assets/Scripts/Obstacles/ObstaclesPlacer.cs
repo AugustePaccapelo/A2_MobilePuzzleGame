@@ -250,6 +250,10 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
         float buttonLeftX = RectTransformUtility.WorldToScreenPoint(Camera.main, buttonCorners[0]).x;
 
+        Vector3 rotation = _buttonsContainer.eulerAngles;
+        rotation.z = 0;
+        _buttonsContainer.eulerAngles = rotation;
+
         if (buttonLeftX < 0)
         {
             Vector3 difference = Camera.main.ScreenToWorldPoint(new Vector3(buttonLeftX, 0, 0)) - Camera.main.ScreenToWorldPoint(Vector3.zero);
@@ -260,6 +264,9 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
             buttonPos.y = center.y + Mathf.Sin(angle) * _buttonContainerDistance;
 
             _buttonsContainer.position = buttonPos;
+
+            rotation.z = Mathf.Rad2Deg * -(_buttonStartAngle - angle);
+            _buttonsContainer.eulerAngles = rotation;
         }
 
         // Rotation Handle handling
