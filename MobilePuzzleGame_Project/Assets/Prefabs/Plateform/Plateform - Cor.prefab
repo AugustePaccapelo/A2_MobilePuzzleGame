@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1323401454514682909}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.569, y: 0.142, z: 0}
+  m_LocalPosition: {x: 0.384, y: 0.099, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -39,13 +39,61 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2427621838275888893, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.735
+      objectReference: {fileID: 0}
+    - target: {fileID: 2427621838275888893, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.427
+      objectReference: {fileID: 0}
     - target: {fileID: 3109029540695778437, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 724445275633213848, guid: 17467f89e1bcbf343947686517a077c4, type: 3}
+    - target: {fileID: 4828745220624606857, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.539
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828745220624606857, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.442
+      objectReference: {fileID: 0}
+    - target: {fileID: 5056500260986993283, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: m_Size.x
+      value: 0.8136005
+      objectReference: {fileID: 0}
+    - target: {fileID: 5056500260986993283, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: m_Size.y
+      value: 0.5448947
+      objectReference: {fileID: 0}
+    - target: {fileID: 5056500260986993283, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.03994277
+      objectReference: {fileID: 0}
+    - target: {fileID: 5056500260986993283, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.03147006
+      objectReference: {fileID: 0}
     - target: {fileID: 5056500260986993283, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5775204933995134023, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: m_Size.x
+      value: 0.9509241
+      objectReference: {fileID: 0}
+    - target: {fileID: 5775204933995134023, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: m_Size.y
+      value: 0.5525432
+      objectReference: {fileID: 0}
+    - target: {fileID: 5775204933995134023, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.02453795
+      objectReference: {fileID: 0}
+    - target: {fileID: 5775204933995134023, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.030311614
       objectReference: {fileID: 0}
     - target: {fileID: 5999533727941872117, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
       propertyPath: m_LocalScale.x
@@ -167,6 +215,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30165586d9f76b64aa6afefca5b99e5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CorThrowing
+  onBallThrown:
+    m_PersistentCalls:
+      m_Calls: []
   throwForce: 10
   throwAngle: 45
   ballIn: 0
