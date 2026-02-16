@@ -98,7 +98,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &-5440457238551634905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,11 +111,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a64f611f85d2fe4489b5807ca49906b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ball
-  _id: 1
+  _sprites:
+  - {fileID: -1263010514093396028, guid: e5c9d88e2c4477649964ccdca384f4cc, type: 3}
+  - {fileID: -3289482896358416915, guid: fd0525b851f9ffb47b49f758373b0704, type: 3}
+  _renderer: {fileID: 5283992651713044585}
   _obstaclesLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 576
   _collisionParticulePrefab: {fileID: 5694539997390845286, guid: 1d835404d26239644accaca5d51bc617, type: 3}
+  _scaleDownOnBounceMultiplier: 0.5
+  _bounceEffectDuration: 0.3
 --- !u!1 &8004920052428738542
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,25 +139,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &5990433498078782704
-RectTransform:
+--- !u!4 &5990433498078782704
+Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8004920052428738542}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1961047317211604661}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1, y: 1}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &5283992651713044585
 SpriteRenderer:
   serializedVersion: 2
@@ -202,12 +203,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -1263010514093396028, guid: e5c9d88e2c4477649964ccdca384f4cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 5.11, y: 5.11}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
