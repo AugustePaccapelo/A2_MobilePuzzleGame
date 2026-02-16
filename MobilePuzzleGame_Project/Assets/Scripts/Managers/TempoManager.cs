@@ -37,6 +37,7 @@ public class TempoManager : MonoBehaviour
 
     // --- Event ---
     public event Action<int> OnBeat;
+    public event Action OnTimeReset;
 
     // --- Instance ---
     public static TempoManager Instance;
@@ -51,7 +52,6 @@ public class TempoManager : MonoBehaviour
 
     private void Update()
     {
-        
         _time += Time.deltaTime;
 
         if (_time >= _beatTempo)
@@ -60,7 +60,6 @@ public class TempoManager : MonoBehaviour
             OnBeat?.Invoke(BeatIndex);
             _time -= _beatTempo;
         }
-
     }
 
     public void ResetTime()
@@ -68,5 +67,6 @@ public class TempoManager : MonoBehaviour
         //_time = _beatTempo;
         _time = 0;
         _beatIndex = 0;
+        OnTimeReset?.Invoke();
     }
 }
