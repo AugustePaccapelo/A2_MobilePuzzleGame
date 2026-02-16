@@ -195,6 +195,7 @@ Transform:
   - {fileID: 1459409052}
   - {fileID: 568883554}
   - {fileID: 108349123}
+  - {fileID: 6370453091662539828}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &162127777
@@ -1761,15 +1762,15 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 116026139}
     m_Modifications:
     - target: {fileID: 135819302485429967, guid: 3ca01dcc4ae235d46a62333a86583579, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 709.33215
+      value: 354.66608
       objectReference: {fileID: 0}
     - target: {fileID: 135819302485429967, guid: 3ca01dcc4ae235d46a62333a86583579, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1823.5431
+      value: 911.77155
       objectReference: {fileID: 0}
     - target: {fileID: 135819302485429967, guid: 3ca01dcc4ae235d46a62333a86583579, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1899,6 +1900,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf564d9ef9ed1834bba6fdf97891bfb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
+--- !u!4 &6370453091662539828 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 135819302485429967, guid: 3ca01dcc4ae235d46a62333a86583579, type: 3}
+  m_PrefabInstance: {fileID: 6370453091662539824}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6483470658562552877
 GameObject:
   m_ObjectHideFlags: 0
@@ -2300,7 +2306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.078431375}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

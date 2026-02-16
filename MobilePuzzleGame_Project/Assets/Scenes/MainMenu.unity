@@ -861,7 +861,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuManager
   creditsPanel: {fileID: 1602883006}
-  pauseMenu: {fileID: 0}
+  pauseMenu: {fileID: 1649571034}
 --- !u!4 &777644007
 Transform:
   m_ObjectHideFlags: 0
@@ -1742,7 +1742,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 13}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1390032754
@@ -2794,7 +2794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd2cb02ebf3ba2a4ea0a8e34480f916f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::pausemanager
-  paramenu: {fileID: 0}
+  paramenu: {fileID: 1649571034}
   volumeslider: {fileID: 452641658}
 --- !u!4 &1762218841
 Transform:
@@ -3048,10 +3048,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 570026369}
-  - {fileID: 1649571035}
-  - {fileID: 1602883007}
   - {fileID: 758739710}
   - {fileID: 255669019}
+  - {fileID: 1649571035}
+  - {fileID: 1602883007}
   m_Father: {fileID: 647776617}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
