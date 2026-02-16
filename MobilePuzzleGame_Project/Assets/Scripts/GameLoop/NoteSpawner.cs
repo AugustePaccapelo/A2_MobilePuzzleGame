@@ -95,6 +95,7 @@ public class NoteSpawner : MonoBehaviour
     {
         _canSpawnNote = true;
         TempoManager.Instance.ResetTime();
+        GameManager.Instance.RestartGame();
     }
 
     private void NewObstacleSelected()
