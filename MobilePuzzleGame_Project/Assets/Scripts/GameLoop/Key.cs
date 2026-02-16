@@ -69,17 +69,23 @@ public class Key : MonoBehaviour
     private void OnValidate()
     {
         KeyId = _keyId;
-        EditorApplication.delayCall += DelayFuncToShutUpUnity;
+        #if UNITY_EDITOR
+            EditorApplication.delayCall += DelayFuncToShutUpUnity;
+        #endif
     }
 
     private void Start()
     {
         if (!_mapNumKeys.ContainsKey(_keyId))
         {
-            _mapNumKeys.Add(_keyId, 1);
-            _mapNumKeysPickedUp.Add(_keyId, 0);
+            _mapNumKeys.Add(_keyId, 1);            
         }
         else _mapNumKeys[_keyId]++;
+
+        if (!_mapNumKeysPickedUp.ContainsKey(_keyId))
+        {
+            _mapNumKeysPickedUp.Add(_keyId, 0);
+        }
     }
 
     private void Update() { }
@@ -112,7 +118,9 @@ public class Key : MonoBehaviour
 
     private void DelayFuncToShutUpUnity()
     {
-        EditorApplication.delayCall -= DelayFuncToShutUpUnity;
+        #if UNITY_EDITOR
+            EditorApplication.delayCall -= DelayFuncToShutUpUnity;
+        #endif
 
         if (this == null || gameObject == null) return;
 

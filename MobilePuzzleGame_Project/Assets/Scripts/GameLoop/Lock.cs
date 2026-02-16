@@ -59,7 +59,10 @@ public class Lock : MonoBehaviour
     private void OnValidate()
     {
         LockId = _lockId;
-        EditorApplication.delayCall += DelayFuncToShutUpUnity;
+
+        #if UNITY_EDITOR
+            EditorApplication.delayCall += DelayFuncToShutUpUnity;
+        #endif
     }
 
     private void Start() { }
@@ -75,8 +78,9 @@ public class Lock : MonoBehaviour
 
     private void DelayFuncToShutUpUnity()
     {
-        EditorApplication.delayCall -= DelayFuncToShutUpUnity;
-
+        #if UNITY_EDITOR
+            EditorApplication.delayCall -= DelayFuncToShutUpUnity;
+        #endif
         if (this == null || gameObject == null) return;
 
         SetSprite();

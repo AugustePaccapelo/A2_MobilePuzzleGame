@@ -42,7 +42,6 @@ public class NoteSpawner : MonoBehaviour
         }
     }
 
-    private bool _hasGameStarted = false;
     private bool _canSpawnNote = false;
 
     // ---------- FUNCTIONS ---------- \\
@@ -75,7 +74,9 @@ public class NoteSpawner : MonoBehaviour
     private void OnValidate()
     {
         Id = _id;
-        EditorApplication.delayCall += DelayFuncToShutUpUnity;
+        #if UNITY_EDITOR
+            EditorApplication.delayCall += DelayFuncToShutUpUnity;
+        #endif
     }
 
     private void Awake()
@@ -99,12 +100,15 @@ public class NoteSpawner : MonoBehaviour
     private void NewObstacleSelected()
     {
         _canSpawnNote = false;
+        if (_currentNote == null) return;
         _currentNote.gameObject.SetActive(false);
     }
 
     private void DelayFuncToShutUpUnity()
     {
-        EditorApplication.delayCall -= DelayFuncToShutUpUnity;
+        #if UNITY_EDITOR
+            EditorApplication.delayCall -= DelayFuncToShutUpUnity;
+        #endif
 
         if (this == null || gameObject == null) return;
 
@@ -132,7 +136,7 @@ public class NoteSpawner : MonoBehaviour
 
     private void OnBeat()
     {
-        if (_hasGameStarted && _canSpawnNote)
+        if (_canSpawnNote)
         {
             SpawnNote();
             _canSpawnNote = false;
@@ -142,7 +146,6 @@ public class NoteSpawner : MonoBehaviour
 
     private void OnGameStart()
     {
-        _hasGameStarted = true;
         _canSpawnNote = true;
     }
 
@@ -153,6 +156,7 @@ public class NoteSpawner : MonoBehaviour
         newNote.SetActive(true);
         newNote.GetComponent<Rigidbody2D>().linearVelocity = _initialVelocity;
         _currentNote.Id = _id;
+        Ball.TriggerOnBallRespawn();
     }
 
     // ----- Destructor ----- \\

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 61f16ab17bc4f8647bce2c794f51314a
+guid: 3e345e38bcc162744bcb724a754aee06
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5683614418356096740
-    second: mur_0
+      213: -17786416043044006
+    second: chaine_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 200
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mur_0
+      name: chaine_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 231
-        height: 154
+        y: 18
+        width: 77
+        height: 41
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4ee476e433140ee40800000000000000
-      internalID: 5683614418356096740
+      spriteID: a535ded495fc0cff0800000000000000
+      internalID: -17786416043044006
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      mur_0: 5683614418356096740
+      chaine_0: -17786416043044006
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

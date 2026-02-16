@@ -23,17 +23,13 @@ public class Portal : MonoBehaviour
 
     private Vector3 _portalToBall;
 
-    private Collider2D _blockingCollider;
-
     private void Awake()
     {
-        _blockingCollider = GetComponent<Collider2D>();
+        _exitPortal = this;
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (_exitPortal != null) _blockingCollider.enabled = false;
-        else _blockingCollider.enabled = true;
 
         if (collision.gameObject.GetComponent<Ball>() != null)
         {

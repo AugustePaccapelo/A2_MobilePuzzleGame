@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using NaughtyAttributes;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.UI;
@@ -91,8 +89,8 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     // -- Position la plus proche --
     private Vector3 _closestPosition;
 
-    // -- Vectoeur de direction --
-    private Vector2 _direction;
+    // -- Vecteur de direction --
+    private Vector2 _direction = Vector2.up;
     private Vector3 _normal;
 
     #endregion
@@ -165,6 +163,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
         _currentFinger = fingerInput.finger;
         _currentFingerState = FingerState.Moving;
+        Select();
     }
 
     public void OnTouchedUp(ToucheData touchData)
@@ -302,6 +301,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
         if (_currentFinger.currentTouch.phase == UnityEngine.InputSystem.TouchPhase.Ended)
         {
+            
             _currentFinger = null;
             return;
         }
@@ -309,15 +309,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         switch (_currentFingerState)
         {
             case FingerState.Moving:
-
-                if (_stickToWall)
-                {
-                    MoveStickingObstacle();
-                }
-                else
-                {
-                    MoveObstacle();
-                }
+                MoveObstacle();
                 break;
             case FingerState.Rotating:
                 RotateObstacle();
@@ -328,17 +320,18 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     private void MoveObstacle()
     {
         if (_currentFinger.currentTouch.phase != UnityEngine.InputSystem.TouchPhase.Moved) return;
-
+        
         Vector3 position = Camera.main.ScreenToWorldPoint(_currentFinger.screenPosition);
         position.z = 0;
         //transform.position = position;
         _rigidBody.MovePosition(position);
     }
 
-    private void MoveStickingObstacle()
+    private void PositionStickingObstacle()
     {
         for (int i = 0; i < 8; i++)
         {
+
             RaycastHit2D hit = Physics2D.Raycast(transform.position, _direction, 100f, _stickToWallLayer);
             if (hit.collider == null)
             {
@@ -348,7 +341,6 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Wall"))
             {
-
                 if (Vector2.Distance(transform.position, hit.point) < Vector2.Distance(transform.position, _closestPosition) || _closestPosition == Vector3.zero)
                 {
                     _closestPosition = hit.point;
@@ -363,7 +355,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
             Debug.DrawLine(transform.position, transform.position + (Vector3)_direction);
         }
 
-        transform.position = _closestPosition + (transform.position - _closestPosition).normalized * GetComponentInChildren<SpriteRenderer>().transform.localScale.x;
+        transform.position = _closestPosition + (transform.position - _closestPosition).normalized * GetComponentInChildren<SpriteRenderer>().transform.localScale.x * .75f;
         transform.up = _normal;
     }
 
@@ -468,10 +460,17 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         }
         else
         {
+            if (_stickToWall)
+            {
+                PositionStickingObstacle();
+            }
             _hasBeenPlaced = true;
             _lastPos = transform.position;
             _lastAngle = transform.eulerAngles.z;
         }
+
+        
+        
 
         _currentFinger = null;
         _buttonsContainer.gameObject.SetActive(true);
@@ -480,6 +479,15 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     public void Select()
     {
+        Portal newExitPortal = default;
+        if (_hasAnObstacleSelected)
+        {
+            if (_currentObstacleSelected.GetComponentInChildren<Portal>() != null)
+            {
+                newExitPortal = _currentObstacleSelected.GetComponentInChildren<Portal>();
+            }
+        }
+
         UnSelectCurrent();
 
         _hasAnObstacleSelected = true;
@@ -491,6 +499,14 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         _rotationHandle.onFingerDown += OnRotationHandleTouched;
 
         onObstacleSelected?.Invoke();
+
+        if (newExitPortal != null)
+        {
+            if (_currentObstacleSelected.GetComponentInChildren<Portal>() != null)
+            {
+                _currentObstacleSelected.GetComponentInChildren<Portal>().SetExitPortal(newExitPortal);
+            }
+        }
     }
 
     private void UnSelect()

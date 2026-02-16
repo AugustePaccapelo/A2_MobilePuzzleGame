@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 61f16ab17bc4f8647bce2c794f51314a
+guid: ec489aec41a64614ea81a2e55e72a0f3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5683614418356096740
-    second: mur_0
+      213: 6999006448729605084
+    second: KillZone_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mur_0
+      name: KillZone_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 231
-        height: 154
+        height: 77
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4ee476e433140ee40800000000000000
-      internalID: 5683614418356096740
+      spriteID: cd342356847712160800000000000000
+      internalID: 6999006448729605084
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      mur_0: 5683614418356096740
+      KillZone_0: 6999006448729605084
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
