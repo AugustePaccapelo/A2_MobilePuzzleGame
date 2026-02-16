@@ -4,14 +4,14 @@ using UnityEngine.UI;
 
 public class RandomTexture : MonoBehaviour
 {
-    public enum Mode { Random, Sequential }
+    public enum Mode { Random, SequentialVeertical}
 
     public Mode mode = Mode.Random;
     public List<Sprite> sprites = new List<Sprite>();
 
     public int startIndex = 0;
-
-    static private int s_globalSequentialIndex = 0;
+    
+    private static int s_globalSequentialVertIndex = 0;
 
     void Start()
     {
@@ -23,18 +23,10 @@ public class RandomTexture : MonoBehaviour
         {
             index = Random.Range(0, sprites.Count);
         }
-        else 
+        else
         {
-            if (startIndex >= 0 && startIndex < sprites.Count)
-            {
-                index = startIndex;
-                s_globalSequentialIndex = (startIndex + 1) % sprites.Count;
-            }
-            else
-            {
-                index = s_globalSequentialIndex % sprites.Count;
-                s_globalSequentialIndex = (s_globalSequentialIndex + 1) % sprites.Count;
-            }
+            index = s_globalSequentialVertIndex;
+            s_globalSequentialVertIndex = (s_globalSequentialVertIndex + 1) % sprites.Count;
         }
 
         Image uiImage = GetComponent<Image>();

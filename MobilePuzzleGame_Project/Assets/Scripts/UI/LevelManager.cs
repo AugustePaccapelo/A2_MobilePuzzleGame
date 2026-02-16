@@ -164,11 +164,30 @@ public void LoadLevelByIndex(int levelIndex)
 
     static private void ScaleLevel(GameObject level)
     {
-        float ratioX = _baseResolution.x / Screen.width;
-        float ratioY = _baseResolution.y / Screen.height;
+        //float ratioX = _baseResolution.x / Screen.width;
+        //float ratioY = _baseResolution.y / Screen.height;
 
-        float ratio = Mathf.Min(ratioX, ratioY);
+        //float ratioX = Screen.width / _baseResolution.x;
+        //float ratioY = Screen.height / _baseResolution.y;
+
+        //float ratio = Mathf.Min(ratioX, ratioY);
+        //float ratio = Mathf.Lerp(ratioX, ratioY, 0.7f);
         //Debug.Log(ratioX + "    " + ratioY);
-        level.transform.localScale *= ratio;
+        //level.transform.localScale = Vector3.one * ratio;
+
+        float screenShort = Mathf.Min(Screen.width, Screen.height);
+        float screenLong = Mathf.Max(Screen.width, Screen.height);
+
+        float baseShort = Mathf.Min(_baseResolution.x, _baseResolution.y);
+        float baseLong = Mathf.Max(_baseResolution.x, _baseResolution.y);
+
+        float ratioX = screenShort / baseShort;
+        float ratioY = screenLong / baseLong;
+
+        float scale = Mathf.Lerp(ratioX, ratioY, 0.7f);
+
+        scale = Mathf.Min(scale, 1f);
+
+        level.transform.localScale = Vector3.one * scale;
     }
 }
