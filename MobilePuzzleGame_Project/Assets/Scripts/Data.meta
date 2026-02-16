@@ -1,7 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:MobilePuzzleGame_Project/Assets/Scripts/Data.meta
 guid: 100948aeae5e0c3418f255cf4fe97c1a
 folderAsset: yes
 DefaultImporter:
+========
+guid: 237b241873b601c4fb0e814d09dc50fe
+PrefabImporter:
+>>>>>>>> GP---Saves:MobilePuzzleGame_Project/Assets/Resources/Levels/Level_02.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
