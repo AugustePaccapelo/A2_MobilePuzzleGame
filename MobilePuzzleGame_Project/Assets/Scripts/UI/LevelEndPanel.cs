@@ -36,7 +36,7 @@ public class LevelEndPanel : MonoBehaviour
         gameObject.SetActive(true);
 
         if (levelCompleteText != null)
-            levelCompleteText.text = "Niveau " + (levelIndex + 1) + " Complété!";
+            levelCompleteText.text = "Niveau " + (levelIndex + 1);
 
         Time.timeScale = 0f;
     }
