@@ -208,6 +208,8 @@ public class TweenCore
     /// </summary>
     public void Stop(bool setToFinalValue = true)
     {
+        if (!_hasStarted) return;
+
         _hasStarted = false;
         _isPaused = false;
         _isPlaying = false;

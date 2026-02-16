@@ -51,7 +51,6 @@ public class TempoManager : MonoBehaviour
 
     private void Update()
     {
-        
         _time += Time.deltaTime;
 
         if (_time >= _beatTempo)
@@ -60,7 +59,6 @@ public class TempoManager : MonoBehaviour
             OnBeat?.Invoke(BeatIndex);
             _time -= _beatTempo;
         }
-
     }
 
     public void ResetTime()

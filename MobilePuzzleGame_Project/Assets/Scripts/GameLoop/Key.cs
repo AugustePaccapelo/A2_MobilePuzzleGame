@@ -13,6 +13,8 @@ public class Key : MonoBehaviour
 
     [SerializeField] private List<Sprite> _sprites = new();
 
+    [SerializeField] private GameObject _visual;
+
     // ----- Objects ----- \\
 
     // ----- Events ----- \\
@@ -92,6 +94,8 @@ public class Key : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!_visual.activeSelf) return;
+
         // 1 << go.layer => exact layerMask of go
         // if Note = 6 => 00100000
         if (((1 << collision.gameObject.layer) & _layerThatCanCollect) == 0) return;
@@ -105,14 +109,14 @@ public class Key : MonoBehaviour
         }
 
         //Destroy(gameObject);
-        gameObject.SetActive(false);
+        _visual.SetActive(false);
     }
 
     // ----- My Functions ----- \\
 
     private void OnRestart()
     {
-        gameObject.SetActive(true);
+        _visual.SetActive(true);
         _mapNumKeysPickedUp[_keyId] = 0;
     }
 

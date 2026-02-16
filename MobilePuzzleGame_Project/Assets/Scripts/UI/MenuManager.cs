@@ -7,6 +7,7 @@ public class MenuManager : MonoBehaviour
 
     public GameObject creditsPanel = null;
     [SerializeField] private GameObject pauseMenu = null;
+    [SerializeField] private GameObject BoutonPause;
 
     void Start()
     {
@@ -35,12 +36,14 @@ public class MenuManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         if (pauseMenu != null) pauseMenu?.SetActive(true);
+        if (BoutonPause != null) BoutonPause?.SetActive(false);
     }
 
     public void ResumeGame()
     {
         Time.timeScale = 1f;
         if (pauseMenu != null) pauseMenu?.SetActive(false);
+        if (BoutonPause != null) BoutonPause?.SetActive(true);
     }
 
     public void ParaOpen()
