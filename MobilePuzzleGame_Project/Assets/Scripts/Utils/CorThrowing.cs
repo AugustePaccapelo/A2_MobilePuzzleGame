@@ -111,15 +111,14 @@ public class CorThrowing : MonoBehaviour
 
         ball.SetActive(true);
         ball.transform.position = _exitPoint.position;
+
         Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
-        //rb.bodyType = RigidbodyType2D.Dynamic;
+
         float angleInRadians = (throwAngle + _parent.eulerAngles.z) * Mathf.Deg2Rad;
-        Vector2 dir = (_exitPoint.right + _exitPoint.up).normalized;
         Vector2 throwDirection = new Vector2(Mathf.Cos(angleInRadians), Mathf.Sin(angleInRadians)).normalized;
-        if (transform.lossyScale.x < 0) throwDirection.x *= -1;
-        //rb.linearVelocity = throwDirection * throwForce;
-        rb.linearVelocity = dir * throwForce;
-        //ballIn = false;
+
+        rb.linearVelocity = throwDirection * throwForce;
+        
         onBallThrown?.Invoke();
     }
 
