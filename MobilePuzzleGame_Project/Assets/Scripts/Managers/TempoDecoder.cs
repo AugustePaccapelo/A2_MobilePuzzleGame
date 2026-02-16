@@ -44,6 +44,7 @@ public class TempoDecoder : MonoBehaviour
 
     [SerializeField] private UnityEvent _unityOnBeat;
     [SerializeField] private UnityEvent _unityOnOffBeat;
+    [SerializeField] private UnityEvent _onTimeReset;
 
     private int _beatBefore;
     private int _beatAfter;
@@ -51,6 +52,7 @@ public class TempoDecoder : MonoBehaviour
     private void OnEnable()
     {
         TempoManager.Instance.OnBeat += DecodeBeat;
+        TempoManager.Instance.OnTimeReset += OnTimeReset;
 
         SetBeforeAndAfter();
     }
@@ -58,6 +60,7 @@ public class TempoDecoder : MonoBehaviour
     private void OnDisable()
     {
         TempoManager.Instance.OnBeat -= DecodeBeat;
+        TempoManager.Instance.OnTimeReset -= OnTimeReset;
     }
 
     private void OnValidate()
@@ -117,5 +120,11 @@ public class TempoDecoder : MonoBehaviour
             OnOffBeat?.Invoke();
             _unityOnOffBeat?.Invoke();
         }
+    }
+
+    private void OnTimeReset()
+    {
+        //_onTimeReset?.Invoke();
+        Debug.Log("reset");
     }
 }
