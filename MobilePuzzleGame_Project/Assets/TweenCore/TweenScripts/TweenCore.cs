@@ -218,7 +218,8 @@ public class TweenCore
         int length = _tweenProperties.Count - 1;
         for (int i = length; i >= 0; i --)
         {
-            if (_tweenProperties[i].HasStarted) _tweenProperties[i].Stop(setToFinalValue);
+            //if (_tweenProperties[i].HasStarted) _tweenProperties[i].Stop(setToFinalValue);
+            if (_tweenProperties[0].HasStarted) _tweenProperties[0].Stop(setToFinalValue);
         }
         _isFinished = true;
         OnFinish?.Invoke(this);
