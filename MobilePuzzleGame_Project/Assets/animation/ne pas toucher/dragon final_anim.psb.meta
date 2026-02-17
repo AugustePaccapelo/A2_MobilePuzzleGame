@@ -1,0 +1,760 @@
+fileFormatVersion: 2
+guid: ea7c2d43fbd74a64685cf5cf54133385
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: b2a9591990af98743ba3ff7cf1000886, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 1
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 775
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: a15a211a454498c42bed96624e204802
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+    spritePosition: {x: 0, y: 0}
+  multiSpriteImportData: []
+  layeredSpriteImportData:
+  - name: gorge inferieure line
+    originalName: 
+    pivot: {x: 0.28572208, y: 0.64972734}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 559
+      y: 4
+      width: 392
+      height: 340
+    spriteID: b8c4d19007c1c214792c0392373e06b1
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 559, y: 4}
+    spritePosition: {x: 836, y: 0}
+  - name: "machoire inf\xE9riure et dents inf\xE9rieur"
+    originalName: 
+    pivot: {x: 0.28827423, y: 0.10778982}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 547
+      height: 477
+    spriteID: 78b8fbffb09f716498c6fa97f84a8b5d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+    spritePosition: {x: 778, y: 193}
+  - name: Calque 2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 687
+      y: 352
+      width: 67
+      height: 122
+    spriteID: 01075e7fba038604d8840b9784e2b021
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 687, y: 352}
+    spritePosition: {x: 640, y: 149}
+  - name: pupille
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 623
+      y: 948
+      width: 49
+      height: 49
+    spriteID: 744b7096db62a7c499efb9bb172c56fe
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 623, y: 948}
+    spritePosition: {x: 693, y: 196}
+  - name: oeil line
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 559
+      y: 352
+      width: 120
+      height: 120
+    spriteID: cd6938fc4c2f1e74cb06f3f1cd53a3ce
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 559, y: 352}
+    spritePosition: {x: 673, y: 177}
+  - name: corne line
+    originalName: 
+    pivot: {x: 0.76572424, y: 0.71338403}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 623
+      y: 773
+      width: 91
+      height: 167
+    spriteID: c0299fdc20aebfb42b73de52a1c1bc0a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 623, y: 773}
+    spritePosition: {x: 725, y: 74}
+  - name: line crane
+    originalName: 
+    pivot: {x: 1.0299264, y: 0.3524248}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 489
+      width: 357
+      height: 524
+    spriteID: a2961e353f07fcb45a50e0704d3a276a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 489}
+    spritePosition: {x: 585, y: 42}
+  - name: "gorge sup\xE9rieur line"
+    originalName: 
+    pivot: {x: 0.38669956, y: 0.49472532}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 623
+      y: 489
+      width: 124
+      height: 276
+    spriteID: c421fc5da4c9aea47804db9a730344e5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 623, y: 489}
+    spritePosition: {x: 819, y: 0}
+  - name: langue line
+    originalName: 
+    pivot: {x: 0.8414512, y: -0.1348223}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 369
+      y: 489
+      width: 246
+      height: 419
+    spriteID: 93dac86204336444f92169d7f7f31561
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 369, y: 489}
+    spritePosition: {x: 715, y: 178}
+  spriteImportData: []
+  rigSpriteImportData: []
+  sharedRigSpriteImportData: []
+  mosaicSpriteImportData: []
+  sharedRigCharacterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    pivot: {x: 0, y: 0}
+    boneReadOnly: 0
+  characterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    pivot: {x: 0, y: 0}
+    boneReadOnly: 0
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: WebGL
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  mosaicLayers: 1
+  characterMode: 1
+  documentPivot: {x: 0, y: 0}
+  documentAlignment: 7
+  importHiddenLayers: 0
+  layerMappingOption: 2
+  generatePhysicsShape: 0
+  paperDollMode: 0
+  keepDupilcateSpriteName: 1
+  generateTileAssets: 0
+  tilePaletteCellLayout: 0
+  tilePaletteHexagonLayout: 0
+  tilePaletteCellSize: {x: 1, y: 1, z: 0}
+  tilePaletteCellSizing: 0
+  transparencySortMode: 0
+  transparencySortAxis: {x: 0, y: 0, z: 1}
+  tileTemplate: {instanceID: 0}
+  padding: 4
+  spriteSizeExpand: 0
+  skeletonAssetReferenceID: 
+  pipeline: {instanceID: 0}
+  pipelineVersion: 
+  spriteCategoryList:
+    categories: []
+  spritePackingTag: 
+  resliceFromLayer: 0
+  pSDLayerImportSetting: []
+  psdLayers:
+  - name: v1 line fusion
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: 6908e7cc57c4ee04c916b22682a56763
+    layerID: 29
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: gorge
+    spriteName: 
+    isGroup: 1
+    parentIndex: 0
+    spriteID: 4bfd8bdb74977974681e691be37791ed
+    layerID: 28
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: gorge inferieure line
+    spriteName: 
+    isGroup: 0
+    parentIndex: 1
+    spriteID: fc664bd72b4001a4db8d718cacabec9a
+    layerID: 27
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: "machoire inf\xE9riure et dents inf\xE9rieur"
+    spriteName: 
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 14bb9650493e4f64b85793964076f732
+    layerID: 25
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: oeil
+    spriteName: 
+    isGroup: 1
+    parentIndex: 0
+    spriteID: e54d0a0bf2349184bb7d29d18c5ec07e
+    layerID: 24
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: pupille
+    spriteName: 
+    isGroup: 0
+    parentIndex: 4
+    spriteID: 9b9cfe7ba00881644b916f0b8ee32cfb
+    layerID: 23
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: oeil line
+    spriteName: 
+    isGroup: 0
+    parentIndex: 4
+    spriteID: cbc3a9ec1428c88418a500031b755f33
+    layerID: 22
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: corne line
+    spriteName: 
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 0a1b354f54e3771489ecceb087d008db
+    layerID: 20
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: line crane
+    spriteName: 
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 04b89acb0a23dab4c9b43eae0186bfdd
+    layerID: 19
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: "gorge sup\xE9rieur line"
+    spriteName: 
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 355cbf2b830194142ab4a1eec26fbe88
+    layerID: 18
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: langue line
+    spriteName: 
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 3b84ae0a30fa4e841b1f48dd4627e600
+    layerID: 17
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: v1_violet_line
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: 73a7bc7070e74f140b4dd01be007a376
+    layerID: 48
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: gorge
+    spriteName: 
+    isGroup: 1
+    parentIndex: 11
+    spriteID: fc46bb6e803bb86428862d7daa5e0a8c
+    layerID: 47
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: gorge inferieure line
+    spriteName: gorge inferieure line
+    isGroup: 0
+    parentIndex: 12
+    spriteID: a5504b2bd88bb094c99f6a0c285d20fe
+    layerID: 46
+    mosaicPosition: {x: 4, y: 489}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: "machoire inf\xE9riure et dents inf\xE9rieur"
+    spriteName: "machoire inf\xE9riure et dents inf\xE9rieur"
+    isGroup: 0
+    parentIndex: 11
+    spriteID: b785dc4061545db45a76d581e433e295
+    layerID: 44
+    mosaicPosition: {x: 4, y: 4}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: oeil
+    spriteName: 
+    isGroup: 1
+    parentIndex: 11
+    spriteID: 2304088adf1c6514898e2e6e8f2b6553
+    layerID: 43
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Calque 3
+    spriteName: Calque 3
+    isGroup: 0
+    parentIndex: 15
+    spriteID: 4f1995f8f54f0f143af43fbcb396efee
+    layerID: 42
+    mosaicPosition: {x: 132, y: 835}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: pupille
+    spriteName: pupille
+    isGroup: 0
+    parentIndex: 15
+    spriteID: cf3187c388e2fb74c9ae4bb565c8e86e
+    layerID: 41
+    mosaicPosition: {x: 4, y: 963}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: oeil line
+    spriteName: oeil line
+    isGroup: 0
+    parentIndex: 15
+    spriteID: d92131e220314f245a2079a9eb4b335a
+    layerID: 40
+    mosaicPosition: {x: 4, y: 835}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: corne line
+    spriteName: corne line
+    isGroup: 0
+    parentIndex: 11
+    spriteID: 2265fe9fd98ee25439e81b055d110a9b
+    layerID: 38
+    mosaicPosition: {x: 404, y: 771}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: line crane
+    spriteName: line crane
+    isGroup: 0
+    parentIndex: 11
+    spriteID: c4cef2f4cef23794a8a927d5e5961673
+    layerID: 37
+    mosaicPosition: {x: 559, y: 4}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: "gorge sup\xE9rieur line"
+    spriteName: "gorge sup\xE9rieur line"
+    isGroup: 0
+    parentIndex: 11
+    spriteID: 8111b46ee3d44e447a5b00e95739e06f
+    layerID: 36
+    mosaicPosition: {x: 404, y: 489}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: langue line
+    spriteName: langue line
+    isGroup: 0
+    parentIndex: 11
+    spriteID: 5574763a6cbbb394b8c7e6d175ef8d6e
+    layerID: 35
+    mosaicPosition: {x: 872, y: 4}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: v1 line fusion
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: b926931a51ef6934ea515e64dd2240e5
+    layerID: 15
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: gorge
+    spriteName: 
+    isGroup: 1
+    parentIndex: 23
+    spriteID: 44b30115a29366a48810b10ee8d995f2
+    layerID: 14
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: gorge inferieure line
+    spriteName: gorge inferieure line
+    isGroup: 0
+    parentIndex: 24
+    spriteID: b8c4d19007c1c214792c0392373e06b1
+    layerID: 13
+    mosaicPosition: {x: 559, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: "machoire inf\xE9riure et dents inf\xE9rieur"
+    spriteName: "machoire inf\xE9riure et dents inf\xE9rieur"
+    isGroup: 0
+    parentIndex: 23
+    spriteID: 78b8fbffb09f716498c6fa97f84a8b5d
+    layerID: 11
+    mosaicPosition: {x: 4, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: oeil
+    spriteName: 
+    isGroup: 1
+    parentIndex: 23
+    spriteID: df1ebb91cd2ada64c8131754eaa17cbe
+    layerID: 10
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Calque 2
+    spriteName: Calque 2
+    isGroup: 0
+    parentIndex: 27
+    spriteID: 01075e7fba038604d8840b9784e2b021
+    layerID: 33
+    mosaicPosition: {x: 687, y: 352}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Rectangle 1
+    spriteName: 
+    isGroup: 0
+    parentIndex: 27
+    spriteID: 190d1a0d3c1902e4aaea12f4f7ae206d
+    layerID: 31
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: pupille
+    spriteName: pupille
+    isGroup: 0
+    parentIndex: 27
+    spriteID: 744b7096db62a7c499efb9bb172c56fe
+    layerID: 9
+    mosaicPosition: {x: 623, y: 948}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: oeil line
+    spriteName: oeil line
+    isGroup: 0
+    parentIndex: 27
+    spriteID: cd6938fc4c2f1e74cb06f3f1cd53a3ce
+    layerID: 8
+    mosaicPosition: {x: 559, y: 352}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: corne line
+    spriteName: corne line
+    isGroup: 0
+    parentIndex: 23
+    spriteID: c0299fdc20aebfb42b73de52a1c1bc0a
+    layerID: 6
+    mosaicPosition: {x: 623, y: 773}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: line crane
+    spriteName: line crane
+    isGroup: 0
+    parentIndex: 23
+    spriteID: a2961e353f07fcb45a50e0704d3a276a
+    layerID: 5
+    mosaicPosition: {x: 4, y: 489}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: "gorge sup\xE9rieur line"
+    spriteName: "gorge sup\xE9rieur line"
+    isGroup: 0
+    parentIndex: 23
+    spriteID: c421fc5da4c9aea47804db9a730344e5
+    layerID: 4
+    mosaicPosition: {x: 623, y: 489}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: langue line
+    spriteName: langue line
+    isGroup: 0
+    parentIndex: 23
+    spriteID: 93dac86204336444f92169d7f7f31561
+    layerID: 3
+    mosaicPosition: {x: 369, y: 489}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: "Arri\xE8re-plan"
+    spriteName: 
+    isGroup: 0
+    parentIndex: -1
+    spriteID: b44dae6658fd7cb47ae4afc821c3c3c1
+    layerID: 1
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  mosaicPSDLayers: []
+  rigPSDLayers: []
+  sharedRigPSDLayers: []
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  spriteSizeExpandChanged: 0
+  generateGOHierarchy: 0
+  textureAssetName: 
+  prefabAssetName: 
+  spriteLibAssetName: 
+  skeletonAssetName: 
+  secondarySpriteTextures: []
