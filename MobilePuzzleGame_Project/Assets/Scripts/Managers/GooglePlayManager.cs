@@ -92,9 +92,9 @@ public class GooglePlayManager : MonoBehaviour
             //PlayGamesPlatform.Activate();
             //Social.localUser.Authenticate(ProcessAuthentication);
     
-            Social.LoadAchievements(LoadAchievements);
-
             _isLoged = true;
+
+            Social.LoadAchievements(LoadAchievements);
 #endif
     }
 
