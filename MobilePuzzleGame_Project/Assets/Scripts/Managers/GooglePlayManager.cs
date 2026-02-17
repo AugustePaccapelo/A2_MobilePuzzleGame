@@ -50,6 +50,8 @@ public class GooglePlayManager : MonoBehaviour
 
     private static Dictionary<string, bool> _mapAchivementsState = new();
 
+    private static bool _isLoged = false;
+
     // ---------- FUNCTIONS ---------- \\
 
     // ----- Buil-in ----- \\
@@ -74,14 +76,18 @@ public class GooglePlayManager : MonoBehaviour
 
     void Start()
     {
+        _isLoged = false;
+
         // Google play (je crois)
         //PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
 
         // Unity
-        PlayGamesPlatform.Activate();
-        Social.localUser.Authenticate(ProcessAuthentication);
-
-        Social.LoadAchievements(LoadAchievements);
+        #if !UNITY_EDITOR
+            PlayGamesPlatform.Activate();
+            Social.localUser.Authenticate(ProcessAuthentication);
+    
+            Social.LoadAchievements(LoadAchievements);
+        #endif
     }
 
     void Update() { }
@@ -114,8 +120,9 @@ public class GooglePlayManager : MonoBehaviour
         }
     }
 
-    static private void CompleteAchievement(AchivementEnum achievement)
+    static public void CompleteAchievement(AchivementEnum achievement)
     {
+        if (!_isLoged) return;
         if (!_mapAchievmentIds.ContainsKey(achievement)) return;
 
         if (!IsAchievementFinished(achievement))
@@ -126,6 +133,8 @@ public class GooglePlayManager : MonoBehaviour
 
     static public void DragonsEyeTouched()
     {
+        if (!_isLoged) return;
+
         CompleteAchievement(AchivementEnum.AieMonOeuil);
 
         if (!IsAchievementFinished(AchivementEnum.MaisArrete))
@@ -136,6 +145,8 @@ public class GooglePlayManager : MonoBehaviour
 
     private static void LoadAchievements(IAchievement[] achievements)
     {
+        if (!_isLoged) return;
+
         foreach (IAchievement achievement in achievements)
         {
             _mapAchivementsState.Add(achievement.id, achievement.completed);
@@ -144,6 +155,7 @@ public class GooglePlayManager : MonoBehaviour
 
     private static bool IsAchievementFinished(AchivementEnum achievement)
     {
+        if (!_isLoged) return false;
         if (!_mapAchievmentIds.ContainsKey(achievement)) return false;
         if (!_mapAchivementsState.ContainsKey(_mapAchievmentIds[achievement])) return false;
 
@@ -152,6 +164,8 @@ public class GooglePlayManager : MonoBehaviour
 
     internal void ProcessAuthentication(bool status)
     {
+        _isLoged = status;
+
         if (status)
         {
             Debug.Log("Singed in!");
@@ -167,10 +181,12 @@ public class GooglePlayManager : MonoBehaviour
         if (status == SignInStatus.Success)
         {
             Debug.Log("Singed in!");
+            _isLoged = true;
         }
         else
         {
             Debug.Log("Not signed in.");
+            _isLoged = false;
         }
     }
 

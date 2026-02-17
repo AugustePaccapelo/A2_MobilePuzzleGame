@@ -18,7 +18,7 @@ public class Lock : MonoBehaviour
     [SerializeField] private SpriteRenderer _lockRenderer;
     [SerializeField] private GameObject _visual;
 
-    private BoxCollider _collider;
+    private BoxCollider2D _collider;
 
     // ----- Others ----- \\
 
@@ -58,7 +58,7 @@ public class Lock : MonoBehaviour
     {
         SetSprite();
 
-        _collider = GetComponent<BoxCollider>();
+        _collider = GetComponent<BoxCollider2D>();
     }
 
     private void OnValidate()
