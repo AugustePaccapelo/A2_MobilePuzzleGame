@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
     private List<Button> levelButtons = new List<Button>();
     public GameObject UIMenu;
     public ScrollRect scrollbar;
+    public GameObject PrefabToLoad;
 
     static private string currentLevelPrefabName;
     static private GameObject currentLevelInstance;
@@ -92,7 +93,7 @@ public void LoadLevelByName(string prefabName)
         if (currentLevelInstance != null)
             Destroy(currentLevelInstance);
 
-        currentLevelInstance = Instantiate(levelPrefab);
+        currentLevelInstance = Instantiate(levelPrefab, PrefabToLoad.transform, false);
         ScaleLevel(currentLevelInstance);
         UIMenu.SetActive(false);
         currentLevelPrefabName = prefabName;
@@ -156,7 +157,7 @@ public void LoadLevelByIndex(int levelIndex)
                     Destroy(currentLevelInstance);
                 }
 
-                currentLevelInstance = Instantiate(levelPrefab);
+                currentLevelInstance = Instantiate(levelPrefab, Instance.PrefabToLoad.transform, false);
                 ScaleLevel(currentLevelInstance);
             }
         }
