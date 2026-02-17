@@ -555,7 +555,7 @@ MonoBehaviour:
   _prepareDuration: 0.4
   _extendDuration: 0.4
   _retractDuration: 0.4
-  _power: 1
+  _power: 15.04
   OnUse:
     m_PersistentCalls:
       m_Calls: []

@@ -175,7 +175,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
             //    Select();
             //    return;
             //}
-            Select();
+            //Select();
         }
     }
 
@@ -352,7 +352,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
             //On tourne la direction à 45 degré pour avoir les 8 raycast autour du portail
             _direction = Portal.RotateVector2(_direction, 45 * Mathf.Deg2Rad);
 
-            Debug.DrawLine(transform.position, transform.position + (Vector3)_direction);
+            
         }
 
         transform.position = _closestPosition + (transform.position - _closestPosition).normalized * GetComponentInChildren<SpriteRenderer>().transform.localScale.x * .75f;
@@ -482,8 +482,10 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         Portal newExitPortal = default;
         if (_hasAnObstacleSelected)
         {
+            
             if (_currentObstacleSelected.GetComponentInChildren<Portal>() != null)
             {
+                
                 newExitPortal = _currentObstacleSelected.GetComponentInChildren<Portal>();
             }
         }
@@ -504,6 +506,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         {
             if (_currentObstacleSelected.GetComponentInChildren<Portal>() != null)
             {
+                
                 _currentObstacleSelected.GetComponentInChildren<Portal>().SetExitPortal(newExitPortal);
             }
         }
