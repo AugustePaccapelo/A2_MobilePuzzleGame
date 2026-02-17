@@ -6,8 +6,8 @@ public class PlayerData : MonoBehaviour
     public static PlayerData Instance { get; private set; }
 
     private const string SAVE_KEY = "PlayerSaveData";
-    private List<int> unlockedLevels = new List<int>();
-    private int currentLevelIndex = 0;
+    private static List<int> unlockedLevels = new List<int>();
+    private static int currentLevelIndex = 0;
 
     private void OnEnable() { }
 
@@ -32,7 +32,7 @@ public class PlayerData : MonoBehaviour
 
     private void Update() { }
 
-    private void SaveData()
+    private static void SaveData()
     {
         SaveDataClass data = new SaveDataClass();
         data.unlockedLevels = unlockedLevels;
@@ -43,7 +43,7 @@ public class PlayerData : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    private void LoadData()
+    private static void LoadData()
     {
         if (PlayerPrefs.HasKey(SAVE_KEY))
         {
@@ -61,7 +61,7 @@ public class PlayerData : MonoBehaviour
         }
     }
 
-    public void UnlockLevel(int levelIndex)
+    public static void UnlockLevel(int levelIndex)
     {
         if (!unlockedLevels.Contains(levelIndex))
         {
@@ -70,23 +70,23 @@ public class PlayerData : MonoBehaviour
         }
     }
 
-    public bool IsLevelUnlocked(int levelIndex)
+    public static bool IsLevelUnlocked(int levelIndex)
     {
         return unlockedLevels.Contains(levelIndex);
     }
 
-    public void SetCurrentLevel(int levelIndex)
+    public static void SetCurrentLevel(int levelIndex)
     {
         currentLevelIndex = levelIndex;
         SaveData();
     }
 
-    public int GetCurrentLevel()
+    public static int GetCurrentLevel()
     {
         return currentLevelIndex;
     }
 
-    public List<int> GetUnlockedLevels()
+    public static List<int> GetUnlockedLevels()
     {
         return unlockedLevels;
     }
