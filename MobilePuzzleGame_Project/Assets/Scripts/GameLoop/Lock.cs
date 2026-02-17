@@ -16,6 +16,9 @@ public class Lock : MonoBehaviour
     // ----- Objects ----- \\
 
     [SerializeField] private SpriteRenderer _lockRenderer;
+    [SerializeField] private GameObject _visual;
+
+    private BoxCollider _collider;
 
     // ----- Others ----- \\
 
@@ -54,6 +57,8 @@ public class Lock : MonoBehaviour
     private void Awake()
     {
         SetSprite();
+
+        _collider = GetComponent<BoxCollider>();
     }
 
     private void OnValidate()
@@ -73,7 +78,8 @@ public class Lock : MonoBehaviour
 
     private void OnRestart()
     {
-        gameObject.SetActive(true);
+        _visual.SetActive(true);
+        _collider.enabled = true;
     }
 
     private void DelayFuncToShutUpUnity()
@@ -110,7 +116,8 @@ public class Lock : MonoBehaviour
         if (id != _lockId) return;
 
         //Destroy(gameObject);
-        gameObject.SetActive(false);
+        _visual.SetActive(false);
+        _collider.enabled = false;
     }
 
     // ----- Destructor ----- \\

@@ -49,6 +49,7 @@ MonoBehaviour:
   _sprites:
   - {fileID: -2289612080901148250, guid: 5488f0ddeec0e3f4ebb02a07bfe108cb, type: 3}
   - {fileID: 4607908200504297039, guid: b67cfe687f710a94f91a67b6d305f1dc, type: 3}
+  _visual: {fileID: 8874260319777088023}
   _keyId: 1
   _layerThatCanCollect:
     serializedVersion: 2
