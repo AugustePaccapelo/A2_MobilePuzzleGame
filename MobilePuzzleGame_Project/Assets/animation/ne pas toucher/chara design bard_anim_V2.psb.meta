@@ -1,0 +1,1354 @@
+fileFormatVersion: 2
+guid: 10f5f76ddb2884042a46f33817951e19
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: b2a9591990af98743ba3ff7cf1000886, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 1
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 775
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 461300e74aa0bdc44b31525fc5607756
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+    spritePosition: {x: 0, y: 0}
+  multiSpriteImportData: []
+  layeredSpriteImportData:
+  - name: crane
+    originalName: 
+    pivot: {x: 0.608328, y: 0.029301036}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 214
+      y: 274
+      width: 223
+      height: 198
+    spriteID: 58369fa79e4d75d4a8c7930845897609
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 214, y: 274}
+    spritePosition: {x: 739, y: 774}
+  - name: cou
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 214
+      y: 915
+      width: 48
+      height: 82
+    spriteID: 11f40a40683238049879b7f7b0936bf8
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 214, y: 915}
+    spritePosition: {x: 850, y: 737}
+  - name: biceps gauche
+    originalName: 
+    pivot: {x: 0.5998171, y: 0.7414833}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 670
+      width: 102
+      height: 195
+    spriteID: f907267e2ce91f64e8da7ca41ea28b60
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 670}
+    spritePosition: {x: 718, y: 578}
+  - name: 'avant bras gauche '
+    originalName: 
+    pivot: {x: 0.20630404, y: 0.77103454}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 873
+      width: 156
+      height: 108
+    spriteID: 52c42a87345590743a1e38451d07b42a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 873}
+    spritePosition: {x: 715, y: 524}
+  - name: main gauche
+    originalName: 
+    pivot: {x: 0.14955162, y: 0.57883906}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 214
+      y: 480
+      width: 138
+      height: 113
+    spriteID: 4bb78b8d4cbb5514bae703abf36e598e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 214, y: 480}
+    spritePosition: {x: 831, y: 489}
+  - name: instrument
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 395
+      height: 262
+    spriteID: 350cefd170616c644966e29d1d25563d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+    spritePosition: {x: 809, y: 472}
+  - name: corps
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 274
+      width: 202
+      height: 388
+    spriteID: baf9092d086d274458f81aecc5f57600
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 274}
+    spritePosition: {x: 752, y: 385}
+  - name: biceps gauche
+    originalName: 
+    pivot: {x: 0.22830303, y: 0.7806428}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 407
+      y: 4
+      width: 89
+      height: 195
+    spriteID: 173e6c3c97192c14595c7c46a4cbb380
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 407, y: 4}
+    spritePosition: {x: 915, y: 573}
+  - name: 'avant bras gauche '
+    originalName: 
+    pivot: {x: 0.17182395, y: 0.26137224}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 214
+      y: 601
+      width: 159
+      height: 96
+    spriteID: 2d23d3872f77eef4cbb54971c7259d48
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 214, y: 601}
+    spritePosition: {x: 947, y: 584}
+  - name: main gauche
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 360
+      y: 480
+      width: 132
+      height: 103
+    spriteID: 92983f24de6d88d459c01e878a1eb485
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 360, y: 480}
+    spritePosition: {x: 1071, y: 630}
+  - name: cuisse gauche
+    originalName: 
+    pivot: {x: 0.44466567, y: 0.84022206}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 214
+      y: 705
+      width: 69
+      height: 202
+    spriteID: 6adba0ebb79554845bc256859eb44e55
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 214, y: 705}
+    spritePosition: {x: 793, y: 272}
+  - name: avant jambe gauche
+    originalName: 
+    pivot: {x: 0.479136, y: 0.8379439}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 445
+      y: 274
+      width: 61
+      height: 177
+    spriteID: b4c85ae3fe8d5814d8e97770e83f65fc
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 445, y: 274}
+    spritePosition: {x: 796, y: 155}
+  - name: pied gauche
+    originalName: 
+    pivot: {x: 0.7090833, y: 0.7386284}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 368
+      y: 705
+      width: 140
+      height: 96
+    spriteID: efff7a23df33f95419eec42fc23d5104
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 368, y: 705}
+    spritePosition: {x: 724, y: 108}
+  - name: cuisse droite
+    originalName: 
+    pivot: {x: 0.4999991, y: 0.87172407}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 291
+      y: 705
+      width: 69
+      height: 202
+    spriteID: 00190628bd301404a939722fb0d5231c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 291, y: 705}
+    spritePosition: {x: 866, y: 272}
+  - name: avant jambe droite
+    originalName: 
+    pivot: {x: 0.45827273, y: 0.84513414}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 114
+      y: 670
+      width: 61
+      height: 177
+    spriteID: b7ff7d0a7ed373c4b946e6c2ba035aa7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 114, y: 670}
+    spritePosition: {x: 871, y: 155}
+  - name: pied droit
+    originalName: 
+    pivot: {x: 0.28182548, y: 0.76514244}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 368
+      y: 809
+      width: 140
+      height: 96
+    spriteID: dbca26d65d5880d49bfb5c9a5eafd548
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 368, y: 809}
+    spritePosition: {x: 864, y: 108}
+  spriteImportData: []
+  rigSpriteImportData: []
+  sharedRigSpriteImportData: []
+  mosaicSpriteImportData: []
+  sharedRigCharacterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    pivot: {x: 0, y: 0}
+    boneReadOnly: 0
+  characterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    pivot: {x: 0, y: 0}
+    boneReadOnly: 0
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: WebGL
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  mosaicLayers: 1
+  characterMode: 1
+  documentPivot: {x: 0, y: 0}
+  documentAlignment: 7
+  importHiddenLayers: 0
+  layerMappingOption: 2
+  generatePhysicsShape: 0
+  paperDollMode: 0
+  keepDupilcateSpriteName: 1
+  generateTileAssets: 0
+  tilePaletteCellLayout: 0
+  tilePaletteHexagonLayout: 0
+  tilePaletteCellSize: {x: 1, y: 1, z: 0}
+  tilePaletteCellSizing: 0
+  transparencySortMode: 0
+  transparencySortAxis: {x: 0, y: 0, z: 1}
+  tileTemplate: {instanceID: 0}
+  padding: 4
+  spriteSizeExpand: 0
+  skeletonAssetReferenceID: 
+  pipeline: {instanceID: 0}
+  pipelineVersion: 
+  spriteCategoryList:
+    categories: []
+  spritePackingTag: 
+  resliceFromLayer: 0
+  pSDLayerImportSetting: []
+  psdLayers:
+  - name: Groupe 2
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: e0759687bfc9fb041a5cd64fad4e62ff
+    layerID: 151
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: crane
+    spriteName: crane
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 58369fa79e4d75d4a8c7930845897609
+    layerID: 150
+    mosaicPosition: {x: 214, y: 274}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: cou
+    spriteName: cou
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 11f40a40683238049879b7f7b0936bf8
+    layerID: 149
+    mosaicPosition: {x: 214, y: 915}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: bras gauche
+    spriteName: 
+    isGroup: 1
+    parentIndex: 0
+    spriteID: aee314adf0b77754eb4f7a15ff784dd3
+    layerID: 148
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: biceps gauche
+    spriteName: biceps gauche
+    isGroup: 0
+    parentIndex: 3
+    spriteID: f907267e2ce91f64e8da7ca41ea28b60
+    layerID: 147
+    mosaicPosition: {x: 4, y: 670}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: 'avant bras gauche '
+    spriteName: 'avant bras gauche '
+    isGroup: 0
+    parentIndex: 3
+    spriteID: 52c42a87345590743a1e38451d07b42a
+    layerID: 146
+    mosaicPosition: {x: 4, y: 873}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: main gauche
+    spriteName: main gauche
+    isGroup: 0
+    parentIndex: 3
+    spriteID: 4bb78b8d4cbb5514bae703abf36e598e
+    layerID: 145
+    mosaicPosition: {x: 214, y: 480}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: instrument
+    spriteName: instrument
+    isGroup: 0
+    parentIndex: 0
+    spriteID: 350cefd170616c644966e29d1d25563d
+    layerID: 143
+    mosaicPosition: {x: 4, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: corps
+    spriteName: corps
+    isGroup: 0
+    parentIndex: 0
+    spriteID: baf9092d086d274458f81aecc5f57600
+    layerID: 142
+    mosaicPosition: {x: 4, y: 274}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: bras gauche
+    spriteName: 
+    isGroup: 1
+    parentIndex: 0
+    spriteID: ad6ca56116a4d784295b82aacc376072
+    layerID: 141
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: biceps gauche
+    spriteName: biceps gauche
+    isGroup: 0
+    parentIndex: 9
+    spriteID: 173e6c3c97192c14595c7c46a4cbb380
+    layerID: 140
+    mosaicPosition: {x: 407, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: 'avant bras gauche '
+    spriteName: 'avant bras gauche '
+    isGroup: 0
+    parentIndex: 9
+    spriteID: 2d23d3872f77eef4cbb54971c7259d48
+    layerID: 139
+    mosaicPosition: {x: 214, y: 601}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: main gauche
+    spriteName: main gauche
+    isGroup: 0
+    parentIndex: 9
+    spriteID: 92983f24de6d88d459c01e878a1eb485
+    layerID: 138
+    mosaicPosition: {x: 360, y: 480}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: jambes gauche
+    spriteName: 
+    isGroup: 1
+    parentIndex: 0
+    spriteID: 20b849b06f436fa49b1f2dbb0d71414d
+    layerID: 136
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: cuisse gauche
+    spriteName: cuisse gauche
+    isGroup: 0
+    parentIndex: 13
+    spriteID: 6adba0ebb79554845bc256859eb44e55
+    layerID: 135
+    mosaicPosition: {x: 214, y: 705}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: avant jambe gauche
+    spriteName: avant jambe gauche
+    isGroup: 0
+    parentIndex: 13
+    spriteID: b4c85ae3fe8d5814d8e97770e83f65fc
+    layerID: 134
+    mosaicPosition: {x: 445, y: 274}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: pied gauche
+    spriteName: pied gauche
+    isGroup: 0
+    parentIndex: 13
+    spriteID: efff7a23df33f95419eec42fc23d5104
+    layerID: 133
+    mosaicPosition: {x: 368, y: 705}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: jambes droite
+    spriteName: 
+    isGroup: 1
+    parentIndex: 0
+    spriteID: d7214c0fb70a8c540b28d8150ff22d50
+    layerID: 131
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: cuisse droite
+    spriteName: cuisse droite
+    isGroup: 0
+    parentIndex: 17
+    spriteID: 00190628bd301404a939722fb0d5231c
+    layerID: 130
+    mosaicPosition: {x: 291, y: 705}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: avant jambe droite
+    spriteName: avant jambe droite
+    isGroup: 0
+    parentIndex: 17
+    spriteID: b7ff7d0a7ed373c4b946e6c2ba035aa7
+    layerID: 129
+    mosaicPosition: {x: 114, y: 670}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: pied droit
+    spriteName: pied droit
+    isGroup: 0
+    parentIndex: 17
+    spriteID: dbca26d65d5880d49bfb5c9a5eafd548
+    layerID: 128
+    mosaicPosition: {x: 368, y: 809}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Groupe 2
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: 72a1672579ef273488ff1b22c463833d
+    layerID: 125
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: crane
+    spriteName: 
+    isGroup: 0
+    parentIndex: 21
+    spriteID: d3e1e6d7935486349a5123bfd20554fa
+    layerID: 113
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: cou
+    spriteName: 
+    isGroup: 0
+    parentIndex: 21
+    spriteID: 96b40dc59403f9c4ab83d662dd550e7d
+    layerID: 111
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: bras gauche
+    spriteName: 
+    isGroup: 1
+    parentIndex: 21
+    spriteID: 6530642f073bf994593207165aa7cdd0
+    layerID: 110
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: biceps gauche
+    spriteName: 
+    isGroup: 0
+    parentIndex: 24
+    spriteID: 5381cb0ae12b702468c4e93cacdf4444
+    layerID: 109
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: 'avant bras gauche '
+    spriteName: 
+    isGroup: 0
+    parentIndex: 24
+    spriteID: 19c8d74c38fc62b49b5bedb98ee8c630
+    layerID: 108
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: main gauche
+    spriteName: 
+    isGroup: 0
+    parentIndex: 24
+    spriteID: b27f92f89628d5b439dadfa90ab6f178
+    layerID: 107
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: instrument
+    spriteName: 
+    isGroup: 0
+    parentIndex: 21
+    spriteID: bc27212ea6536cb49a2e8aea6ce24122
+    layerID: 99
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: corps
+    spriteName: 
+    isGroup: 0
+    parentIndex: 21
+    spriteID: e322198c07b441345b81815fc7fd0e1f
+    layerID: 97
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: bras gauche
+    spriteName: 
+    isGroup: 1
+    parentIndex: 21
+    spriteID: 379139cb4c2f6dd45947d1a3ca0ff857
+    layerID: 96
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: biceps gauche
+    spriteName: 
+    isGroup: 0
+    parentIndex: 30
+    spriteID: d346e18e4a6df71428b4caa6b9768e9c
+    layerID: 95
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: 'avant bras gauche '
+    spriteName: 
+    isGroup: 0
+    parentIndex: 30
+    spriteID: bc1a20f1eba996e42ab271f545000526
+    layerID: 94
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: main gauche
+    spriteName: 
+    isGroup: 0
+    parentIndex: 30
+    spriteID: 5f9ed8e2f6152cc4f84e5bae0debb4b0
+    layerID: 93
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: jambes gauche
+    spriteName: 
+    isGroup: 1
+    parentIndex: 21
+    spriteID: 79d1d049483b8b64fb1d637b9f234722
+    layerID: 91
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: cuisse gauche
+    spriteName: 
+    isGroup: 0
+    parentIndex: 34
+    spriteID: d37f149d21da98149855d0171d7497b1
+    layerID: 90
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: avant jambe gauche
+    spriteName: 
+    isGroup: 0
+    parentIndex: 34
+    spriteID: ba691a6aa3b0d8f4fa78a71ef2b5b6e7
+    layerID: 89
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: pied gauche
+    spriteName: 
+    isGroup: 0
+    parentIndex: 34
+    spriteID: 52ab2e2f6e5f5be4a807abfb6ca18311
+    layerID: 88
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: jambes droite
+    spriteName: 
+    isGroup: 1
+    parentIndex: 21
+    spriteID: f87cb69a3a37071419bf074beecb3d3c
+    layerID: 86
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: cuisse droite
+    spriteName: 
+    isGroup: 0
+    parentIndex: 38
+    spriteID: e393dee0f5a2ad34caaecfef103baab1
+    layerID: 85
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: avant jambe droite
+    spriteName: 
+    isGroup: 0
+    parentIndex: 38
+    spriteID: 4338f79aad353664cba48a531c6a8d80
+    layerID: 84
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: pied droit
+    spriteName: 
+    isGroup: 0
+    parentIndex: 38
+    spriteID: 3ca9d3efe669bcb4dbda283c66f624b1
+    layerID: 83
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Groupe 1
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: 381c8734b9afd8c4186db3fdb7e47232
+    layerID: 78
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: tete
+    spriteName: 
+    isGroup: 1
+    parentIndex: 42
+    spriteID: 2ca2a12039b32354aa20a5eac55f006e
+    layerID: 50
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: chapeau
+    spriteName: 
+    isGroup: 0
+    parentIndex: 43
+    spriteID: 287b3e89aac0ea84284a91814156efee
+    layerID: 15
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: cheveux
+    spriteName: 
+    isGroup: 0
+    parentIndex: 43
+    spriteID: a205ee593d0b6c547985ff397829a7d3
+    layerID: 14
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: chapeau
+    spriteName: 
+    isGroup: 0
+    parentIndex: 43
+    spriteID: b14fb1a6a8cbb94478ee5e59db99ef12
+    layerID: 76
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: bouche
+    spriteName: 
+    isGroup: 1
+    parentIndex: 43
+    spriteID: eadfb415598f7ac48be8ae452ce1a2fb
+    layerID: 67
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: bouche sourire
+    spriteName: 
+    isGroup: 0
+    parentIndex: 47
+    spriteID: 84fa3ca51ed1b3c49b8cf35485b12b3d
+    layerID: 69
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: bouche neutre
+    spriteName: 
+    isGroup: 0
+    parentIndex: 47
+    spriteID: 698b41d118d45c6479c6abf2b98280c7
+    layerID: 13
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: nez
+    spriteName: 
+    isGroup: 0
+    parentIndex: 43
+    spriteID: 6cd365171ee4217488f4f27376183b98
+    layerID: 12
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: sourcils
+    spriteName: 
+    isGroup: 0
+    parentIndex: 43
+    spriteID: 70295f8225a1c154482604f6220edce3
+    layerID: 11
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: oeils
+    spriteName: 
+    isGroup: 0
+    parentIndex: 43
+    spriteID: dee7a4cf34626a84893ae24e401407a9
+    layerID: 9
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: crane
+    spriteName: 
+    isGroup: 0
+    parentIndex: 43
+    spriteID: 1047427643d69b341a2ba6c4c2755c43
+    layerID: 7
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: cou
+    spriteName: 
+    isGroup: 0
+    parentIndex: 42
+    spriteID: 80c48d5250b4cfe4fba30fe7ff985551
+    layerID: 5
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: bras gauche
+    spriteName: 
+    isGroup: 1
+    parentIndex: 42
+    spriteID: 6014be459357d5f46b892182a4655cf7
+    layerID: 43
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: biceps gauche
+    spriteName: 
+    isGroup: 0
+    parentIndex: 55
+    spriteID: 8de9cbd1184da884a9e27e0c47a3060d
+    layerID: 42
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: 'avant bras gauche '
+    spriteName: 
+    isGroup: 0
+    parentIndex: 55
+    spriteID: 3c4eebcb78f98de4886c209960016ea6
+    layerID: 41
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: main gauche
+    spriteName: 
+    isGroup: 0
+    parentIndex: 55
+    spriteID: 6ec42bbcf20fa9a4194714972456c764
+    layerID: 40
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: instrument
+    spriteName: 
+    isGroup: 1
+    parentIndex: 42
+    spriteID: f311c94cc1a184f4ba044bd1f6916053
+    layerID: 29
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Calque 15
+    spriteName: 
+    isGroup: 0
+    parentIndex: 59
+    spriteID: e957167766cd43d48ad9cffd86588080
+    layerID: 26
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Ellipse 3
+    spriteName: 
+    isGroup: 0
+    parentIndex: 59
+    spriteID: ea3b5cf4cc426404c9d47067cb4b6283
+    layerID: 28
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Calque 13
+    spriteName: 
+    isGroup: 0
+    parentIndex: 59
+    spriteID: 6d3bbf330716bd44c894e10c4ff422cd
+    layerID: 19
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Calque 14
+    spriteName: 
+    isGroup: 0
+    parentIndex: 59
+    spriteID: ca109e918d072f34b817931ba98e357f
+    layerID: 25
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Rectangle 1
+    spriteName: 
+    isGroup: 0
+    parentIndex: 59
+    spriteID: 989cef6858fcaf84c8bc60dae014c102
+    layerID: 24
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Ellipse 2
+    spriteName: 
+    isGroup: 0
+    parentIndex: 59
+    spriteID: d8012b8fd8c44424bb09a5f9542a6607
+    layerID: 22
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: corps
+    spriteName: 
+    isGroup: 0
+    parentIndex: 42
+    spriteID: cfb4b1cb5ca39364cb274179ed34a78a
+    layerID: 4
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: bras gauche
+    spriteName: 
+    isGroup: 1
+    parentIndex: 42
+    spriteID: 3bb9734b34879de4b88578c9ced314d7
+    layerID: 75
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: biceps gauche
+    spriteName: 
+    isGroup: 0
+    parentIndex: 67
+    spriteID: b631b9c705b0dcd43984c3692e2af2ab
+    layerID: 74
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: 'avant bras gauche '
+    spriteName: 
+    isGroup: 0
+    parentIndex: 67
+    spriteID: 6997a945ea9b23a44911348c930f0782
+    layerID: 73
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: main gauche
+    spriteName: 
+    isGroup: 0
+    parentIndex: 67
+    spriteID: bd5c231d8759cbf45a66c843a1158cc0
+    layerID: 72
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: jambes gauche
+    spriteName: 
+    isGroup: 1
+    parentIndex: 42
+    spriteID: f2d6d3cd557c6bc4dad84b93ed119399
+    layerID: 65
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: cuisse gauche
+    spriteName: 
+    isGroup: 0
+    parentIndex: 71
+    spriteID: 9292ce1e420767f4a83f975b1d9d28f1
+    layerID: 64
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: avant jambe gauche
+    spriteName: 
+    isGroup: 0
+    parentIndex: 71
+    spriteID: 2f88e780ea922c04fb2e2289eeadbbcb
+    layerID: 63
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: pied gauche
+    spriteName: 
+    isGroup: 0
+    parentIndex: 71
+    spriteID: b4da7752a7fbd0a46856013ec0506095
+    layerID: 62
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: jambes droite
+    spriteName: 
+    isGroup: 1
+    parentIndex: 42
+    spriteID: b074e0073547c6c4491d79e05baded28
+    layerID: 55
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: cuisse droite
+    spriteName: 
+    isGroup: 0
+    parentIndex: 75
+    spriteID: 50abc15e71fb66b488f80c345cd3496e
+    layerID: 52
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: avant jambe droite
+    spriteName: 
+    isGroup: 0
+    parentIndex: 75
+    spriteID: eaba26e24564e1f47a406a8ee982a00e
+    layerID: 57
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: pied droit
+    spriteName: 
+    isGroup: 0
+    parentIndex: 75
+    spriteID: d20f801b9a5228f4a9a345cca76dc803
+    layerID: 60
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: istockphoto-1159545969-612x612 (3)
+    spriteName: 
+    isGroup: 0
+    parentIndex: 42
+    spriteID: 087f76534b5890a4aaa98d80fcf3de47
+    layerID: 3
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: Calque 1
+    spriteName: 
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 768262a87c2511546a52cba7a1a7eb55
+    layerID: 2
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  mosaicPSDLayers: []
+  rigPSDLayers: []
+  sharedRigPSDLayers: []
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  spriteSizeExpandChanged: 0
+  generateGOHierarchy: 0
+  textureAssetName: 
+  prefabAssetName: 
+  spriteLibAssetName: 
+  skeletonAssetName: 
+  secondarySpriteTextures: []

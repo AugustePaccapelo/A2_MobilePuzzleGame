@@ -61,7 +61,7 @@ public class Portal : MonoBehaviour
 
                 if (ballDirectionRotated.magnitude < 3f)
                 {
-                    Debug.Log("Boost");
+                    
                     ballDirectionRotated *= 2f;
                 }
                 collision.GetComponent<Rigidbody2D>().linearVelocity = ballDirectionRotated;
