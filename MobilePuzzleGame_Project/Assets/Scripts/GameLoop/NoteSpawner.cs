@@ -147,7 +147,7 @@ public class NoteSpawner : MonoBehaviour
 
     private void OnGameStart()
     {
-        _canSpawnNote = true;
+        //_canSpawnNote = true;
     }
 
     private void SpawnNote()
