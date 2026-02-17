@@ -78,16 +78,24 @@ public class GooglePlayManager : MonoBehaviour
     {
         _isLoged = false;
 
-        // Google play (je crois)
-        //PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
+#if !UNITY_EDITOR
+            // Enfaite google play fait tous pour nous pas besoin de code
+            // Par contre jsp comment tu peux confirmer que tu est log
 
-        // Unity
-        #if !UNITY_EDITOR
-            PlayGamesPlatform.Activate();
-            Social.localUser.Authenticate(ProcessAuthentication);
+            // Google play (je crois)
+            //PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
+            //if (!_isLoged)
+            //{
+            //    Application.Quit();
+            //} 
+            // Unity
+            //PlayGamesPlatform.Activate();
+            //Social.localUser.Authenticate(ProcessAuthentication);
     
             Social.LoadAchievements(LoadAchievements);
-        #endif
+
+            _isLoged = true;
+#endif
     }
 
     void Update() { }
@@ -149,6 +157,7 @@ public class GooglePlayManager : MonoBehaviour
 
         foreach (IAchievement achievement in achievements)
         {
+            Social.ReportProgress(achievement.id, 0.0f, (bool _) => { });
             _mapAchivementsState.Add(achievement.id, achievement.completed);
         }
     }
