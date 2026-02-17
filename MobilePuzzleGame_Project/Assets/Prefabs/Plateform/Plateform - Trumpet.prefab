@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WindGenerator
   _numTempoActivated: 2
-  _force: 10
+  _force: 30.4
   _perpandicularFriction: 5
 --- !u!4 &5729127233595534741 stripped
 Transform:
