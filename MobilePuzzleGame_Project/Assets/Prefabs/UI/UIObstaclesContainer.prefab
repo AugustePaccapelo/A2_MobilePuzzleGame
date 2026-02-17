@@ -591,8 +591,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8700064761383762377, guid: 3565866f416ac6443ac92f87d6fec2a9, type: 3}
-      propertyPath: m_Text
-      value: 0x
+      propertyPath: m_FontData.m_FontSize
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
