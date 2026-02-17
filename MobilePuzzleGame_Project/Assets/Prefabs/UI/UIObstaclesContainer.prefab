@@ -578,6 +578,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIObstaclePlacer
       objectReference: {fileID: 0}
+    - target: {fileID: 1770866972985117876, guid: 3565866f416ac6443ac92f87d6fec2a9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3770002399256406600, guid: 3565866f416ac6443ac92f87d6fec2a9, type: 3}
       propertyPath: _obstacle
       value: 3

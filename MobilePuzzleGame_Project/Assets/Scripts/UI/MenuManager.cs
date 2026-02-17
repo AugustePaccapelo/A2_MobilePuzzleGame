@@ -78,6 +78,6 @@ public class MenuManager : MonoBehaviour
     public void LeaveLevel()
     {
         Time.timeScale = 1f;
-        LevelManager.Instance.BackToMenu();
+        SceneManager.LoadScene("SelectNiveau");
     }
 }
