@@ -113,15 +113,24 @@ public class CorThrowing : MonoBehaviour
         ball.transform.position = _exitPoint.position;
         Rigidbody2D rb = ball.GetComponent<Rigidbody2D>();
 
-        float angleInRadians = (throwAngle + _parent.eulerAngles.z) * Mathf.Deg2Rad;
+        float angleInRadians;
+        
+        if (transform.localScale.x < 0)
+        {
+            angleInRadians = (throwAngle + _parent.eulerAngles.z) * Mathf.Deg2Rad + Mathf.PI / 2;
+        }
+        else
+        {
+            angleInRadians = (throwAngle + _parent.eulerAngles.z) * Mathf.Deg2Rad;
+        }
         Vector2 throwDirection = new Vector2(Mathf.Cos(angleInRadians), Mathf.Sin(angleInRadians)).normalized;
 
-        if (transform.localScale.x == -1)
-        {
-            throwDirection = Portal.RotateVector2(throwDirection, -_parent.eulerAngles.z);
-            throwDirection = new Vector2(-throwDirection.x, throwDirection.y);
-            throwDirection = Portal.RotateVector2(throwDirection, _parent.eulerAngles.z);
-        }
+        //if (transform.localScale.x == -1)
+        //{
+        //    throwDirection = Portal.RotateVector2(throwDirection, -_parent.eulerAngles.z);
+        //    throwDirection = new Vector2(-throwDirection.x, throwDirection.y);
+        //    throwDirection = Portal.RotateVector2(throwDirection, _parent.eulerAngles.z);
+        //}
         
         rb.linearVelocity = throwDirection * throwForce;
 
