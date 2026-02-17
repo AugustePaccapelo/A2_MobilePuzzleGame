@@ -47,7 +47,7 @@ public class PortalAutoPosition : MonoBehaviour
             //On tourne la direction à 45 degré pour avoir les 8 raycast autour du portail
             _direction = Portal.RotateVector2(_direction, 45 * Mathf.Deg2Rad);
 
-            Debug.DrawLine(transform.position, transform.position + (Vector3)_direction);
+            
         }
 
         transform.position = _closestPosition + (transform.position - _closestPosition).normalized * GetComponentInChildren<SpriteRenderer>().transform.localScale.x;
