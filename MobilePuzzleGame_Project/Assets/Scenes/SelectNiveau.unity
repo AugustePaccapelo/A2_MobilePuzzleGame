@@ -215,6 +215,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6743929937106830872, guid: 39a145e957bb5ab4ca69ca96e17bf814, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.6267708
+      objectReference: {fileID: 0}
+    - target: {fileID: 6743929937106830872, guid: 39a145e957bb5ab4ca69ca96e17bf814, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.6267708
+      objectReference: {fileID: 0}
+    - target: {fileID: 6743929937106830872, guid: 39a145e957bb5ab4ca69ca96e17bf814, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 451.90002
+      objectReference: {fileID: 0}
+    - target: {fileID: 6743929937106830872, guid: 39a145e957bb5ab4ca69ca96e17bf814, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 229
+      objectReference: {fileID: 0}
     - target: {fileID: 7953446704897947122, guid: 39a145e957bb5ab4ca69ca96e17bf814, type: 3}
       propertyPath: m_Name
       value: EndLvlPanel
