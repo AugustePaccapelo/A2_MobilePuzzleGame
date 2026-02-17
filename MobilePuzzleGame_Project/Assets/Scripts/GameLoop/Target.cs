@@ -35,6 +35,9 @@ public class Target : MonoBehaviour
     }
     [SerializeField] private LayerMask _layerToDestroy;
 
+    private static int _numTargets = 0;
+    private static int _numTargetsFinished = 0;
+
     // ---------- FUNCTIONS ---------- \\
 
     // ----- Buil-in ----- \\
@@ -55,6 +58,9 @@ public class Target : MonoBehaviour
     {
         Id = _id;
         SetSprite();
+
+        _numTargets++;
+        _numTargetsFinished = 0;
     }
 
     private void Start() { }
@@ -79,13 +85,16 @@ public class Target : MonoBehaviour
 
         if (note.Id == _id)
         {
-            Debug.Log("Game Won !");
-            GameManager.Instance.FinishLevel();
+            _numTargetsFinished++;
+            if (_numTargetsFinished == _numTargets)
+            {
+                GameManager.Instance.FinishLevel();
+            }
         }
         else
         {
-            Debug.Log("Game lost !");
             GameManager.Instance.RestartGame();
+            _numTargetsFinished = 0;
         }
     }
 
@@ -122,5 +131,10 @@ public class Target : MonoBehaviour
 
     // ----- Destructor ----- \\
 
-    private void OnDestroy() { }
+    private void OnDestroy()
+    {
+        _numTargets--;
+        if (_numTargets < 0) _numTargets = 0;
+        _numTargetsFinished = 0;
+    }
 }

@@ -138,6 +138,10 @@ public class WindGenerator : MonoBehaviour
         Rigidbody2D noteRB = collision.GetComponent<Rigidbody2D>();
 
         Vector3 windDir = transform.right.normalized;
+        if (transform.localScale.x < 0)
+        {
+            windDir *= -1;
+        }
         Vector3 windVelo = windDir * _force;
 
         noteRB.AddForce(windVelo);
