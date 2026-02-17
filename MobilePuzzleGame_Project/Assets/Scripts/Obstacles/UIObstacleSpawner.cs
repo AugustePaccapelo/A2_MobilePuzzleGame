@@ -178,9 +178,9 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     private GameObject GetObstacleFromPool()
     {
-        if (!_obstaclesPool.ContainsKey(_obstacle)) return null;
-        if (_obstaclesPool[_obstacle] == null) return null;
-        if (_obstaclesPool[_obstacle].Count == 0) return null;
+        if (!_obstaclesPool.ContainsKey(_obstacle)) return Instantiate(_prefabToSpawn, _obstaclesContainer);
+        if (_obstaclesPool[_obstacle] == null) return Instantiate(_prefabToSpawn, _obstaclesContainer);
+        if (_obstaclesPool[_obstacle].Count == 0) return Instantiate(_prefabToSpawn, _obstaclesContainer);
         
         GameObject go = _obstaclesPool[_obstacle].Pop();
         go.SetActive(true);
