@@ -175,6 +175,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
             //    Select();
             //    return;
             //}
+            GooglePlayManager.ObstaclePlaced(_obstacleType);
             Select();
         }
     }
@@ -301,7 +302,6 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
         if (_currentFinger.currentTouch.phase == UnityEngine.InputSystem.TouchPhase.Ended)
         {
-            
             _currentFinger = null;
             return;
         }

@@ -92,8 +92,15 @@ public class InputManager : MonoBehaviour
         
         if (!CallUITouchedDown(uiRaycastResults))
         {
-            RaycastHit2D physicRaycastResult = PhysiscRaycast(obj.screenPosition);
-            CallPhysicsTouchedDown(physicRaycastResult, obj.screenPosition);
+            RaycastHit2D[] physicRaycastResult = PhysiscRaycast(obj.screenPosition);
+            foreach (RaycastHit2D result in physicRaycastResult)
+            {
+                if (CallPhysicsTouchedDown(result, obj.screenPosition))
+                {
+                    break;
+                }
+            }
+            
         }
 
         onFingerDown?.Invoke(obj.screenPosition);
@@ -110,8 +117,14 @@ public class InputManager : MonoBehaviour
 
         if (!CallUITouchedUp(uiRaycastResults))
         {
-            RaycastHit2D physicRaycastResult = PhysiscRaycast(obj.screenPosition);
-            CallPhysicsTouchedUp(physicRaycastResult, obj.screenPosition);
+            RaycastHit2D[] physicRaycastResult = PhysiscRaycast(obj.screenPosition);
+            foreach (RaycastHit2D result in  physicRaycastResult)
+            {
+                if (CallPhysicsTouchedUp(result, obj.screenPosition))
+                {
+                    break;
+                }
+            }
         }
 
         onFingerUp?.Invoke(obj.screenPosition);
@@ -119,12 +132,12 @@ public class InputManager : MonoBehaviour
 
     // Raycasts
 
-    private RaycastHit2D PhysiscRaycast(Vector2 screenPos)
+    private RaycastHit2D[] PhysiscRaycast(Vector2 screenPos)
     {
         Ray ray = Camera.main.ScreenPointToRay(screenPos);
-        RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
+        RaycastHit2D[] hits = Physics2D.GetRayIntersectionAll(ray);
 
-        return hit;
+        return hits;
     }
 
     private List<RaycastResult> UIRaycast(Vector2 screenPos)
