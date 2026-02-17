@@ -650,6 +650,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MenuManager
   creditsPanel: {fileID: 1602883006}
   pauseMenu: {fileID: 1649571034}
+  BoutonPause: {fileID: 0}
 --- !u!4 &777644007
 Transform:
   m_ObjectHideFlags: 0
@@ -1339,9 +1340,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Parametre
-
-'
+  m_text: "Param\xE8tres"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: de112b94e309a1c4b8a024c3af976a97, type: 2}
   m_sharedMaterial: {fileID: -8664134500384564278, guid: de112b94e309a1c4b8a024c3af976a97, type: 2}
