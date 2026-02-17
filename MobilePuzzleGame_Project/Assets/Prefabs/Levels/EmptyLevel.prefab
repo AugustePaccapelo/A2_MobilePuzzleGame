@@ -2124,6 +2124,10 @@ PrefabInstance:
       propertyPath: _obstaclesContainer
       value: 
       objectReference: {fileID: 3645666192385374770}
+    - target: {fileID: 7058812969645516387, guid: 0f9f067562dee14479cbff371a0a2470, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 270
+      objectReference: {fileID: 0}
     - target: {fileID: 7718985223624012211, guid: 0f9f067562dee14479cbff371a0a2470, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2171,6 +2175,10 @@ PrefabInstance:
     - target: {fileID: 7732801797489842272, guid: 0f9f067562dee14479cbff371a0a2470, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7874595152517602997, guid: 0f9f067562dee14479cbff371a0a2470, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 270
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4045,7 +4053,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7953446704897947122, guid: 39a145e957bb5ab4ca69ca96e17bf814, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
