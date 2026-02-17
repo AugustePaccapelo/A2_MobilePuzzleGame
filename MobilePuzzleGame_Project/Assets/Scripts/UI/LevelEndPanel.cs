@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
-
 public class LevelEndPanel : MonoBehaviour
 {
     public static LevelEndPanel Instance { get; private set; }
@@ -52,9 +51,7 @@ public class LevelEndPanel : MonoBehaviour
     public void OnMenuClicked()
     {
         Time.timeScale = 1f;
-        gameObject.SetActive(false);
-        GameManager.Instance.QuitLevel();
-        LevelManager.Instance.BackToMenu();
+        SceneManager.LoadScene("SelectNiveau");
         Debug.Log("Retour au menu !");
     }
 
