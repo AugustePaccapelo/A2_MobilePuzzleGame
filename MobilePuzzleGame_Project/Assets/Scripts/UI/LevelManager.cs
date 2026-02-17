@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
     private List<Button> levelButtons = new List<Button>();
     public GameObject UIMenu;
     public ScrollRect scrollbar;
+    public GameObject PrefabToLoad;
 
     static private string currentLevelPrefabName;
     static private GameObject currentLevelInstance;
@@ -92,6 +93,7 @@ public void LoadLevelByName(string prefabName)
         if (currentLevelInstance != null)
             Destroy(currentLevelInstance);
 
+        //currentLevelInstance = Instantiate(levelPrefab, PrefabToLoad.transform, false);
         currentLevelInstance = Instantiate(levelPrefab);
         ScaleLevel(currentLevelInstance);
         UIMenu.SetActive(false);
@@ -156,7 +158,7 @@ public void LoadLevelByIndex(int levelIndex)
                     Destroy(currentLevelInstance);
                 }
 
-                currentLevelInstance = Instantiate(levelPrefab);
+                currentLevelInstance = Instantiate(levelPrefab, Instance.PrefabToLoad.transform, false);
                 ScaleLevel(currentLevelInstance);
             }
         }
@@ -178,15 +180,21 @@ public void LoadLevelByIndex(int levelIndex)
         float screenShort = Mathf.Min(Screen.width, Screen.height);
         float screenLong = Mathf.Max(Screen.width, Screen.height);
 
+        float screenAspect = screenLong / screenShort;
+
         float baseShort = Mathf.Min(_baseResolution.x, _baseResolution.y);
         float baseLong = Mathf.Max(_baseResolution.x, _baseResolution.y);
 
-        float ratioX = screenShort / baseShort;
-        float ratioY = screenLong / baseLong;
+        float baseAspect = baseLong / baseShort;
 
-        float scale = Mathf.Lerp(ratioX, ratioY, 0.7f);
+        //float ratioX = screenShort / baseShort;
+        //float ratioY = screenLong / baseLong;
 
-        scale = Mathf.Min(scale, 1f);
+        //float scale = Mathf.Lerp(ratioX, ratioY, 0.7f);
+
+        //scale = Mathf.Min(scale, 1f);
+
+        float scale = baseAspect / screenAspect;
 
         level.transform.localScale = Vector3.one * scale;
     }
