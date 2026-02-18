@@ -143,17 +143,17 @@ public class GameManager : MonoBehaviour
         _currentGameState = GameState.EndingLevel;
         _currentSate = GameEnding;
         _hasGameStarted = false;
+
+        int currentLevel = PlayerData.GetCurrentLevel();
+        PlayerData.UnlockLevel(currentLevel + 1);
+
+        if (LevelEndPanel.Instance != null)
+            LevelEndPanel.Instance.ShowPanel(currentLevel);
     }
 
     private void GameEnding()
     {
-        Debug.Log("Game endend !");
-        
-        int currentLevel = PlayerData.GetCurrentLevel();
-        PlayerData.UnlockLevel(currentLevel + 1);
-        
-        if (LevelEndPanel.Instance != null)
-            LevelEndPanel.Instance.ShowPanel(currentLevel);
+
     }
 
     // ----- Destructor ----- \\
