@@ -50,8 +50,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NoteSpawner
   _sprites:
-  - {fileID: 6193163428927533002}
   - {fileID: 6452882453920361446}
+  - {fileID: 6193163428927533002}
   _spawnPos: {fileID: 2063088868099052705}
   _notePrefab: {fileID: 526553371341305797, guid: d1169d383ba6ea841b211150a6ae46f6, type: 3}
   _noteContainer: {fileID: 0}
@@ -259,7 +259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6426548824083601575, guid: beb6ae35b46c8ae48bcfd74c2f7fd4cf, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7971624494935146961, guid: beb6ae35b46c8ae48bcfd74c2f7fd4cf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -330,7 +330,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4728157987915538318, guid: 717f9ba4fdf9bf5439e467327a907240, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7756511510923268209, guid: 717f9ba4fdf9bf5439e467327a907240, type: 3}
       propertyPath: m_LocalPosition.x
