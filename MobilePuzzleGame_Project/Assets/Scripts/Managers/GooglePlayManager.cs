@@ -83,7 +83,7 @@ public class GooglePlayManager : MonoBehaviour
             // Par contre jsp comment tu peux confirmer que tu est log
 
             // Google play (je crois)
-            PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
+            //PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
             //if (!_isLoged)
             //{
             //    Application.Quit();
@@ -147,7 +147,7 @@ public class GooglePlayManager : MonoBehaviour
 
         if (!IsAchievementFinished(AchivementEnum.MaisArrete))
         {
-            // PlayGamesPlatform.Instance.IncrementAchievement(_mapAchievmentIds[AchivementEnum.MaisArrete], 1, (bool success) => { });
+            PlayGamesPlatform.Instance.IncrementAchievement(_mapAchievmentIds[AchivementEnum.MaisArrete], 1, (bool success) => { });
         }
     }
 
