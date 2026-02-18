@@ -165,7 +165,9 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
         _currentFinger = fingerInput.finger;
         _currentFingerState = FingerState.Moving;
+        SavePortal();
         Select();
+        TryLinkPortal();
     }
 
     public void OnTouchedUp(ToucheData touchData)
@@ -179,7 +181,9 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
             //}
             GooglePlayManager.ObstaclePlaced(_obstacleType);
             _tempoDecoder.enabled = true;
-            //Select();
+            SavePortal();
+            Select();
+            TryLinkPortal();
         }
     }
 
@@ -480,19 +484,38 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         _rotationIndicator.position = (Vector2)transform.position + Polar2Cart(_indicatorStartAngle, _indicatorDistance);
     }
 
-    public void Select()
+    Portal newExitPortal = null;
+
+    private void SavePortal()
     {
-        Portal newExitPortal = default;
         if (_hasAnObstacleSelected)
         {
-            
             if (_currentObstacleSelected.GetComponentInChildren<Portal>() != null)
             {
-                
                 newExitPortal = _currentObstacleSelected.GetComponentInChildren<Portal>();
             }
         }
+    }
 
+    private void TryLinkPortal()
+    {
+        if (newExitPortal != null)
+        {
+            if (_currentObstacleSelected.GetComponentInChildren<Portal>() != null)
+            {
+
+                _currentObstacleSelected.GetComponentInChildren<Portal>().SetExitPortal(newExitPortal);
+                newExitPortal.SetExitPortal(_currentObstacleSelected.GetComponentInChildren<Portal>());
+
+                //_hasAnObstacleSelected = false;
+            }
+        }
+
+        newExitPortal = null;
+    }
+
+    public void Select()
+    {
         UnSelectCurrent();
 
         _hasAnObstacleSelected = true;
@@ -504,18 +527,6 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         _rotationHandle.onFingerDown += OnRotationHandleTouched;
 
         onObstacleSelected?.Invoke();
-
-        if (newExitPortal != null)
-        {
-            if (_currentObstacleSelected.GetComponentInChildren<Portal>() != null)
-            {
-                
-                _currentObstacleSelected.GetComponentInChildren<Portal>().SetExitPortal(newExitPortal);
-                newExitPortal.SetExitPortal(_currentObstacleSelected.GetComponentInChildren<Portal>());
-
-                _hasAnObstacleSelected = false;
-            }
-        }
     }
 
     private void UnSelect()
