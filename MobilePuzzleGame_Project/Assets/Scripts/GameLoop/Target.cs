@@ -11,11 +11,9 @@ public class Target : MonoBehaviour
 
     // ----- Prefabs & Assets ----- \\
 
-    [SerializeField] private List<Sprite> _sprites = new();
+    [SerializeField] private List<GameObject> _sprites = new();
 
     // ----- Objects ----- \\
-
-    [SerializeField] private SpriteRenderer _renderer;
 
     // ----- Events ----- \\
     public event Action OnWin;
@@ -59,6 +57,7 @@ public class Target : MonoBehaviour
     private void Awake()
     {
         Id = _id;
+        ChangeVisual();
     }
 
     private void Start() { }
@@ -104,6 +103,16 @@ public class Target : MonoBehaviour
         #endif
         if (this == null || gameObject == null) return;
 
+        ChangeVisual();
+    }
+
+    private void ChangeVisual()
+    {
+        int length = _sprites.Count;
+        for (int i = 0; i < length; i++)
+        {
+            _sprites[i].gameObject.SetActive(Id == i + 1);
+        }
     }
 
     // ----- Destructor ----- \\
