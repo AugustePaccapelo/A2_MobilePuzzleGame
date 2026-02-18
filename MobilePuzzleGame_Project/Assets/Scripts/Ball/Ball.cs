@@ -29,9 +29,11 @@ public class Ball : MonoBehaviour
             {
                 Debug.LogWarning(name + ": id cannot be less than 1.");
                 _id = 1;
+                SetSprite();
                 return;
             }
             _id = value;
+            SetSprite();
         }
     }
 
