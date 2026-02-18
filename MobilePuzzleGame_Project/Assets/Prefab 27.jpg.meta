@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 18ca8eb75d2786c43846d65b80aa6d8a
+guid: dea621d2f747d3843bbf7c94b1219203
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 378438633045191563
-    second: BasAccordeon_0
+      213: 6627722603800206540
+    second: Prefab 27_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 300
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BasAccordeon_0
+      name: Prefab 27_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 216
-        height: 56
+        width: 1080
+        height: 1920
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b8b61f38eeb704500800000000000000
-      internalID: 378438633045191563
+      spriteID: ccc965dc7966afb50800000000000000
+      internalID: 6627722603800206540
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      BasAccordeon_0: 378438633045191563
+      Prefab 27_0: 6627722603800206540
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
