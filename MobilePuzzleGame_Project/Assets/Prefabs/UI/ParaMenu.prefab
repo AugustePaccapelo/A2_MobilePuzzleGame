@@ -441,9 +441,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Parametre
-
-'
+  m_text: "Param\xE8tres\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2f10caa2744bd014a91e4ea38b5906af, type: 2}
   m_sharedMaterial: {fileID: 815599852647140613, guid: 2f10caa2744bd014a91e4ea38b5906af, type: 2}

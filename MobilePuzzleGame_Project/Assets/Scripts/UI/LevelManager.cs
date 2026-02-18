@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
@@ -66,7 +67,7 @@ public class LevelManager : MonoBehaviour
         TextMeshProUGUI txt = btnObj.GetComponentInChildren<TextMeshProUGUI>();
         //if (txt != null) txt.text = prefab.name;
 
-        bool isUnlocked = PlayerData.Instance.IsLevelUnlocked(i);
+        bool isUnlocked = PlayerData.IsLevelUnlocked(i);
         btn.interactable = isUnlocked;
 
         string prefabName = prefab.name;
@@ -74,7 +75,7 @@ public class LevelManager : MonoBehaviour
         txt.text = (levelIndex + 1).ToString();
         btn.onClick.RemoveAllListeners();
         btn.onClick.AddListener(() => LoadLevelByName(prefabName));
-        btn.onClick.AddListener(() => PlayerData.Instance.SetCurrentLevel(levelIndex));
+        btn.onClick.AddListener(() => PlayerData.SetCurrentLevel(levelIndex));
 
         levelButtons.Add(btn);
     }
@@ -107,8 +108,8 @@ public void LoadLevelByIndex(int levelIndex)
     GameObject[] levelPrefabs = Resources.LoadAll<GameObject>(levelFolder);
     if (levelIndex >= 0 && levelIndex < levelPrefabs.Length)
     {
-        if (PlayerData.Instance != null)
-            PlayerData.Instance.SetCurrentLevel(levelIndex);
+        //if (PlayerData.Instance != null)
+        PlayerData.SetCurrentLevel(levelIndex);
 
         LoadLevelByName(levelPrefabs[levelIndex].name);
     }
