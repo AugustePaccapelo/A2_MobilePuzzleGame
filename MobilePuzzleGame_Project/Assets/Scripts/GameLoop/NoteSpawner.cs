@@ -11,11 +11,10 @@ public class NoteSpawner : MonoBehaviour
 
     // ----- Prefabs & Assets ----- \\
 
-    [SerializeField] private List<Sprite> _sprites = new();
+    [SerializeField] private List<GameObject> _sprites = new();
 
     // ----- Objects ----- \\
 
-    [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private Transform _spawnPos;
     [SerializeField] private GameObject _notePrefab;
     [SerializeField] private Transform _noteContainer;
@@ -63,6 +62,8 @@ public class NoteSpawner : MonoBehaviour
 
         ObstaclesPlacer.onObstacleSelected += NewObstacleSelected;
         ObstaclesPlacer.onObstacleUnselected += ObstacleUnselected;
+
+        ChangeVisual();
     }
 
     private void OnDisable()
@@ -87,6 +88,7 @@ public class NoteSpawner : MonoBehaviour
     {
         _tempoDecoder = GetComponent<TempoDecoder>();
         Id = _id;
+        ChangeVisual();
     }
 
     private void Start() { }
@@ -117,7 +119,16 @@ public class NoteSpawner : MonoBehaviour
 
         if (this == null || gameObject == null) return;
 
-        
+        ChangeVisual();
+    }
+
+    private void ChangeVisual()
+    {
+        int length = _sprites.Count;
+        for (int i = 0; i < length; i++)
+        {
+            _sprites[i].gameObject.SetActive(Id == i+1);
+        }
     }
 
     private void OnBeat()

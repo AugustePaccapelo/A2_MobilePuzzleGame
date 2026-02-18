@@ -11,9 +11,17 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private Slider sfxSlider;
 
     private void Awake()
-    {   Instance = this;
-        DontDestroyOnLoad(gameObject);
+{
+    if (Instance != null && Instance != this)
+    {
+        Destroy(gameObject);
+        return;
     }
+
+    Instance = this;
+    DontDestroyOnLoad(gameObject);
+}
+
 
     void Start()
     {
@@ -37,18 +45,33 @@ public class AudioManager : MonoBehaviour
     }
     
     public void SetMusicVolume(float volume)
+{
+    foreach (var clip in musicClips)
     {
-        PlayerPrefs.SetFloat("MusicVolume", volume);
-        foreach (var clip in musicClips)
-            clip.volume = volume;
+        clip.volume = volume;
     }
-    
-    public void SetSFXVolume(float volume)
+    PlayerPrefs.SetFloat("MusicVolume", volume);
+}
+
+public void SetSFXVolume(float volume)
+{
+    foreach (var clip in sfxClips)
     {
-        PlayerPrefs.SetFloat("SFXVolume", volume);
-        foreach (var clip in sfxClips)
-            clip.volume = volume;
+        clip.volume = volume;
     }
+    PlayerPrefs.SetFloat("SFXVolume", volume);
+}
+
+public float GetMusicVolume()
+{
+    return PlayerPrefs.GetFloat("MusicVolume", 1f);
+}
+
+public float GetSFXVolume()
+{
+    return PlayerPrefs.GetFloat("SFXVolume", 1f);
+}
+
 
     private void OnDestroy()
     {

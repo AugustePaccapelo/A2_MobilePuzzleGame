@@ -68,6 +68,7 @@ public class LevelManager : MonoBehaviour
         //if (txt != null) txt.text = prefab.name;
 
         bool isUnlocked = PlayerData.IsLevelUnlocked(i);
+            if (Application.isEditor) isUnlocked = true;
         btn.interactable = isUnlocked;
 
         string prefabName = prefab.name;
@@ -178,13 +179,19 @@ public void LoadLevelByIndex(int levelIndex)
         //Debug.Log(ratioX + "    " + ratioY);
         //level.transform.localScale = Vector3.one * ratio;
 
-        float screenShort = Mathf.Min(Screen.width, Screen.height);
-        float screenLong = Mathf.Max(Screen.width, Screen.height);
+        //float screenShort = Mathf.Min(Screen.width, Screen.height);
+        //float screenLong = Mathf.Max(Screen.width, Screen.height);
+
+        float screenShort = Screen.width;
+        float screenLong = Screen.height;
 
         float screenAspect = screenLong / screenShort;
 
-        float baseShort = Mathf.Min(_baseResolution.x, _baseResolution.y);
-        float baseLong = Mathf.Max(_baseResolution.x, _baseResolution.y);
+        //float baseShort = Mathf.Min(_baseResolution.x, _baseResolution.y);
+        //float baseLong = Mathf.Max(_baseResolution.x, _baseResolution.y);
+
+        float baseShort = _baseResolution.x;
+        float baseLong = _baseResolution.y;
 
         float baseAspect = baseLong / baseShort;
 
@@ -196,6 +203,8 @@ public void LoadLevelByIndex(int levelIndex)
         //scale = Mathf.Min(scale, 1f);
 
         float scale = baseAspect / screenAspect;
+
+        scale = Mathf.Min(scale, 1f);
 
         level.transform.localScale = Vector3.one * scale;
     }
