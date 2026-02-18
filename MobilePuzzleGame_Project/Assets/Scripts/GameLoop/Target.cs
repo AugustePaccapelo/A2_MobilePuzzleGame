@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -15,6 +16,10 @@ public class Target : MonoBehaviour
     // ----- Objects ----- \\
 
     [SerializeField] private SpriteRenderer _renderer;
+
+    // ----- Events ----- \\
+    public event Action OnWin;
+    public event Action OnLoose;
 
     // ----- Others ----- \\
 
@@ -81,11 +86,13 @@ public class Target : MonoBehaviour
         {
             Debug.Log("Game Won !");
             GameManager.Instance.FinishLevel();
+            OnWin?.Invoke();
         }
         else
         {
             Debug.Log("Game lost !");
             GameManager.Instance.RestartGame();
+            OnLoose?.Invoke();
         }
     }
 

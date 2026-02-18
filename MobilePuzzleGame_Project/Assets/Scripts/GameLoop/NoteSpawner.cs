@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -21,6 +22,9 @@ public class NoteSpawner : MonoBehaviour
     private TempoDecoder _tempoDecoder;
 
     private Ball _currentNote = null;
+
+    // ----- Events ----- \\
+    public event Action OnNoteSpawn;
 
     // ----- Others ----- \\
 
@@ -158,6 +162,7 @@ public class NoteSpawner : MonoBehaviour
         newNote.GetComponent<Rigidbody2D>().linearVelocity = _initialVelocity;
         _currentNote.Id = _id;
         Ball.TriggerOnBallRespawn();
+        OnNoteSpawn?.Invoke();
     }
 
     // ----- Destructor ----- \\
