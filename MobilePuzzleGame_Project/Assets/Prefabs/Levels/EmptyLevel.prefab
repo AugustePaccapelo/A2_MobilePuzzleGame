@@ -3228,11 +3228,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
+--- !u!114 &4152603490027198824 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8733991704631600486, guid: 5dbfb1ba54e676f4ab4e5a1a11d74f37, type: 3}
+  m_PrefabInstance: {fileID: 4653447605418212366}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!1 &5289597946308691208 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 719503640314099974, guid: 5dbfb1ba54e676f4ab4e5a1a11d74f37, type: 3}
   m_PrefabInstance: {fileID: 4653447605418212366}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8238940998361666141 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3657702307311119955, guid: 5dbfb1ba54e676f4ab4e5a1a11d74f37, type: 3}
+  m_PrefabInstance: {fileID: 4653447605418212366}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!224 &8453072308812781582 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3880701601398268928, guid: 5dbfb1ba54e676f4ab4e5a1a11d74f37, type: 3}
@@ -3985,9 +4007,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1650336943829739825}
     - target: {fileID: 6538549984774332379, guid: b4aa20573ac15be4f841a1df90bc7a7b, type: 3}
+      propertyPath: sfxSlider
+      value: 
+      objectReference: {fileID: 4152603490027198824}
+    - target: {fileID: 6538549984774332379, guid: b4aa20573ac15be4f841a1df90bc7a7b, type: 3}
       propertyPath: BoutonPause
       value: 
       objectReference: {fileID: 4262010948030019040}
+    - target: {fileID: 6538549984774332379, guid: b4aa20573ac15be4f841a1df90bc7a7b, type: 3}
+      propertyPath: musicSlider
+      value: 
+      objectReference: {fileID: 8238940998361666141}
     - target: {fileID: 7011551329021277119, guid: b4aa20573ac15be4f841a1df90bc7a7b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
