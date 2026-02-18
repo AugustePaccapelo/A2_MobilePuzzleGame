@@ -29,6 +29,7 @@ public class BardAnimationController : MonoBehaviour
         _spawner.OnNoteSpawn -= PlayNoteAnimation;
     }
 
+
     private void PlayWinAnimation()
     {
         _animator.Play("animation_bard_win");
