@@ -194,6 +194,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plateform - Portal
       objectReference: {fileID: 0}
+    - target: {fileID: 6143162779167200730, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: m_TagString
+      value: triangle
+      objectReference: {fileID: 0}
     - target: {fileID: 7667104590087981076, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
       propertyPath: _mainObject
       value: 
