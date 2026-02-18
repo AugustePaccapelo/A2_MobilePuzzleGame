@@ -864,6 +864,8 @@ MonoBehaviour:
   creditsPanel: {fileID: 1602883006}
   pauseMenu: {fileID: 733862560}
   BoutonPause: {fileID: 0}
+  musicSlider: {fileID: 500186311}
+  sfxSlider: {fileID: 1023058812}
 --- !u!4 &777644007
 Transform:
   m_ObjectHideFlags: 0
@@ -2526,11 +2528,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2013745268221014479, guid: 1e7979019edc39b4293acd95f65aa16c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 189.9458
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2013745268221014479, guid: 1e7979019edc39b4293acd95f65aa16c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 647.09644
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2013745268221014479, guid: 1e7979019edc39b4293acd95f65aa16c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2571,11 +2573,11 @@ PrefabInstance:
     - target: {fileID: 8153460129061388276, guid: 1e7979019edc39b4293acd95f65aa16c, type: 3}
       propertyPath: sfxSlider
       value: 
-      objectReference: {fileID: 1023058812}
+      objectReference: {fileID: 0}
     - target: {fileID: 8153460129061388276, guid: 1e7979019edc39b4293acd95f65aa16c, type: 3}
       propertyPath: musicSlider
       value: 
-      objectReference: {fileID: 500186311}
+      objectReference: {fileID: 0}
     - target: {fileID: 8153460129061388276, guid: 1e7979019edc39b4293acd95f65aa16c, type: 3}
       propertyPath: sfxClips.Array.size
       value: 7
