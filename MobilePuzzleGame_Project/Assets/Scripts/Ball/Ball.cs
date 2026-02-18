@@ -45,6 +45,21 @@ public class Ball : MonoBehaviour
         #endif
     }
 
+    private void OnEnable()
+    {
+        onBallRespawn += OnRespawn;
+    }
+
+    private void OnDisable()
+    {
+        onBallRespawn -= OnRespawn;
+    }
+
+    private void OnRespawn()
+    {
+        GetComponentInChildren<BallVisual>()?.DeactivateMask();
+    }
+
     private void Awake()
     {
         Id = _id;
@@ -111,9 +126,8 @@ public class Ball : MonoBehaviour
 
     static public void TriggerOnBallRespawn()
     {
-        
         onBallRespawn?.Invoke();
-        _lastObsHited = null;
+        _lastObsHited = null;        
     }
 
     private void DelayFuncToShutUpUnity()
