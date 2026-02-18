@@ -44,7 +44,7 @@ public class LevelEndPanel : MonoBehaviour
     {
         Time.timeScale = 1f;
         gameObject.SetActive(false);
-        PlayerData.Instance.UnlockLevel(currentLevelIndex + 1);
+        PlayerData.UnlockLevel(currentLevelIndex + 1);
         LevelManager.Instance.LoadLevelByIndex(currentLevelIndex + 1);
     }
 

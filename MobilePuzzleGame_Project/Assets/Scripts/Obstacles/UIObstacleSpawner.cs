@@ -75,6 +75,11 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
         if (_obstacle == PlacableObstacle.Empty) return;
 
+        GeneratePool();
+    }
+
+    private void GeneratePool()
+    {
         GameObject platform;
         for (int i = 0; i < _numAllowedObstacle; i++)
         {
@@ -173,9 +178,9 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     private GameObject GetObstacleFromPool()
     {
-        if (!_obstaclesPool.ContainsKey(_obstacle)) return null;
-        if (_obstaclesPool[_obstacle] == null) return null;
-        if (_obstaclesPool[_obstacle].Count == 0) return null;
+        if (!_obstaclesPool.ContainsKey(_obstacle)) return Instantiate(_prefabToSpawn, _obstaclesContainer);
+        if (_obstaclesPool[_obstacle] == null) return Instantiate(_prefabToSpawn, _obstaclesContainer);
+        if (_obstaclesPool[_obstacle].Count == 0) return Instantiate(_prefabToSpawn, _obstaclesContainer);
         
         GameObject go = _obstaclesPool[_obstacle].Pop();
         go.SetActive(true);
@@ -208,8 +213,26 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     private GameObject SpawnObstacle(Vector3 position, FingerInput fingerInput)
     {
         //GameObject obstacle = Instantiate(_prefabToSpawn, _obstaclesContainer);
-        GameObject obstacle = GetObstacleFromPool();
-        obstacle.transform.position = position;
+
+        // Bon oui c'est degeu, mais la j'ai pas d'inspi
+        // Des fois y'a un bug ou on a la pool vide, donc si jamais c le cas on recréer
+        // Et c'est un while pck je sais pas exactement pourquoi ca foire, du ocup la on est sur de pas etre emmerder
+        // (je sais que y'a mieux mais la c plus rapide)
+        GameObject obstacle;
+        do
+        {
+            obstacle = GetObstacleFromPool();
+            if (obstacle == null)
+            {
+                GeneratePool();
+            }
+            else
+            {
+                obstacle.transform.position = position;
+            }
+        }
+        while (obstacle == null);
+        
         ObstaclesPlacer obstaclesPlacer = obstacle.GetComponent<ObstaclesPlacer>();
         _lastObstacle = obstaclesPlacer;
         _lastFinger = fingerInput.finger;

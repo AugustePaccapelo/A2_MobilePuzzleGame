@@ -136,4 +136,9 @@ public class Ball : MonoBehaviour
             _renderer.sprite = _sprites[0];
         }
     }
+
+    private void OnDestroy()
+    {
+        if (_lastTween != null) _lastTween.Stop(false);
+    }
 }
