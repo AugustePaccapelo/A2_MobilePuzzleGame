@@ -48,7 +48,7 @@ public class GooglePlayManager : MonoBehaviour
         {AchivementEnum.CaSouffle, "CgkI0qDllKYWEAIQCg" }
     };
 
-    private static bool _isLoged = true;
+    private static bool _isLoged = false;
 
     // ---------- FUNCTIONS ---------- \\
 
@@ -79,11 +79,11 @@ public class GooglePlayManager : MonoBehaviour
         #else
             // Google play
             //PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
-            
+
             // Unity
             PlayGamesPlatform.Activate();
             Social.localUser.Authenticate(ProcessAuthentication);
-    
+
             _isLoged = true;
         #endif
     }
