@@ -61,6 +61,11 @@ public class Ball : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        _renderer.transform.eulerAngles = Vector3.zero;
+    }
+
     private void SpawnParticules(Collision2D col)
     {
         if (_collisionParticulePrefab == null) return;
