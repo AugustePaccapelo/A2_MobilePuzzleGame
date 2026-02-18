@@ -92,6 +92,10 @@ public class Target : MonoBehaviour
             _numTargetsFinished++;
             if (_numTargetsFinished == _numTargets)
             {
+                if (_numTargets >= 2)
+                {
+                    GooglePlayManager.CompleteAchievement(AchivementEnum.VoieDouble);
+                }
                 GameManager.Instance.FinishLevel();
                 OnWin?.Invoke();
             }
