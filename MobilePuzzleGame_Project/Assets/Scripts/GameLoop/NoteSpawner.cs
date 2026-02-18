@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -21,6 +22,9 @@ public class NoteSpawner : MonoBehaviour
     private TempoDecoder _tempoDecoder;
 
     private Ball _currentNote = null;
+
+    // ----- Events ----- \\
+    public event Action OnNoteSpawn;
 
     // ----- Others ----- \\
 
@@ -113,26 +117,7 @@ public class NoteSpawner : MonoBehaviour
 
         if (this == null || gameObject == null) return;
 
-        SetSprite();
-    }
-
-    private void SetSprite()
-    {
-        if (_sprites.Count < 0)
-        {
-            Debug.LogWarning(name + ": no sprites were given.");
-            return;
-        }
-
-        if (_id <= _sprites.Count)
-        {
-            _renderer.sprite = _sprites[_id - 1];
-        }
-        else
-        {
-            Debug.LogError(name + ": key id not in the sprites.");
-            _renderer.sprite = _sprites[0];
-        }
+        
     }
 
     private void OnBeat()
@@ -158,6 +143,7 @@ public class NoteSpawner : MonoBehaviour
         newNote.GetComponent<Rigidbody2D>().linearVelocity = _initialVelocity;
         _currentNote.Id = _id;
         Ball.TriggerOnBallRespawn();
+        OnNoteSpawn?.Invoke();
     }
 
     // ----- Destructor ----- \\
