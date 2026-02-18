@@ -23,7 +23,7 @@ MonoBehaviour:
     icon: {fileID: 4444105475525789574, guid: 197d8678d0f54cb49a6253e50c4f5c8e, type: 3}
     prefabToPlace: {fileID: 4528162780032252372, guid: 727fed3b58c9e484fb1c1aeb5fc4f3b1, type: 3}
   - obstacle: 4
-    icon: {fileID: 724445275633213848, guid: 17467f89e1bcbf343947686517a077c4, type: 3}
+    icon: {fileID: -6396678148810944804, guid: b445b7c5636f06045b6ca3b89277cb60, type: 3}
     prefabToPlace: {fileID: 985393860385920337, guid: e41eaadb147231c4eafff55c41285c08, type: 3}
   - obstacle: 6
     icon: {fileID: 4444105475525789574, guid: 197d8678d0f54cb49a6253e50c4f5c8e, type: 3}
@@ -32,7 +32,7 @@ MonoBehaviour:
     icon: {fileID: 3260031937712160435, guid: 131c71ecc20e0bc4dbcb73d75031d4b0, type: 3}
     prefabToPlace: {fileID: 362559892393866452, guid: c5d82b6e7e5ac2c4f8730904368cf178, type: 3}
   - obstacle: 7
-    icon: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
+    icon: {fileID: 4994775062159560418, guid: 323133feaff9eaa438247689d8dc0923, type: 3}
     prefabToPlace: {fileID: 5634124973526351595, guid: 0ea23bdcd4e9e8b449d5a2d85d8573e7, type: 3}
   - obstacle: 2
     icon: {fileID: 8286961866841642650, guid: 4acbd6888da7d0246b48fb61920009d4, type: 3}
