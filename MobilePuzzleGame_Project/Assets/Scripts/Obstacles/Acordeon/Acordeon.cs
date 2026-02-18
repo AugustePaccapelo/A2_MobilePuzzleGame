@@ -21,12 +21,12 @@ public class Acordeon : MonoBehaviour
     [HorizontalLine(color: EColor.Blue)]
     [BoxGroup("GD"), Label("Distance d'extention"), SerializeField] private float _extendDistance;
 
-    [Header("Durée d'animation")]
+    [Header("Durï¿½e d'animation")]
     [BoxGroup("GD"), Label("Preparation"), SerializeField] private float _prepareDuration;
     [BoxGroup("GD"), Label("Extension"), SerializeField] private float _extendDuration;
     [BoxGroup("GD"), Label("Retract"), SerializeField] private float _retractDuration;
 
-    [Header("Puissance d'éjection")]
+    [Header("Puissance d'ï¿½jection")]
     [BoxGroup("GD"), Label("Puissance"), SerializeField] private float _power;
     public float Power => _power;
 
@@ -35,11 +35,11 @@ public class Acordeon : MonoBehaviour
     #endregion
 
     #region GP Variables
-    [BoxGroup("GP - Pas touche ! è_é")]
+    [BoxGroup("GP - Pas touche ! ï¿½_ï¿½")]
     [HorizontalLine(color: EColor.Violet)]
     [SerializeField] private Transform _topPart;
 
-    [BoxGroup("GP - Pas touche ! è_é")]
+    [BoxGroup("GP - Pas touche ! ï¿½_ï¿½")]
     [SerializeField] private Transform _bottomPart;
     #endregion
 

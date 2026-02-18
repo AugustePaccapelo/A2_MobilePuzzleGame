@@ -37,12 +37,10 @@ public class LevelEndPanel : MonoBehaviour
         if (levelCompleteText != null)
             levelCompleteText.text = "Niveau " + (levelIndex + 1);
 
-        Time.timeScale = 0f;
     }
 
     public void OnNextLevelClicked()
     {
-        Time.timeScale = 1f;
         gameObject.SetActive(false);
         PlayerData.UnlockLevel(currentLevelIndex + 1);
         LevelManager.Instance.LoadLevelByIndex(currentLevelIndex + 1);
@@ -50,7 +48,6 @@ public class LevelEndPanel : MonoBehaviour
 
     public void OnMenuClicked()
     {
-        Time.timeScale = 1f;
         SceneManager.LoadScene("SelectNiveau");
         Debug.Log("Retour au menu !");
     }

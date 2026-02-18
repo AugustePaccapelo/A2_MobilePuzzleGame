@@ -49,9 +49,10 @@ public class Ball : MonoBehaviour
         SetSprite();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
         SpawnParticules(collision);
+        PlayCollisionSFX(collision);
         if (_lastObsHited != collision.gameObject)
         {
             _lastObsHited = collision.gameObject;
@@ -117,6 +118,32 @@ public class Ball : MonoBehaviour
 
         SetSprite();
     }
+
+    private void PlayCollisionSFX(Collision2D col)
+    {
+        int colLayer = 1 << col.gameObject.layer;
+        if ((colLayer & _obstaclesLayer) == 0) return;
+        
+        if (AudioManager.Instance == null || AudioManager.Instance.sfxClips.Count == 0) return;
+        
+        if (col.gameObject.tag == "Acordeon")
+        {
+            AudioManager.Instance.sfxClips[0].Play();
+        }
+        else if (col.gameObject.tag == "RainSticks")
+        {
+            AudioManager.Instance.sfxClips[3].Play();
+        }
+        else if (col.gameObject.tag == "Drum")
+        {
+            AudioManager.Instance.sfxClips[4].Play();
+        }
+        else if (col.gameObject.tag == "triangle")
+        {
+            AudioManager.Instance.sfxClips[5].Play();
+        }
+    }
+
 
     private void SetSprite()
     {

@@ -57,4 +57,5 @@ public class AudioManager : MonoBehaviour
         if (sfxSlider != null)
             sfxSlider.onValueChanged.RemoveListener(SetSFXVolume);
     }
+    
 }
