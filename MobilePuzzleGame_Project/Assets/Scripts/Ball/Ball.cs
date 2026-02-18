@@ -29,9 +29,11 @@ public class Ball : MonoBehaviour
             {
                 Debug.LogWarning(name + ": id cannot be less than 1.");
                 _id = 1;
+                SetSprite();
                 return;
             }
             _id = value;
+            SetSprite();
         }
     }
 
@@ -58,6 +60,11 @@ public class Ball : MonoBehaviour
             _lastObsHited = collision.gameObject;
             ExecuteTween(collision);
         }
+    }
+
+    private void Update()
+    {
+        _renderer.transform.eulerAngles = Vector3.zero;
     }
 
     private void SpawnParticules(Collision2D col)

@@ -83,7 +83,7 @@ public class GooglePlayManager : MonoBehaviour
             // Par contre jsp comment tu peux confirmer que tu est log
 
             // Google play (je crois)
-            PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
+            //PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
             //if (!_isLoged)
             //{
             //    Application.Quit();
