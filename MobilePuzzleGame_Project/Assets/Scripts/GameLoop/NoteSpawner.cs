@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -10,17 +11,19 @@ public class NoteSpawner : MonoBehaviour
 
     // ----- Prefabs & Assets ----- \\
 
-    [SerializeField] private List<Sprite> _sprites = new();
+    [SerializeField] private List<GameObject> _sprites = new();
 
     // ----- Objects ----- \\
 
-    [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private Transform _spawnPos;
     [SerializeField] private GameObject _notePrefab;
     [SerializeField] private Transform _noteContainer;
     private TempoDecoder _tempoDecoder;
 
     private Ball _currentNote = null;
+
+    // ----- Events ----- \\
+    public event Action OnNoteSpawn;
 
     // ----- Others ----- \\
 
@@ -59,6 +62,8 @@ public class NoteSpawner : MonoBehaviour
 
         ObstaclesPlacer.onObstacleSelected += NewObstacleSelected;
         ObstaclesPlacer.onObstacleUnselected += ObstacleUnselected;
+
+        ChangeVisual();
     }
 
     private void OnDisable()
@@ -83,6 +88,7 @@ public class NoteSpawner : MonoBehaviour
     {
         _tempoDecoder = GetComponent<TempoDecoder>();
         Id = _id;
+        ChangeVisual();
     }
 
     private void Start() { }
@@ -113,25 +119,15 @@ public class NoteSpawner : MonoBehaviour
 
         if (this == null || gameObject == null) return;
 
-        SetSprite();
+        ChangeVisual();
     }
 
-    private void SetSprite()
+    private void ChangeVisual()
     {
-        if (_sprites.Count < 0)
+        int length = _sprites.Count;
+        for (int i = 0; i < length; i++)
         {
-            Debug.LogWarning(name + ": no sprites were given.");
-            return;
-        }
-
-        if (_id <= _sprites.Count)
-        {
-            _renderer.sprite = _sprites[_id - 1];
-        }
-        else
-        {
-            Debug.LogError(name + ": key id not in the sprites.");
-            _renderer.sprite = _sprites[0];
+            _sprites[i].gameObject.SetActive(Id == i+1);
         }
     }
 
@@ -158,6 +154,7 @@ public class NoteSpawner : MonoBehaviour
         newNote.GetComponent<Rigidbody2D>().linearVelocity = _initialVelocity;
         _currentNote.Id = _id;
         Ball.TriggerOnBallRespawn();
+        OnNoteSpawn?.Invoke();
     }
 
     // ----- Destructor ----- \\

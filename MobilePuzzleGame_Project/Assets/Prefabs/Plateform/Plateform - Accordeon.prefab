@@ -126,17 +126,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0011957884, y: -0.006449975}
+  m_Offset: {x: -0.0029600263, y: 0.003587842}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.08, y: 0.28}
+    oldSize: {x: 0.72, y: 0.18666667}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.0901265, y: 0.28369176}
+  m_Size: {x: 0.73374975, y: 0.19669732}
   m_EdgeRadius: 0
 --- !u!1 &1890828626715014170
 GameObject:
@@ -265,17 +265,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.004633248, y: -0.004071206}
+  m_Offset: {x: -0.0012104809, y: 0.004143581}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.08, y: 0.15}
+    oldSize: {x: 0.72, y: 0.1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.0993086, y: 0.17439428}
+  m_Size: {x: 0.72279876, y: 0.11141443}
   m_EdgeRadius: 0
 --- !u!114 &748591475663203036
 MonoBehaviour:
@@ -681,21 +681,37 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5056500260986993283, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: m_Size.x
+      value: 0.72740394
+      objectReference: {fileID: 0}
+    - target: {fileID: 5056500260986993283, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: m_Size.y
+      value: 0.5592066
+      objectReference: {fileID: 0}
+    - target: {fileID: 5056500260986993283, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.0009666383
+      objectReference: {fileID: 0}
+    - target: {fileID: 5056500260986993283, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.0212664
+      objectReference: {fileID: 0}
     - target: {fileID: 5775204933995134023, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
       propertyPath: m_Size.x
-      value: 0.7832285
+      value: 0.7781527
       objectReference: {fileID: 0}
     - target: {fileID: 5775204933995134023, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
       propertyPath: m_Size.y
-      value: 1.947051
+      value: 1.534839
       objectReference: {fileID: 0}
     - target: {fileID: 5775204933995134023, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
       propertyPath: m_Offset.x
-      value: 0.000752151
+      value: 0.0032900572
       objectReference: {fileID: 0}
     - target: {fileID: 5775204933995134023, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
       propertyPath: m_Offset.y
-      value: 0.4735253
+      value: 0.46757585
       objectReference: {fileID: 0}
     - target: {fileID: 6143162779167200730, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
       propertyPath: m_Name
@@ -739,7 +755,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8809155142300406912, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8809155142300406912, guid: 81ba28e14ae31de48b4b7997ba629f1e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -824,7 +840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49aa334b5d1e7d942bbee3e14c92b959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Acordeon
-  _extendDistance: 1.5
+  _extendDistance: 1.45
   _prepareDuration: 0.4
   _extendDuration: 0.4
   _retractDuration: 0.4

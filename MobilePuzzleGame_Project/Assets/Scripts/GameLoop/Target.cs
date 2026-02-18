@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -10,11 +11,13 @@ public class Target : MonoBehaviour
 
     // ----- Prefabs & Assets ----- \\
 
-    [SerializeField] private List<Sprite> _sprites = new();
+    [SerializeField] private List<GameObject> _sprites = new();
 
     // ----- Objects ----- \\
 
-    [SerializeField] private SpriteRenderer _renderer;
+    // ----- Events ----- \\
+    public event Action OnWin;
+    public event Action OnLoose;
 
     // ----- Others ----- \\
 
@@ -35,9 +38,6 @@ public class Target : MonoBehaviour
     }
     [SerializeField] private LayerMask _layerToDestroy;
 
-    private static int _numTargets = 0;
-    private static int _numTargetsFinished = 0;
-
     // ---------- FUNCTIONS ---------- \\
 
     // ----- Buil-in ----- \\
@@ -57,10 +57,7 @@ public class Target : MonoBehaviour
     private void Awake()
     {
         Id = _id;
-        SetSprite();
-
-        _numTargets++;
-        _numTargetsFinished = 0;
+        ChangeVisual();
     }
 
     private void Start() { }
@@ -85,16 +82,15 @@ public class Target : MonoBehaviour
 
         if (note.Id == _id)
         {
-            _numTargetsFinished++;
-            if (_numTargetsFinished == _numTargets)
-            {
-                GameManager.Instance.FinishLevel();
-            }
+            Debug.Log("Game Won !");
+            GameManager.Instance.FinishLevel();
+            OnWin?.Invoke();
         }
         else
         {
+            Debug.Log("Game lost !");
             GameManager.Instance.RestartGame();
-            _numTargetsFinished = 0;
+            OnLoose?.Invoke();
         }
     }
 
@@ -107,34 +103,19 @@ public class Target : MonoBehaviour
         #endif
         if (this == null || gameObject == null) return;
 
-        SetSprite();
+        ChangeVisual();
     }
 
-    private void SetSprite()
+    private void ChangeVisual()
     {
-        if (_sprites.Count < 0)
+        int length = _sprites.Count;
+        for (int i = 0; i < length; i++)
         {
-            Debug.LogWarning(name + ": no sprites were given.");
-            return;
-        }
-
-        if (_id <= _sprites.Count)
-        {
-            _renderer.sprite = _sprites[_id - 1];
-        }
-        else
-        {
-            Debug.LogError(name + ": key id not in the sprites.");
-            _renderer.sprite = _sprites[0];
+            _sprites[i].gameObject.SetActive(Id == i + 1);
         }
     }
 
     // ----- Destructor ----- \\
 
-    private void OnDestroy()
-    {
-        _numTargets--;
-        if (_numTargets < 0) _numTargets = 0;
-        _numTargetsFinished = 0;
-    }
+    private void OnDestroy() { }
 }
