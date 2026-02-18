@@ -73,7 +73,8 @@ public class Target : MonoBehaviour
         // if Note = 6 => 00100000
         if (((1 << collision.gameObject.layer) & _layerToDestroy) == 0) return;
 
-        Destroy(collision.gameObject);
+        //Destroy(collision.gameObject);
+        collision.gameObject.SetActive(false);
 
         GhostNote ghostComp;
         if (collision.TryGetComponent(out ghostComp))
