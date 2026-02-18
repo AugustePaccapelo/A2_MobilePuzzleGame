@@ -13,13 +13,13 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private Slider sfxSlider;
 
     private void Start()
-{
-    musicSlider.value = AudioManager.Instance.GetMusicVolume();
-    sfxSlider.value = AudioManager.Instance.GetSFXVolume();
+    {
+        if (musicSlider != null) musicSlider.value = AudioManager.Instance.GetMusicVolume();
+        if (sfxSlider != null) sfxSlider.value = AudioManager.Instance.GetSFXVolume();
 
-    musicSlider.onValueChanged.AddListener(AudioManager.Instance.SetMusicVolume);
-    sfxSlider.onValueChanged.AddListener(AudioManager.Instance.SetSFXVolume);
-}
+        if (musicSlider != null) musicSlider.onValueChanged.AddListener(AudioManager.Instance.SetMusicVolume);
+        if (sfxSlider != null) sfxSlider.onValueChanged.AddListener(AudioManager.Instance.SetSFXVolume);
+    }
 
 
     // Update is called once per frame
