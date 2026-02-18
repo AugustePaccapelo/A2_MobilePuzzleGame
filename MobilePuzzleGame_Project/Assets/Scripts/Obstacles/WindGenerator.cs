@@ -13,6 +13,7 @@ public class WindGenerator : MonoBehaviour
 
     private WindScript _windScript;
     private TempoDecoder _tempoDecoder;
+    [SerializeField] private GameObject _windParticules;
 
     // ----- Events ----- \\
 
@@ -83,7 +84,14 @@ public class WindGenerator : MonoBehaviour
         _tempoDecoder.OnOffBeat += OnOffBeat;
     }
 
-    private void OnDisable() { }
+    private void OnDisable()
+    {
+        if (_tempoDecoder != null)
+        {
+            _tempoDecoder.OnBeat -= OnBeat;
+            _tempoDecoder.OnOffBeat -= OnOffBeat;
+        }
+    }
 
     private void Awake()
     {
@@ -115,20 +123,23 @@ public class WindGenerator : MonoBehaviour
     private void OnOffBeat()
     {
         if (!_isActive) return;
-
+        Debug.Log("oof beat & activated");
         _numTempoSinceActivated++;
-        if (_numTempoSinceActivated >= _numTempoActivated)
-        {            
+        if (_numTempoSinceActivated > _numTempoActivated)
+        {
             _isActive = false;
             _onDeactivated?.Invoke();
+            _windParticules.SetActive(false);
         }
     }
 
     private void OnBeat()
     {
+        Debug.Log("active");
         _isActive = true;
         _onActivated?.Invoke();
         _numTempoSinceActivated = 0;
+        _windParticules.SetActive(true);
     }
 
     private void OnObjectStayInRange(Collider2D collision)
