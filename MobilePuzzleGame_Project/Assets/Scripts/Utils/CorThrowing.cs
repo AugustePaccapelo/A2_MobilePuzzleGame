@@ -13,6 +13,7 @@ public class CorThrowing : MonoBehaviour
     private GameObject currentBall;
     [SerializeField] private Animator animator;
     [SerializeField] private Transform _exitPoint;
+    [SerializeField] private AudioSource _throwSFX;
     // bool to wait for the ball to fully exited before being able to reabsorbed it
     private bool _canPickupBall = true;
     private Transform _parent;
@@ -135,6 +136,8 @@ public class CorThrowing : MonoBehaviour
         rb.linearVelocity = throwDirection * throwForce;
 
         onBallThrown?.Invoke();
+        if (_throwSFX != null)
+            _throwSFX.Play();
     }
 
     void LockBallPosition(GameObject ball)

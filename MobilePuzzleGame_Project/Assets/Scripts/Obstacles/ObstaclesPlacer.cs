@@ -511,6 +511,9 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
             {
                 
                 _currentObstacleSelected.GetComponentInChildren<Portal>().SetExitPortal(newExitPortal);
+                newExitPortal.SetExitPortal(_currentObstacleSelected.GetComponentInChildren<Portal>());
+
+                _hasAnObstacleSelected = false;
             }
         }
     }
