@@ -44,10 +44,4 @@ public class BardAnimationController : MonoBehaviour
     {
         _animator.Play("animation_bard_play_note"); 
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

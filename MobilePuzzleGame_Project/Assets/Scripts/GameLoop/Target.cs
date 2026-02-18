@@ -59,7 +59,6 @@ public class Target : MonoBehaviour
     private void Awake()
     {
         Id = _id;
-        SetSprite();
     }
 
     private void Start() { }
@@ -105,26 +104,6 @@ public class Target : MonoBehaviour
         #endif
         if (this == null || gameObject == null) return;
 
-        SetSprite();
-    }
-
-    private void SetSprite()
-    {
-        if (_sprites.Count < 0)
-        {
-            Debug.LogWarning(name + ": no sprites were given.");
-            return;
-        }
-
-        if (_id <= _sprites.Count)
-        {
-            _renderer.sprite = _sprites[_id - 1];
-        }
-        else
-        {
-            Debug.LogError(name + ": key id not in the sprites.");
-            _renderer.sprite = _sprites[0];
-        }
     }
 
     // ----- Destructor ----- \\
