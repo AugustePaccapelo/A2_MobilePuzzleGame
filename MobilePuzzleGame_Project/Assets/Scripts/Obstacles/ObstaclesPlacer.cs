@@ -127,6 +127,8 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         else ChangeTempo();
 
         _canBePlaced = true;
+
+        _tempoDecoder.enabled = false;
     }
 
     private void Awake()
@@ -176,6 +178,7 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
             //    return;
             //}
             GooglePlayManager.ObstaclePlaced(_obstacleType);
+            _tempoDecoder.enabled = true;
             //Select();
         }
     }
