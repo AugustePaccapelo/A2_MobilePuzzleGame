@@ -147,7 +147,7 @@ public class GooglePlayManager : MonoBehaviour
 
         if (!IsAchievementFinished(AchivementEnum.MaisArrete))
         {
-            // PlayGamesPlatform.Instance.IncrementAchievement(_mapAchievmentIds[AchivementEnum.MaisArrete], 1, (bool success) => { });
+            PlayGamesPlatform.Instance.IncrementAchievement(_mapAchievmentIds[AchivementEnum.MaisArrete], 1, (bool success) => { });
         }
     }
 
