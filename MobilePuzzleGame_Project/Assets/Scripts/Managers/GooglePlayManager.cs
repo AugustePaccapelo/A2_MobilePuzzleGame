@@ -50,7 +50,7 @@ public class GooglePlayManager : MonoBehaviour
 
     private static Dictionary<string, bool> _mapAchivementsState = new();
 
-    private static bool _isLoged = false;
+    private static bool _isLoged = true;
 
     // ---------- FUNCTIONS ---------- \\
 
@@ -76,14 +76,14 @@ public class GooglePlayManager : MonoBehaviour
 
     void Start()
     {
+#if UNITY_EDITOR
         _isLoged = false;
-
-#if !UNITY_EDITOR
+#else
             // Enfaite google play fait tous pour nous pas besoin de code
             // Par contre jsp comment tu peux confirmer que tu est log
 
             // Google play (je crois)
-            //PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
+            PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
             //if (!_isLoged)
             //{
             //    Application.Quit();
