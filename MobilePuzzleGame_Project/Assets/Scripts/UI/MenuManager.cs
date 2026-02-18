@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class MenuManager : MonoBehaviour
@@ -8,13 +9,18 @@ public class MenuManager : MonoBehaviour
     public GameObject creditsPanel = null;
     [SerializeField] private GameObject pauseMenu = null;
     [SerializeField] private GameObject BoutonPause;
+    [SerializeField] private Slider musicSlider;
+    [SerializeField] private Slider sfxSlider;
 
+    private void Start()
+{
+    musicSlider.value = AudioManager.Instance.GetMusicVolume();
+    sfxSlider.value = AudioManager.Instance.GetSFXVolume();
 
-    void Start()
-    {
-        if (creditsPanel != null) creditsPanel?.SetActive(false);
-        if (pauseMenu != null) pauseMenu?.SetActive(false);
-    }
+    musicSlider.onValueChanged.AddListener(AudioManager.Instance.SetMusicVolume);
+    sfxSlider.onValueChanged.AddListener(AudioManager.Instance.SetSFXVolume);
+}
+
 
     // Update is called once per frame
     void Update()
