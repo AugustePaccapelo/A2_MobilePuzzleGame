@@ -48,8 +48,6 @@ public class GooglePlayManager : MonoBehaviour
         {AchivementEnum.CaSouffle, "CgkI0qDllKYWEAIQCg" }
     };
 
-    private static Dictionary<string, bool> _mapAchivementsState = new();
-
     private static bool _isLoged = true;
 
     // ---------- FUNCTIONS ---------- \\
@@ -76,26 +74,18 @@ public class GooglePlayManager : MonoBehaviour
 
     void Start()
     {
-#if UNITY_EDITOR
-        _isLoged = false;
-#else
-            // Enfaite google play fait tous pour nous pas besoin de code
-            // Par contre jsp comment tu peux confirmer que tu est log
-
-            // Google play (je crois)
-            PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
-            //if (!_isLoged)
-            //{
-            //    Application.Quit();
-            //} 
+        #if UNITY_EDITOR
+            _isLoged = false;
+        #else
+            // Google play
+            //PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
+            
             // Unity
-            //PlayGamesPlatform.Activate();
-            //Social.localUser.Authenticate(ProcessAuthentication);
+            PlayGamesPlatform.Activate();
+            Social.localUser.Authenticate(ProcessAuthentication);
     
             _isLoged = true;
-
-            Social.LoadAchievements(LoadAchievements);
-#endif
+        #endif
     }
 
     void Update() { }
@@ -109,7 +99,6 @@ public class GooglePlayManager : MonoBehaviour
             case PlacableObstacle.Wall:
                 CompleteAchievement(AchivementEnum.DouxBruit);
                 break;
-
             case PlacableObstacle.Drum:
                 CompleteAchievement(AchivementEnum.SacreRythme);
                 break;
@@ -133,10 +122,7 @@ public class GooglePlayManager : MonoBehaviour
         if (!_isLoged) return;
         if (!_mapAchievmentIds.ContainsKey(achievement)) return;
 
-        if (!IsAchievementFinished(achievement))
-        {
-            Social.ReportProgress(_mapAchievmentIds[achievement], 100.0f, (bool success) => { });
-        }
+        Social.ReportProgress(_mapAchievmentIds[achievement], 100.0f, (bool success) => { });
     }
 
     static public void DragonsEyeTouched()
@@ -145,59 +131,19 @@ public class GooglePlayManager : MonoBehaviour
 
         CompleteAchievement(AchivementEnum.AieMonOeuil);
 
-        if (!IsAchievementFinished(AchivementEnum.MaisArrete))
-        {
-            PlayGamesPlatform.Instance.IncrementAchievement(_mapAchievmentIds[AchivementEnum.MaisArrete], 1, (bool success) => { });
-        }
-    }
-
-    private static void LoadAchievements(IAchievement[] achievements)
-    {
-        if (!_isLoged) return;
-
-        foreach (IAchievement achievement in achievements)
-        {
-            //Social.ReportProgress(achievement.id, 0.0f, (bool _) => { });
-            _mapAchivementsState.Add(achievement.id, achievement.completed);
-        }
-    }
-
-    private static bool IsAchievementFinished(AchivementEnum achievement)
-    {
-        return false;
-        if (!_isLoged) return false;
-        if (!_mapAchievmentIds.ContainsKey(achievement)) return false;
-        if (!_mapAchivementsState.ContainsKey(_mapAchievmentIds[achievement])) return false;
-
-        return _mapAchivementsState[_mapAchievmentIds[achievement]];
+        PlayGamesPlatform.Instance.IncrementAchievement(_mapAchievmentIds[AchivementEnum.MaisArrete], 1, (bool success) => { });
     }
 
     internal void ProcessAuthentication(bool status)
     {
-        _isLoged = status;
-
-        if (status)
-        {
-            Debug.Log("Singed in!");
-        }
-        else
-        {
-            Debug.Log("Not signed in.");
-        }
+        if (status) { }
+        else { }
     }
 
     internal void ProcessAuthentication(SignInStatus status)
     {
-        if (status == SignInStatus.Success)
-        {
-            Debug.Log("Singed in!");
-            _isLoged = true;
-        }
-        else
-        {
-            Debug.Log("Not signed in.");
-            _isLoged = false;
-        }
+        if (status == SignInStatus.Success) { }
+        else { }
     }
 
     // ----- Destructor ----- \\
