@@ -9,6 +9,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject pauseMenu = null;
     [SerializeField] private GameObject BoutonPause;
 
+
     void Start()
     {
         if (creditsPanel != null) creditsPanel?.SetActive(false);
