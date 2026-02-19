@@ -285,6 +285,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8153460129061388276, guid: 1e7979019edc39b4293acd95f65aa16c, type: 3}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: OnAnyButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1067000311162522680
 GameObject:
   m_ObjectHideFlags: 0
@@ -941,7 +953,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea8450cb5b36904ab7042206dbee2aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelEndPanel
+  menuPanel: {fileID: 0}
   levelCompleteText: {fileID: 3551870591555284127}
+  Onmenu: 0
 --- !u!1 &8731082374206348379
 GameObject:
   m_ObjectHideFlags: 0
@@ -1205,6 +1219,30 @@ MonoBehaviour:
       - m_Target: {fileID: 560494809853158081}
         m_TargetAssemblyTypeName: LevelEndPanel, Assembly-CSharp
         m_MethodName: OnMenuClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7953446704897947122}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8153460129061388276, guid: 1e7979019edc39b4293acd95f65aa16c, type: 3}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: OnAnyButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

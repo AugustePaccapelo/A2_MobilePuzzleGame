@@ -72,6 +72,11 @@ public float GetSFXVolume()
     return PlayerPrefs.GetFloat("SFXVolume", 1f);
 }
 
+public void OnAnyButtonClicked()
+{
+    sfxClips[8].Play();
+}
+
 
     private void OnDestroy()
     {
