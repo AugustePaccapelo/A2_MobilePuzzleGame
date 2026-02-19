@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5052626796015510782}
-  - component: {fileID: 2431652098118566990}
   - component: {fileID: 4086385782697954565}
   m_Layer: 8
   m_Name: Target
@@ -33,15 +32,67 @@ Transform:
   m_Children:
   - {fileID: 2023573753298041842}
   - {fileID: 1561781382978701604}
+  - {fileID: 8158402548803499821}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &2431652098118566990
-BoxCollider2D:
+--- !u!114 &4086385782697954565
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3295154018059076856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c850d8ed98b5a947a5e9bc66f57476b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Target
+  _sprites:
+  - {fileID: 5575916233687981736}
+  - {fileID: 4933226358747150414}
+  _id: 1
+  _layerToDestroy:
+    serializedVersion: 2
+    m_Bits: 16512
+--- !u!1 &7690644747689090811
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8158402548803499821}
+  - component: {fileID: 5499433208098425830}
+  m_Layer: 8
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8158402548803499821
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7690644747689090811}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5052626796015510782}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &5499433208098425830
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7690644747689090811}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -81,25 +132,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &4086385782697954565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3295154018059076856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c850d8ed98b5a947a5e9bc66f57476b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Target
-  _sprites:
-  - {fileID: 5575916233687981736}
-  - {fileID: 4933226358747150414}
-  _id: 1
-  _layerToDestroy:
-    serializedVersion: 2
-    m_Bits: 16512
 --- !u!1001 &1334901086294073414
 PrefabInstance:
   m_ObjectHideFlags: 0
