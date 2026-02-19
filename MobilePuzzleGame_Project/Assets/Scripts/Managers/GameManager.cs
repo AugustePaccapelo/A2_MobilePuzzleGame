@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
 
     private bool _hasGameStarted = false;
 
+    private float _startTime = 0f;
+
     // ---------- FUNCTIONS ---------- \\
 
     // ----- Buil-in ----- \\
@@ -122,6 +124,8 @@ public class GameManager : MonoBehaviour
         _currentGameState = GameState.InGame;
         _currentSate = GamePlaying;
         
+        _startTime = Time.time;
+
         if (_hasGameStarted)
         {
             onGameRestart?.Invoke();
@@ -130,7 +134,7 @@ public class GameManager : MonoBehaviour
         {
             _hasGameStarted = true;
             onGameStart?.Invoke();
-        }            
+        }
     }
 
     private void GamePlaying()
@@ -143,17 +147,22 @@ public class GameManager : MonoBehaviour
         _currentGameState = GameState.EndingLevel;
         _currentSate = GameEnding;
         _hasGameStarted = false;
+
+        if (Time.time - _startTime <= 5.0f)
+        {
+            GooglePlayManager.CompleteAchievement(AchivementEnum.DansLeTemps);
+        }
+
+        int currentLevel = PlayerData.GetCurrentLevel();
+        PlayerData.UnlockLevel(currentLevel + 1);
+
+        if (LevelEndPanel.Instance != null)
+            LevelEndPanel.Instance.ShowPanel(currentLevel);
     }
 
     private void GameEnding()
     {
-        Debug.Log("Game endend !");
-        
-        int currentLevel = PlayerData.GetCurrentLevel();
-        PlayerData.UnlockLevel(currentLevel + 1);
-        
-        if (LevelEndPanel.Instance != null)
-            LevelEndPanel.Instance.ShowPanel(currentLevel);
+
     }
 
     // ----- Destructor ----- \\

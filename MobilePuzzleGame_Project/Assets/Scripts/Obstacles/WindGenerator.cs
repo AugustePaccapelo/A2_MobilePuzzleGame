@@ -102,7 +102,13 @@ public class WindGenerator : MonoBehaviour
 
     private void Start() { }
 
-    private void Update() { }
+    private void Update()
+    {
+        float scaleX = transform.lossyScale.x < 0 ? -1 : 1;
+        Vector3 scale = _windParticules.transform.localScale;
+        scale.x = scaleX;
+        _windParticules.transform.localScale = scale;
+    }
 
     private void Reset()
     {
@@ -123,7 +129,7 @@ public class WindGenerator : MonoBehaviour
     private void OnOffBeat()
     {
         if (!_isActive) return;
-        Debug.Log("oof beat & activated");
+        
         _numTempoSinceActivated++;
         if (_numTempoSinceActivated > _numTempoActivated)
         {
@@ -135,7 +141,6 @@ public class WindGenerator : MonoBehaviour
 
     private void OnBeat()
     {
-        Debug.Log("active");
         _isActive = true;
         _onActivated?.Invoke();
         _numTempoSinceActivated = 0;

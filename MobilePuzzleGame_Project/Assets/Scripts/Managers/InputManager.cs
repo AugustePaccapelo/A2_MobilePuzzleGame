@@ -186,7 +186,12 @@ public class InputManager : MonoBehaviour
             {
                 ToucheData newData = new();
                 newData.screenPosition = result.screenPosition;
-                newData.worldPosition = result.worldPosition;
+                //newData.worldPosition = result.worldPosition;
+                Vector3 screenPos = result.screenPosition;
+                screenPos.z = 0;
+                newData.worldPosition = Camera.main.ScreenToWorldPoint(result.screenPosition);
+                newData.worldPosition.z = 0;
+
                 newData.fingerInput = GetNewFingerAtPosAndDontTrack(result.screenPosition, true);
 
                 touchable.OnTouchedDown(newData);

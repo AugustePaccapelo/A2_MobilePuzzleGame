@@ -1,0 +1,92 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &3064295792609752477
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 123087889903092832, guid: f2497b346d238a64e9f46fdb9d010562, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 123087889903092832, guid: f2497b346d238a64e9f46fdb9d010562, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 123087889903092832, guid: f2497b346d238a64e9f46fdb9d010562, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 123087889903092832, guid: f2497b346d238a64e9f46fdb9d010562, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 123087889903092832, guid: f2497b346d238a64e9f46fdb9d010562, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 123087889903092832, guid: f2497b346d238a64e9f46fdb9d010562, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 123087889903092832, guid: f2497b346d238a64e9f46fdb9d010562, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 123087889903092832, guid: f2497b346d238a64e9f46fdb9d010562, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 123087889903092832, guid: f2497b346d238a64e9f46fdb9d010562, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 123087889903092832, guid: f2497b346d238a64e9f46fdb9d010562, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1266121886886697204, guid: f2497b346d238a64e9f46fdb9d010562, type: 3}
+      propertyPath: _canvas
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1266121886886697204, guid: f2497b346d238a64e9f46fdb9d010562, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1266121886886697204, guid: f2497b346d238a64e9f46fdb9d010562, type: 3}
+      propertyPath: _tempoText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1266121886886697204, guid: f2497b346d238a64e9f46fdb9d010562, type: 3}
+      propertyPath: _buttonTempo
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1266121886886697204, guid: f2497b346d238a64e9f46fdb9d010562, type: 3}
+      propertyPath: _buttonsContainer
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1266121886886697204, guid: f2497b346d238a64e9f46fdb9d010562, type: 3}
+      propertyPath: _rotationIndicator
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3157175550113508519, guid: f2497b346d238a64e9f46fdb9d010562, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3365818236890580282, guid: f2497b346d238a64e9f46fdb9d010562, type: 3}
+      propertyPath: m_Name
+      value: Plateform - TempoDrumLD
+      objectReference: {fileID: 0}
+    - target: {fileID: 5823244205087175781, guid: f2497b346d238a64e9f46fdb9d010562, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 6672636941749643707, guid: 31e4114415612be44b2966cd48d512db, type: 3}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 8448933751542320366, guid: f2497b346d238a64e9f46fdb9d010562, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f2497b346d238a64e9f46fdb9d010562, type: 3}

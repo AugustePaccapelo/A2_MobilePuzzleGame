@@ -168,42 +168,20 @@ public void LoadLevelByIndex(int levelIndex)
 
     static private void ScaleLevel(GameObject level)
     {
-        //float ratioX = _baseResolution.x / Screen.width;
-        //float ratioY = _baseResolution.y / Screen.height;
+        float currentScreenWidth = Screen.width;
+        float currentScreenHeight = Screen.height;
 
-        //float ratioX = Screen.width / _baseResolution.x;
-        //float ratioY = Screen.height / _baseResolution.y;
+        float currentScreenAspect = currentScreenHeight / currentScreenWidth;
 
-        //float ratio = Mathf.Min(ratioX, ratioY);
-        //float ratio = Mathf.Lerp(ratioX, ratioY, 0.7f);
-        //Debug.Log(ratioX + "    " + ratioY);
-        //level.transform.localScale = Vector3.one * ratio;
+        float baseScreenWidth = _baseResolution.x;
+        float baseScreenHeight = _baseResolution.y;
 
-        //float screenShort = Mathf.Min(Screen.width, Screen.height);
-        //float screenLong = Mathf.Max(Screen.width, Screen.height);
+        float baseScreenAspect = baseScreenHeight / baseScreenWidth;
 
-        float screenShort = Screen.width;
-        float screenLong = Screen.height;
+        float scale = baseScreenAspect / currentScreenAspect;
 
-        float screenAspect = screenLong / screenShort;
-
-        //float baseShort = Mathf.Min(_baseResolution.x, _baseResolution.y);
-        //float baseLong = Mathf.Max(_baseResolution.x, _baseResolution.y);
-
-        float baseShort = _baseResolution.x;
-        float baseLong = _baseResolution.y;
-
-        float baseAspect = baseLong / baseShort;
-
-        //float ratioX = screenShort / baseShort;
-        //float ratioY = screenLong / baseLong;
-
-        //float scale = Mathf.Lerp(ratioX, ratioY, 0.7f);
-
-        //scale = Mathf.Min(scale, 1f);
-
-        float scale = baseAspect / screenAspect;
-
+        // Unity scale tous seul si jamais il faut une scale plus grand que 1
+        // Mais a la flemme sinon
         scale = Mathf.Min(scale, 1f);
 
         level.transform.localScale = Vector3.one * scale;
