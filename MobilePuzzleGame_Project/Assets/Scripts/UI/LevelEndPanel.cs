@@ -4,13 +4,17 @@ using TMPro;
 public class LevelEndPanel : MonoBehaviour
 {
     public static LevelEndPanel Instance { get; private set; }
+    [SerializeField] GameObject menuPanel;
     public TextMeshProUGUI levelCompleteText;
+    public bool Onmenu = false;
 
     private int currentLevelIndex;
 
     private void OnEnable() { }
 
-    private void OnDisable() { }
+    private void OnDisable()
+    {
+    }
 
     private void Awake()
     {
@@ -25,6 +29,7 @@ public class LevelEndPanel : MonoBehaviour
     private void Start()
     {
         gameObject.SetActive(false);
+        Onmenu = true;
     }
 
     private void Update() { }
@@ -33,6 +38,7 @@ public class LevelEndPanel : MonoBehaviour
     {
         currentLevelIndex = levelIndex;
         gameObject.SetActive(true);
+        Onmenu = false;
 
         if (levelCompleteText != null)
             levelCompleteText.text = "Niveau " + (levelIndex + 1);
@@ -48,8 +54,10 @@ public class LevelEndPanel : MonoBehaviour
 
     public void OnMenuClicked()
     {
+        GameManager.Instance.LoadLevel();
         SceneManager.LoadScene("SelectNiveau");
         Debug.Log("Retour au menu !");
+
     }
 
     private void OnDestroy() { }
