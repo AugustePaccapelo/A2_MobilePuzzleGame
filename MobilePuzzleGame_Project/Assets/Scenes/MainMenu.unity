@@ -2365,6 +2365,10 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8153460129061388276, guid: 1e7979019edc39b4293acd95f65aa16c, type: 3}
+      propertyPath: musicClips.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153460129061388276, guid: 1e7979019edc39b4293acd95f65aa16c, type: 3}
       propertyPath: 'sfxClips.Array.data[0]'
       value: 
       objectReference: {fileID: 203467916}
