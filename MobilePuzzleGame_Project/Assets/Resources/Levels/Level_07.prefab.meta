@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: d95bf12f6a54fc74ab6b0de2b64fb813
+<<<<<<<< HEAD:MobilePuzzleGame_Project/Assets/Resources/Levels/Level_32.prefab.meta
+guid: 33d70c8996ea5d24aa9e6b989eb9a723
+========
+guid: 1300a25d8f87d6047ae7cee0535e48d2
+>>>>>>>> 0ab3b0fe4dfada38eb1f1a4078a71d8e1cb2ad07:MobilePuzzleGame_Project/Assets/Prefabs/Levels/Platforms/Plateform - AccordeonLD.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
