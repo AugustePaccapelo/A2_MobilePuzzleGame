@@ -558,11 +558,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 810111830706259104, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
       propertyPath: m_Text
-      value: x1
+      value: x0
       objectReference: {fileID: 0}
     - target: {fileID: 824490787557207411, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
       propertyPath: m_Text
-      value: x2
+      value: x3
       objectReference: {fileID: 0}
     - target: {fileID: 1054159519092945896, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
       propertyPath: m_ColliderSegment.Array.size
@@ -1079,18 +1079,18 @@ PrefabInstance:
     - target: {fileID: 4115846905528780834, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 37146ccfd6f2dd64897200d9c4579904, type: 3}
+      objectReference: {fileID: -6396678148810944804, guid: b445b7c5636f06045b6ca3b89277cb60, type: 3}
     - target: {fileID: 4130181968070730225, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 4994775062159560418, guid: 323133feaff9eaa438247689d8dc0923, type: 3}
     - target: {fileID: 4467124588352367183, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
       propertyPath: _obstacle
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4467124588352367183, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
       propertyPath: _numAllowedObstacle
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4740511486930527048, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1135,22 +1135,22 @@ PrefabInstance:
     - target: {fileID: 4862835548710329503, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -6396678148810944804, guid: b445b7c5636f06045b6ca3b89277cb60, type: 3}
+      objectReference: {fileID: -872413962176401102, guid: 3bd7824be7ae7f544903d88457f6b708, type: 3}
     - target: {fileID: 5160076220818112242, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
       propertyPath: _obstacle
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5160076220818112242, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
+      propertyPath: _numAllowedObstacle
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5175607467458352929, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
+      propertyPath: _obstacle
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5175607467458352929, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
+      propertyPath: _numAllowedObstacle
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5160076220818112242, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
-      propertyPath: _numAllowedObstacle
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5175607467458352929, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
-      propertyPath: _obstacle
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5175607467458352929, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
-      propertyPath: _numAllowedObstacle
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6196451108467641395, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
       propertyPath: m_LocalAABB.m_Center.x
@@ -1222,7 +1222,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8147858204828088782, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
       propertyPath: m_Text
-      value: x3
+      value: x0
       objectReference: {fileID: 0}
     - target: {fileID: 9162834839994761591, guid: 52bf8431d4e67f045831bb666dbef3f4, type: 3}
       propertyPath: m_AnchorMax.y
