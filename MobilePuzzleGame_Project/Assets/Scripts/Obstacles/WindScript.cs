@@ -33,6 +33,7 @@ public class WindScript : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         onObjectStay?.Invoke(collision);
+        AudioManager.Instance.sfxClips[7].Play();
     }
 
     // ----- My Functions ----- \\
