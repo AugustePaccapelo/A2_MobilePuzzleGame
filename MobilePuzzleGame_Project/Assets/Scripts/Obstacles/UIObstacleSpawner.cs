@@ -217,7 +217,6 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
         obstacle = GetObstacleFromPool();
         obstacle.transform.position = position;
-        Debug.Log(position);
 
         ObstaclesPlacer obstaclesPlacer = obstacle.GetComponent<ObstaclesPlacer>();
         _lastObstacle = obstaclesPlacer;
