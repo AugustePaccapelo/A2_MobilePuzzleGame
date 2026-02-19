@@ -57,7 +57,6 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     void Start()
@@ -104,7 +103,7 @@ public class GameManager : MonoBehaviour
 
     private void NotInLevel()
     {
-         LevelEndPanel.Instance.gameObject.SetActive(false);
+
     }
 
     private void InitInitatingLevel()
