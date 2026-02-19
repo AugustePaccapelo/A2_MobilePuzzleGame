@@ -77,12 +77,12 @@ public class GooglePlayManager : MonoBehaviour
         #if UNITY_EDITOR
             _isLoged = false;
         #else
-            // Google play
-            //PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
-
             // Unity
             PlayGamesPlatform.Activate();
             Social.localUser.Authenticate(ProcessAuthentication);
+
+            // Google play
+            PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
 
             _isLoged = true;
         #endif
