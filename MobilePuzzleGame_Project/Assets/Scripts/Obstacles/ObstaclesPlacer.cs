@@ -109,14 +109,6 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         _canvas.enabled = false;
         _canvas.worldCamera = Camera.main;
 
-        Vector2 indicatorVecToStartPos = _rotationIndicator.position - transform.position;
-        _indicatorDistance = indicatorVecToStartPos.magnitude;
-        _indicatorStartAngle = Mathf.Atan2(indicatorVecToStartPos.y, indicatorVecToStartPos.x);
-
-        Vector2 buttonContainerVecToStartPos = _buttonsContainer.position - transform.position;
-        _buttonContainerDistance = buttonContainerVecToStartPos.magnitude;
-        _buttonStartAngle = Mathf.Atan2(buttonContainerVecToStartPos.y, buttonContainerVecToStartPos.x);
-
         _rotationHandle = GetComponentInChildren<RotationHandle>();
         if (_rotationHandle == null)
         {
@@ -144,6 +136,14 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         _renderer = GetComponentInChildren<SpriteRenderer>();
 
         _boxCollider = GetComponent<BoxCollider2D>();
+
+        Vector2 indicatorVecToStartPos = _rotationIndicator.position - transform.position;
+        _indicatorDistance = indicatorVecToStartPos.magnitude;
+        _indicatorStartAngle = Mathf.Atan2(indicatorVecToStartPos.y, indicatorVecToStartPos.x);
+
+        Vector2 buttonContainerVecToStartPos = _buttonsContainer.position - transform.position;
+        _buttonContainerDistance = buttonContainerVecToStartPos.magnitude;
+        _buttonStartAngle = Mathf.Atan2(buttonContainerVecToStartPos.y, buttonContainerVecToStartPos.x);
     }
 
     private void Start()
@@ -437,20 +437,8 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         _buttonsContainer.gameObject.SetActive(false);
     }
 
-    private void OnFingerUp(Vector2 obj)
+    private void HandleCanBePlaced()
     {
-        // If click on a button
-        if (IsPosInButtons(Camera.main.ScreenToWorldPoint(obj)))
-        {
-            return;
-        }
-
-        if (_currentFinger == null || _currentFinger.screenPosition != obj)
-        {
-            UnSelectCurrent();
-            return;
-        }
-        
         if (!_canBePlaced)
         {
             if (!_hasBeenPlaced)
@@ -475,9 +463,24 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
             _lastPos = transform.position;
             _lastAngle = transform.eulerAngles.z;
         }
+    }
 
-        
-        
+    private void OnFingerUp(Vector2 obj)
+    {
+        // If click on a button
+        if (IsPosInButtons(Camera.main.ScreenToWorldPoint(obj)))
+        {
+            return;
+        }
+
+        if (_currentFinger == null || _currentFinger.screenPosition != obj)
+        {
+            HandleCanBePlaced();
+            UnSelectCurrent();
+            return;
+        }
+
+        HandleCanBePlaced();
 
         _currentFinger = null;
         _buttonsContainer.gameObject.SetActive(true);
@@ -488,28 +491,24 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     private void SavePortal()
     {
-        if (_hasAnObstacleSelected)
-        {
-            if (_currentObstacleSelected.GetComponentInChildren<Portal>() != null)
-            {
-                newExitPortal = _currentObstacleSelected.GetComponentInChildren<Portal>();
-            }
-        }
+        if (!_hasAnObstacleSelected) return;
+
+        Portal currentPortal = _currentObstacleSelected.GetComponentInChildren<Portal>();
+        if (currentPortal == null) return;
+        
+        newExitPortal = currentPortal;
     }
 
     private void TryLinkPortal()
     {
-        if (newExitPortal != null)
-        {
-            if (_currentObstacleSelected.GetComponentInChildren<Portal>() != null)
-            {
+        if (newExitPortal == null) return;
 
-                _currentObstacleSelected.GetComponentInChildren<Portal>().SetExitPortal(newExitPortal);
-                newExitPortal.SetExitPortal(_currentObstacleSelected.GetComponentInChildren<Portal>());
+        Portal currentPortal = _currentObstacleSelected.GetComponentInChildren<Portal>();
+        if (currentPortal == null) return;
 
-                //_hasAnObstacleSelected = false;
-            }
-        }
+        currentPortal.SetExitPortal(newExitPortal);
+        newExitPortal.SetExitPortal(currentPortal);
+        //_hasAnObstacleSelected = false;
 
         newExitPortal = null;
     }

@@ -13,7 +13,12 @@ public class AccordeonMiddle : MonoBehaviour
 
     private void OnEnable()
     {
-        _baseDistance = Mathf.Abs(_topPart.position.y - _bottomPart.position.y);
+        //_baseDistance = Mathf.Abs(_topPart.position.y - _bottomPart.position.y);
+
+        Vector2 topPos = _topPart.transform.position;
+        Vector2 botPos = _bottomPart.transform.position;
+        _baseDistance = (topPos - botPos).magnitude;
+
         _baseYScale = transform.localScale.y;
     }
 
@@ -21,7 +26,11 @@ public class AccordeonMiddle : MonoBehaviour
     {
         transform.position = Vector2.Lerp(_topPart.position, _bottomPart.position, .5f);
 
-        float currentDistance = Mathf.Abs(_topPart.position.y - _bottomPart.position.y);
+        Vector2 topPos = _topPart.transform.position;
+        Vector2 botPos = _bottomPart.transform.position;
+
+        //float currentDistance = Mathf.Abs(_topPart.position.y - _bottomPart.position.y);
+        float currentDistance = (topPos - botPos).magnitude;
 
         float ratio = currentDistance / _baseDistance;
         float yScale = _baseYScale * ratio;
