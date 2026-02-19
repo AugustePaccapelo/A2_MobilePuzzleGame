@@ -134,7 +134,7 @@ public class Target : MonoBehaviour
     private void OnDestroy()
     {
         _numTargets--;
-        if (_numTargets < 0) _numTargets = 0;
+        //if (_numTargets < 0) _numTargets = 0;
         _numTargetsFinished = 0;
     }
 }
