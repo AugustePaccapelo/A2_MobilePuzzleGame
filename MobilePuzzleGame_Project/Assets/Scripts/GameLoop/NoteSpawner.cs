@@ -24,6 +24,7 @@ public class NoteSpawner : MonoBehaviour
 
     // ----- Events ----- \\
     public event Action OnNoteSpawn;
+    public event Action<Ball> OnNoteSpawnInfo;
 
     // ----- Others ----- \\
 
@@ -155,6 +156,7 @@ public class NoteSpawner : MonoBehaviour
         _currentNote.Id = _id;
         Ball.TriggerOnBallRespawn();
         OnNoteSpawn?.Invoke();
+        OnNoteSpawnInfo?.Invoke(newNote.GetComponent<Ball>());
     }
 
     // ----- Destructor ----- \\
