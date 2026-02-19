@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
 
     private void NotInLevel()
     {
-
+         LevelEndPanel.Instance.gameObject.SetActive(false);
     }
 
     private void InitInitatingLevel()
