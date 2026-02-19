@@ -19,7 +19,6 @@ public class DragonEyeAnimation : MonoBehaviour
         _spawner = GameObject.Find("Spawner").GetComponent<NoteSpawner>();
         _spawner.OnNoteSpawnInfo += AssignBall;
         _target = GetComponentInParent<Target>().transform;
-
     }
 
     private void OnDisable()
@@ -29,7 +28,6 @@ public class DragonEyeAnimation : MonoBehaviour
 
     private void AssignBall(Ball ball)
     {
-        Debug.Log("Assigne");
         _currentBall = ball;
     }
 

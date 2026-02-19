@@ -13,26 +13,30 @@ public class DragonAnimationController : MonoBehaviour
 
     private void OnEnable()
     {
-        _dragon = GameObject.Find("Target").GetComponent<Target>();
+        _dragon = GetComponentInParent<Target>();
 
-        _dragon.OnWin += PlayGoodNoteAnimation;
-        _dragon.OnLoose += PlayBadNoteAnimation;
+        Target.OnWin += PlayGoodNoteAnimation;
+        Target.OnLoose += PlayBadNoteAnimation;
     }
 
     private void OnDisable()
     {
-        _dragon.OnWin -= PlayGoodNoteAnimation;
-        _dragon.OnLoose -= PlayBadNoteAnimation;
+        Target.OnWin -= PlayGoodNoteAnimation;
+        Target.OnLoose -= PlayBadNoteAnimation;
     }
 
 
-    private void PlayGoodNoteAnimation()
+    private void PlayGoodNoteAnimation(int id)
     {
+        if (id != _dragon.Id) return;
+        Debug.Log("On win target");
         _animator.Play("dragon_bonne_note");
     }
 
-    private void PlayBadNoteAnimation()
+    private void PlayBadNoteAnimation(int id)
     {
+        if (id != _dragon.Id) return;
+        Debug.Log("On loose target");
         _animator.Play("animation_dragon_erreur");
     }
 

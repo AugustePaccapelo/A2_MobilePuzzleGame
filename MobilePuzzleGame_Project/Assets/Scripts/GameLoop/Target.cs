@@ -16,8 +16,8 @@ public class Target : MonoBehaviour
     // ----- Objects ----- \\
 
     // ----- Events ----- \\
-    public event Action OnWin;
-    public event Action OnLoose;
+    public static event Action<int> OnWin;
+    public static event Action<int> OnLoose;
 
     // ----- Others ----- \\
 
@@ -38,6 +38,8 @@ public class Target : MonoBehaviour
     }
     [SerializeField] private LayerMask _layerToDestroy;
 
+    private static Dictionary<int, Target> _mapTargets = new();
+
     private static int _numTargets = 0;
     private static int _numTargetsFinished = 0;
 
@@ -45,9 +47,15 @@ public class Target : MonoBehaviour
 
     // ----- Buil-in ----- \\
 
-    private void OnEnable() { }
+    private void OnEnable()
+    {
+        Ball.onBallRespawn += OnBallRespawn;
+    }
 
-    private void OnDisable() { }
+    private void OnDisable()
+    {
+        Ball.onBallRespawn -= OnBallRespawn;
+    }
 
     private void OnValidate()
     {
@@ -61,9 +69,10 @@ public class Target : MonoBehaviour
     {
         Id = _id;
         ChangeVisual();
-
+        
         _numTargets++;
         _numTargetsFinished = 0;
+        _mapTargets[_id] = this;
     }
 
     private void Start() { }
@@ -90,25 +99,37 @@ public class Target : MonoBehaviour
         if (note.Id == _id)
         {
             _numTargetsFinished++;
+            OnWin?.Invoke(_id);
+
             if (_numTargetsFinished == _numTargets)
             {
                 if (_numTargets >= 2)
                 {
                     GooglePlayManager.CompleteAchievement(AchivementEnum.VoieDouble);
                 }
+                Debug.Log("OnWin");
                 GameManager.Instance.FinishLevel();
-                OnWin?.Invoke();
             }
         }
         else
         {
             GameManager.Instance.RestartGame();
             _numTargetsFinished = 0;
-            OnLoose?.Invoke();
+            OnLoose?.Invoke(_id);
         }
     }
 
     // ----- My Functions ----- \\
+
+    public static Target GetTargetId(int id)
+    {
+        return _mapTargets[id];
+    }
+
+    private void OnBallRespawn()
+    {
+        _numTargetsFinished = 0;
+    }
 
     private void DelayFuncToShutUpUnity()
     {
