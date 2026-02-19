@@ -4,7 +4,6 @@ public class BardAnimationController : MonoBehaviour
 {
     private Animator _animator;
 
-    private Target _dragon;
     private NoteSpawner _spawner;
 
     private void Awake()
@@ -14,29 +13,32 @@ public class BardAnimationController : MonoBehaviour
 
     private void OnEnable()
     {
-        _dragon = GameObject.Find("Target").GetComponent<Target>();
-        _spawner = GameObject.Find("Spawner").GetComponent<NoteSpawner>();
-
-        _dragon.OnWin += PlayWinAnimation;
-        _dragon.OnLoose += PlayLooseAnimation;
+        _spawner = GetComponentInParent<NoteSpawner>();
+        
+        Target.OnWin += PlayWinAnimation;
+        Target.OnLoose += PlayLooseAnimation;
         _spawner.OnNoteSpawn += PlayNoteAnimation;
     }
 
     private void OnDisable()
     {
-        _dragon.OnWin -= PlayWinAnimation;
-        _dragon.OnLoose -= PlayLooseAnimation;
+        Target.OnWin -= PlayWinAnimation;
+        Target.OnLoose -= PlayLooseAnimation;
         _spawner.OnNoteSpawn -= PlayNoteAnimation;
     }
 
 
-    private void PlayWinAnimation()
+    private void PlayWinAnimation(int id)
     {
+        if (id != _spawner.Id) return;
+        
         _animator.Play("animation_bard_win");
     }
 
-    private void PlayLooseAnimation()
+    private void PlayLooseAnimation(int id)
     {
+        if (id != _spawner.Id) return;
+
         _animator.Play("animation_bard_lose");
     }
 
