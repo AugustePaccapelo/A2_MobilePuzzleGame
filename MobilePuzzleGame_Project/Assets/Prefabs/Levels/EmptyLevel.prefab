@@ -103,7 +103,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Parametre
+  m_text: "Param\xE8tres\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: de112b94e309a1c4b8a024c3af976a97, type: 2}
   m_sharedMaterial: {fileID: -8664134500384564278, guid: de112b94e309a1c4b8a024c3af976a97, type: 2}
@@ -192,7 +192,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4856548385244920687
 RectTransform:
   m_ObjectHideFlags: 0
@@ -717,7 +717,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Back
+  m_text: Retour
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: de112b94e309a1c4b8a024c3af976a97, type: 2}
   m_sharedMaterial: {fileID: -8664134500384564278, guid: de112b94e309a1c4b8a024c3af976a97, type: 2}
@@ -1327,7 +1327,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Resume
+  m_text: Reprendre
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: de112b94e309a1c4b8a024c3af976a97, type: 2}
   m_sharedMaterial: {fileID: -8664134500384564278, guid: de112b94e309a1c4b8a024c3af976a97, type: 2}

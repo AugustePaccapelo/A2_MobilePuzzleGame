@@ -136,13 +136,16 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         _renderer = GetComponentInChildren<SpriteRenderer>();
 
         _boxCollider = GetComponent<BoxCollider2D>();
+    }
 
+    private void Start()
+    {
         if (_rotationIndicator != null)
         {
             Vector2 indicatorVecToStartPos = _rotationIndicator.position - transform.position;
             _indicatorDistance = indicatorVecToStartPos.magnitude;
             _indicatorStartAngle = Mathf.Atan2(indicatorVecToStartPos.y, indicatorVecToStartPos.x);
-        }        
+        }
 
         if (_buttonsContainer != null)
         {
@@ -150,11 +153,6 @@ public class ObstaclesPlacer : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
             _buttonContainerDistance = buttonContainerVecToStartPos.magnitude;
             _buttonStartAngle = Mathf.Atan2(buttonContainerVecToStartPos.y, buttonContainerVecToStartPos.x);
         }
-    }
-
-    private void Start()
-    {
-        
     }
 
     private void Update()
