@@ -118,22 +118,22 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
 
     private void Update()
     {
-        if (_lastObstacle == null) return;
-        if (_lastFinger == null) return;
+        //if (_lastObstacle == null) return;
+        //if (_lastFinger == null) return;
 
-        if (_lastFinger.currentTouch.valid)
-        {
-            if (_lastFinger.currentTouch.ended)
-            {
-                if (_lastFinger.currentTouch.isTap)
-                {
-                    _lastObstacle.Pickup();
-                }
+        //if (_lastFinger.currentTouch.valid)
+        //{
+        //    if (_lastFinger.currentTouch.ended)
+        //    {
+        //        if (_lastFinger.currentTouch.isTap)
+        //        {
+        //            _lastObstacle.Pickup();
+        //        }
 
-                _lastObstacle = null;
-                _lastFinger = null;
-            }
-        }
+        //        _lastObstacle = null;
+        //        _lastFinger = null;
+        //    }
+        //}
     }
 
     public void OnTouchedDown(ToucheData touchData)
@@ -144,7 +144,7 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
         _numAllowedObstacle--;
         _numberText.text = _textPrefix + _numAllowedObstacle + _textSufix;
         touchData.fingerInput.isTracked = true;
-        SpawnObstacle(touchData.screenPosition, touchData.fingerInput);
+        SpawnObstacle(touchData.worldPosition, touchData.fingerInput);
     }
 
     public void OnTouchedUp(ToucheData toucheData)
@@ -213,26 +213,12 @@ public class UIObstacleSpawner : MonoBehaviour, ITouchableOnDown, ITouchableOnUp
     private GameObject SpawnObstacle(Vector3 position, FingerInput fingerInput)
     {
         //GameObject obstacle = Instantiate(_prefabToSpawn, _obstaclesContainer);
-
-        // Bon oui c'est degeu, mais la j'ai pas d'inspi
-        // Des fois y'a un bug ou on a la pool vide, donc si jamais c le cas on recréer
-        // Et c'est un while pck je sais pas exactement pourquoi ca foire, du ocup la on est sur de pas etre emmerder
-        // (je sais que y'a mieux mais la c plus rapide)
         GameObject obstacle;
-        do
-        {
-            obstacle = GetObstacleFromPool();
-            if (obstacle == null)
-            {
-                GeneratePool();
-            }
-            else
-            {
-                obstacle.transform.position = position;
-            }
-        }
-        while (obstacle == null);
-        
+
+        obstacle = GetObstacleFromPool();
+        obstacle.transform.position = position;
+        Debug.Log(position);
+
         ObstaclesPlacer obstaclesPlacer = obstacle.GetComponent<ObstaclesPlacer>();
         _lastObstacle = obstaclesPlacer;
         _lastFinger = fingerInput.finger;
