@@ -269,14 +269,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1366031276197488432}
     m_Modifications:
-    - target: {fileID: 2708412038538910938, guid: 4fdd535558c39324aa381b1ba24687c3, type: 3}
-      propertyPath: _beatNumber
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5304920088503904031, guid: 4fdd535558c39324aa381b1ba24687c3, type: 3}
-      propertyPath: _extendDistance
-      value: 1.3
-      objectReference: {fileID: 0}
     - target: {fileID: 1071427147773654703, guid: 8e9de9651d64ed94ea4fb870bffeba2b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.3350036
@@ -320,6 +312,18 @@ PrefabInstance:
     - target: {fileID: 2440664310384736245, guid: 8e9de9651d64ed94ea4fb870bffeba2b, type: 3}
       propertyPath: m_Name
       value: Plateform - AccordeonLD
+      objectReference: {fileID: 0}
+    - target: {fileID: 2708412038538910938, guid: 8e9de9651d64ed94ea4fb870bffeba2b, type: 3}
+      propertyPath: _beatNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2708412038538910938, guid: 4fdd535558c39324aa381b1ba24687c3, type: 3}
+      propertyPath: _beatNumber
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304920088503904031, guid: 4fdd535558c39324aa381b1ba24687c3, type: 3}
+      propertyPath: _extendDistance
+      value: 1.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
